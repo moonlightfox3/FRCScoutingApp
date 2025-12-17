@@ -1,9 +1,9 @@
 <!doctype html>
-<title>Log Match - Reefscape (2025)</title>
+<title>Log Match - Rebuilt (2026)</title>
 <link rel="icon" href="../icons/icon.svg">
 <link rel="apple-touch-icon" sizes="1024x1024" href="./icons/apple-touch-icon-1024x1024.png">
 <link rel="manifest" href="../manifest.json">
-<link rel="stylesheet" href="../../libs/style.css">
+<link rel="stylesheet" href="../libs/style.css">
 <link rel="stylesheet" href="../year-libs/style.css">
 
 <form id="dataForm">
@@ -15,27 +15,11 @@
 
         Auto:<br>
         <label for="autoPastLine">Left starting line:</label><input type="checkbox" id="autoPastLine" checked><br>
-        Coral:<br>
-        L1: <input type="number" id="autoCoralL1" value="0" placeholder="Hits"><input type="number" id="autoCoralL1Miss" value="0" placeholder="Misses"><br>
-        L2: <input type="number" id="autoCoralL2" value="0" placeholder="Hits"><input type="number" id="autoCoralL2Miss" value="0" placeholder="Misses"><br>
-        L3: <input type="number" id="autoCoralL3" value="0" placeholder="Hits"><input type="number" id="autoCoralL3Miss" value="0" placeholder="Misses"><br>
-        L4: <input type="number" id="autoCoralL4" value="0" placeholder="Hits"><input type="number" id="autoCoralL4Miss" value="0" placeholder="Misses"><br>
-        Algae:<br>
-        Processor: <input type="number" id="autoAlgaeProc" value="0" placeholder="Hits"><input type="number" id="autoAlgaeProcMiss" value="0" placeholder="Misses"><br>
-        Net: <input type="number" id="autoAlgaeNet" value="0" placeholder="Hits"><input type="number" id="autoAlgaeNetMiss" value="0" placeholder="Misses"><br>
-        Descore: <input type="number" id="autoAlgaeDesc" value="0" placeholder="Hits"><input type="number" id="autoAlgaeDescMiss" value="0" placeholder="Misses"><br>
+        PLACEHOLDER<br>
         <br>
-
+        
         Teleop:<br>
-        Coral:<br>
-        L1: <input type="number" id="opCoralL1" value="0" placeholder="Hits"><input type="number" id="opCoralL1Miss" value="0" placeholder="Misses"><br>
-        L2: <input type="number" id="opCoralL2" value="0" placeholder="Hits"><input type="number" id="opCoralL2Miss" value="0" placeholder="Misses"><br>
-        L3: <input type="number" id="opCoralL3" value="0" placeholder="Hits"><input type="number" id="opCoralL3Miss" value="0" placeholder="Misses"><br>
-        L4: <input type="number" id="opCoralL4" value="0" placeholder="Hits"><input type="number" id="opCoralL4Miss" value="0" placeholder="Misses"><br>
-        Algae:<br>
-        Processor: <input type="number" id="opAlgaeProc" value="0" placeholder="Hits"><input type="number" id="opAlgaeProcMiss" value="0" placeholder="Misses"><br>
-        Net: <input type="number" id="opAlgaeNet" value="0" placeholder="Hits"><input type="number" id="opAlgaeNetMiss" value="0" placeholder="Misses"><br>
-        Descore: <input type="number" id="opAlgaeDesc" value="0" placeholder="Hits"><input type="number" id="opAlgaeDescMiss" value="0" placeholder="Misses">
+        PLACEHOLDER
     </div>
     <div class="formPart" id="formPart2">
         Resisting from defense:<br>
@@ -66,25 +50,22 @@
     </div>
     <div class="formPart" id="formPart3">
         Ending:<br>
+        PLACEHOLDER<br>
         <input type="radio" id="endPosPark" name="endPos" value="park"><label for="endPosPark">Park</label><br>
-        <input type="radio" id="endPosDeep" name="endPos" value="deep"><label for="endPosDeep">Deep</label><br>
-        <input type="radio" id="endPosShallow" name="endPos" value="shallow"><label for="endPosShallow">Shallow</label><br>
         <input type="radio" id="endPosFail" name="endPos" value="fail" checked><label for="endPosFail">Fail</label><br>
-        <input type="radio" id="endPosDeepFail" name="endPos" value="deepFail"><label for="endPosDeepFail">Deep Fail</label><br>
-        <input type="radio" id="endPosShallowFail" name="endPos" value="shallowFail"><label for="endPosShallowFail">Shallow Fail</label><br>
         <br>
 
         Misc notes:<br>
         <textarea id="notes" placeholder="Notes" spellcheck="false"></textarea><br>
         <button id="saveData" type="button">Save data</button><button id="resetData" type="reset" onclick="return confirm('Are you sure you want to reset the form?')">Reset data</button><br>
-        Reefscape (2025)<br>
+        Rebuilt (2026)<br>
         <a href="../index.html"><button id="returnToYearSelect" type="button">Return to year selection</button></a>
     </div>
 </form>
 
-<script src="../../libs/gamepads.js"></script>
-<script src="../../libs/gamepadControl.js"></script>
-<script src="../../libs/install.js"></script>
-<script src="../../libs/datafile.js"></script>
+<script src="../libs/gamepads.js"></script>
+<script src="../libs/gamepadControl.js"></script>
+<script src="../libs/install.js"></script>
+<script src="../libs/datafile.js"></script>
 <script src="../year-libs/years.js"></script>
-<script src="./Reefscape.js"></script>
+<script src="./Rebuilt.js"></script>
