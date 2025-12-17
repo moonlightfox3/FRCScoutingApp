@@ -1,10 +1,9 @@
 scouting_app.html
     Add info window
-        How to use
-        Keybinds (keyboard/gamepad)
+        How to use, keybinds (keyboard/gamepad)
 
     Add page caching
         Add a function to check if the device is online or not
     Add button to submit generated .smscdt file to some kind of backend (maybe php?) - it could save it to a database of files?
 
-    Test on Android?
+    Test on Android
