@@ -67,7 +67,6 @@ else {
             // Automatic installation isn't supported on iPhones
             showInstallButton(function () {
 alert(`\
-Manual installation is required on iPhones!
 1. Press the browser share/export button.
 2. Scroll down and click 'Add to Home Screen'.
 3. Click 'Add'.\
