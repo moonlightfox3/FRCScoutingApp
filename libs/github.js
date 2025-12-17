@@ -1,5 +1,5 @@
 // Config
-const gitUserName = "moonlightfox3", gitRepoName = "FRCTools"
+const gitUserName = "moonlightfox3", gitRepoName = "FRCScoutingApp"
 
 // Use the GitHub API
 async function getCommit () {
