@@ -39,13 +39,17 @@ else {
         installButton = document.createElement("button")
         installButton.innerText = "Install"
         installButton.style.position = "sticky"
-        installButton.style.left = "calc(100% - 50px)"
-        installButton.style.top = "calc(100% - 30px)"
+        installButton.style.left = "calc(100% - 50px - 40px)"
+        installButton.style.top = "calc(100% - 20px)"
+        installButton.style.zIndex = "97"
         installButton.style.backgroundColor = "lightgray"
         installButton.style.color = "black"
         installButton.style.borderRadius = "5px"
         installButton.style.cursor = "pointer"
-        installButton.style.padding = "6px"
+        installButton.style.paddingLeft = "6px"
+        installButton.style.paddingRight = "6px"
+        installButton.style.paddingTop = "1px"
+        installButton.style.paddingBottom = "1px"
         installButton.style.fontSize = "14px"
         installButton.onclick = () => clickCallback()
         document.body.append(installButton)
