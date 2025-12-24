@@ -74,10 +74,12 @@ alert(`\
             })
         } else if (isAndroid) {
             // Automatic installation isn't supported on Android
+            showInstallButton(function () {
 alert(`\
 1. Press the browser options button.
 2. Click 'Add shortcut'.
 `)
+            })
         } else {
             // Catch automatic installation event
             addEventListener("beforeinstallprompt", function (ev) {
