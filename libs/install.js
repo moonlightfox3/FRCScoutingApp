@@ -1,9 +1,10 @@
 // Platform
 const isPWA = matchMedia("(display-mode: standalone)").matches
 const isIphone = navigator.platform == "iPhone"
-console.debug(`Is PWA: ${isPWA}, is iPhone: ${isIphone}`)
+const isAndroid = navigator.userAgent.includes("Android")
+console.debug(`Is PWA: ${isPWA}, is iPhone: ${isIphone}, is Android: ${isAndroid}`)
 
-// Theme color (titlebar color on computers, second background color on iPhones)
+// Theme color (titlebar color on computers and Android, second background color on iPhones)
 let themeColorEl = null
 function setThemeColor (color) {
     // Make sure this is a PWA
@@ -25,7 +26,7 @@ function resetThemeColor () {
     }
 }
 // Window setup
-if (isIphone) setThemeColor("black")
+if (isIphone || isAndroid) setThemeColor("black")
 else setThemeColor("darkviolet")
 
 // Install button
@@ -68,10 +69,15 @@ else {
             showInstallButton(function () {
 alert(`\
 1. Press the browser share/export button.
-2. Scroll down and click 'Add to Home Screen'.
-3. Click 'Add'.\
+2. Click 'Add to Home Screen'.
 `)
             })
+        } else if (isAndroid) {
+            // Automatic installation isn't supported on Android
+alert(`\
+1. Press the browser options button.
+2. Click 'Add shortcut'.
+`)
         } else {
             // Catch automatic installation event
             addEventListener("beforeinstallprompt", function (ev) {
