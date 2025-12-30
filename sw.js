@@ -57,6 +57,9 @@ async function getCacheData () {
 
 // On request
 self.addEventListener("fetch", function (ev) {
+    // Don't cache some URLs
+    if (ev.request.url.includes("github.com")) return
+
     // Need to do async work
     ev.respondWith((async function () {
         // Make sure cache exists and is up to date
