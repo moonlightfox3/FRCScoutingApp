@@ -1,5 +1,5 @@
 // Imports
-importScripts("/libs/github.js")
+importScripts("/FRCScoutingApp/libs/github.js")
 
 // Caching
 const cachePrefix = "FRCScoutingApp_"
@@ -89,7 +89,7 @@ oninstall = function (ev) {
         if (!isOnline) throw "[SW] Cannot access GitHub"
 
         await setupCache()
-        await cache.addAll(precacheResources)
+        await cache.addAll(precacheResources.map(val => `/FRCScoutingApp${val}`))
 
         console.debug("[SW] Installed")
     })
