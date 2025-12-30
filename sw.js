@@ -18,11 +18,21 @@ async function runPrecache () {
 let cacheName = null
 let cache = null
 async function setupCache () {
-    // Find the cache, create one if there isn't one already
+    // Variables
     cacheName = `${cachePrefix}${commitId}`
-    cache = await caches.open(cacheName)
+    cache = null
     cacheCommitId = commitId
 
+    // Remove old cache(s)
+    let names = await caches.keys()
+    let relevantNames = names.filter(val => val.startsWith(cachePrefix)).filter(val => val != cacheName)
+    if (relevantNames.length > 1) {
+        for (let relevantName of relevantNames) await caches.delete(relevantName)
+        console.debug("[SW] Removed old cache(s)")
+    }
+
+    // Find the cache, create one if there isn't one already
+    cache = await caches.open(cacheName)
     console.debug("[SW] Created cache")
 }
 
