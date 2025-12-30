@@ -1,7 +1,7 @@
 // Config
 const gitUserName = "moonlightfox3", gitRepoName = "FRCScoutingApp"
 
-// Use the GitHub API
+// Use GitHub's API
 async function getCommit () {
     try {
         console.debug(`Getting latest commit data for GitHub repo '${gitUserName}/${gitRepoName}'`)
@@ -11,7 +11,8 @@ async function getCommit () {
         let json = await resp.json()
         return json[0]
     } catch (er) {
-        console.debug("Could not get lastest commit data")
+        // Network error
+        console.debug("Could not get latest commit data")
         return null
     }
 }
