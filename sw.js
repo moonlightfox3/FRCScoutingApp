@@ -58,7 +58,7 @@ async function getCacheData () {
 // On request
 self.addEventListener("fetch", function (ev) {
     // Need to do async work
-    ev.waitUntil(async function () {
+    ev.waitUntil((async function () {
         // Make sure cache exists and is up to date
         if (cacheCommitId == null) await getCacheData()
         if (cacheCommitId != commitId && commitId != null) {
@@ -83,26 +83,26 @@ self.addEventListener("fetch", function (ev) {
             // Network error
             ev.respondWith(Response.error())
         }
-    })
+    })())
 })
 
 // On install - Set up cache
 self.addEventListener("install", function (ev) {
-    ev.waitUntil(async function () {
+    ev.waitUntil((async function () {
         let isOnline = await getGithubData(false)
         if (!isOnline) throw "[SW] Cannot access GitHub"
 
         await setupCache()
         await runPrecache()
         console.debug("[SW] Installed")
-    })
+    })())
 })
 self.addEventListener("activate", function (ev) {
-    ev.waitUntil(async function () {
+    ev.waitUntil((async function () {
         let isOnline = await getGithubData(false)
         if (!isOnline) throw "[SW] Cannot access GitHub"
 
         await getCacheData()
         console.debug("[SW] Activated")
-    })
+    })())
 })
