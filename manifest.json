@@ -34,7 +34,7 @@
 			"purpose": "any"
 		}
 	],
-	"name": "Scouting App for FRC",
+	"name": "FRC Scouting App",
 	"short_name": "FRC Scouting",
 	"start_url": "index.html",
 	"theme_color": "darkviolet"
