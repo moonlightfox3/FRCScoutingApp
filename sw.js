@@ -87,7 +87,7 @@ onfetch = function (ev) {
 }
 
 // On install - Set up cache
-oninstall = function (ev) {
+self.oninstall = function (ev) {
     ev.waitUntil(async function () {
         let isOnline = await getGithubData(false)
         if (!isOnline) throw "[SW] Cannot access GitHub"
@@ -97,7 +97,7 @@ oninstall = function (ev) {
         console.debug("[SW] Installed")
     })
 }
-onactivate = function (ev) {
+self.onactivate = function (ev) {
     ev.waitUntil(async function () {
         let isOnline = await getGithubData(false)
         if (!isOnline) throw "[SW] Cannot access GitHub"
