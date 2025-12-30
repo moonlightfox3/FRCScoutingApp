@@ -1,6 +1,6 @@
 scouting_app.html
     Add info window
         How to use, keybinds (keyboard/gamepad)
+
     Add button to submit generated .smscdt file to some kind of server/database backend
-        Save it to a database of files
-        Can get general stats/data from the files
+        Save it to a database of files, can get general stats/data from the files
