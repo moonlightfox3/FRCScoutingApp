@@ -5,17 +5,22 @@ const gitUserName = "moonlightfox3", gitRepoName = "FRCScoutingApp"
 async function getCommit () {
     console.debug(`Getting latest commit data for GitHub repo '${gitUserName}/${gitRepoName}'`)
     let resp = await fetch(`https://api.github.com/repos/${gitUserName}/${gitRepoName}/commits?per_page=1`)
+
+    if (!resp.ok) return null
     let json = await resp.json()
     return json[0]
 }
 let commit = null
-;(async function () {
+async function getGithubData (show) {
     commit = await getCommit()
+    let isOnline = commit != null
 
     commitId = getCommitId()
     commitDate = getCommitDate()
-    showCommitUpdate()
-})()
+    if (show) showCommitUpdate(isOnline)
+
+    return isOnline
+}
 
 // Get data from the commit
 let commitId = null
@@ -37,20 +42,18 @@ function getCommitDate () {
 
 // Show the update status element
 let updateDateEl = null
-function showCommitUpdate () {
+function showCommitUpdate (isOnline) {
     hideCommitUpdate()
     
     updateDateEl = document.createElement("div")
-    let addEl1 = document.createElement("span")
-        addEl1.innerText = `Updated ${commitDate}`
-    let addEl2 = document.createElement("span")
-        addEl2.innerText = `(commit ${commitId})`
-    addEl1.style.display = addEl2.style.display = "inline-block"
+    updateDateEl.innerText = `Updated ${commitDate ?? "???"} (commit ${commitId ?? "???"})`
+    if (!isOnline) updateDateEl.innerText += " - May be offline, page could be cached"
+
     updateDateEl.style.position = "sticky"
     updateDateEl.style.left = "5px"
     updateDateEl.style.top = "calc(100% - 30px)"
     updateDateEl.style.width = "calc(100% - 60px)"
-    updateDateEl.append(addEl1, " ", addEl2)
+    
     document.body.append(updateDateEl)
 }
 function hideCommitUpdate () {
