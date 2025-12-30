@@ -106,6 +106,7 @@ self.addEventListener("install", function (ev) {
     ev.waitUntil((async function () {
         let isOnline = await getGithubData(false)
         if (!isOnline) throw "[SW] Cannot access GitHub"
+        console.debug(`[SW] GitHub commit ID: ${commitId}`)
 
         await setupCache()
         await runPrecache()
@@ -116,6 +117,7 @@ self.addEventListener("activate", function (ev) {
     ev.waitUntil((async function () {
         let isOnline = await getGithubData(false)
         if (!isOnline) throw "[SW] Cannot access GitHub"
+        console.debug(`[SW] GitHub commit ID: ${commitId}`)
 
         await getCacheData()
         console.debug("[SW] Activated")
