@@ -52,8 +52,8 @@ function showCommitUpdate (isOnline) {
     hideCommitUpdate()
     
     updateDateEl = document.createElement("div")
-    updateDateEl.innerText = `Updated ${commitDate ?? "???"} (commit ${commitId ?? "???"})`
-    if (!isOnline) updateDateEl.innerText += " - May be offline, page could be cached"
+    if (isOnline) updateDateEl.innerText = `Updated ${commitDate} (commit ${commitId})`
+    else updateDateEl.innerText = "App loaded from your browser's offline cache"
 
     updateDateEl.style.position = "sticky"
     updateDateEl.style.left = "5px"

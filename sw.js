@@ -3,11 +3,13 @@ importScripts("/FRCScoutingApp/libs/github.js")
 
 // Caching
 const cachePrefix = "FRCScoutingApp_"
-const precacheResources = [ // No need to precache some resources
-    "/sw.js", "/index.html",
+const precacheResources = [ // No need to precache some resources, but might as well precache almost everything
+    "/sw.js", "/manifest.json", "/index.html",
     "/libs/datafile.js", "/libs/gamepadControl.js", "/libs/gamepads.js", "/libs/github.js", "/libs/install.js", "/libs/profile.js", "/libs/swrun.js", "/libs/style.css",
     "/year/Crescendo.html", "/year/Crescendo.js", "/year/Reefscape.html", "/year/Reefscape.js", "/year/Rebuilt.html", "/year/Rebuilt.js",
     "/year-libs/years.js", "/year-libs/style.css",
+    "/icons/icon.svg", "/icons/apple-touch-icon-1024x1024.png",
+    "/year-img/Crescendo.png", "/year-img/Reefscape.png", "/year-img/Rebuilt.png",
 ]
 async function runPrecache () {
     console.debug("[SW] Precaching resources")
