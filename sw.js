@@ -4,10 +4,10 @@ importScripts("/FRCScoutingApp/libs/github.js")
 // Caching
 const cachePrefix = "FRCScoutingApp_"
 const precacheResources = [ // No need to precache some resources
-    "/", "/sw.js", "/index.html",
-    "/libs/", "/libs/datafile.js", "/libs/gamepadControl.js", "/libs/gamepads.js", "/libs/github.js", "/libs/install.js", "/libs/profile.js", "/libs/swrun.js", "/libs/style.css",
-    "/year/", "/year/Crescendo.html", "/year/Crescendo.js", "/year/Reefscape.html", "/year/Reefscape.js", "/year/Rebuilt.html", "/year/Rebuilt.js",
-    "/year-libs/", "/year-libs/years.js", "/year-libs/style.css",
+    "/sw.js", "/index.html",
+    "/libs/datafile.js", "/libs/gamepadControl.js", "/libs/gamepads.js", "/libs/github.js", "/libs/install.js", "/libs/profile.js", "/libs/swrun.js", "/libs/style.css",
+    "/year/Crescendo.html", "/year/Crescendo.js", "/year/Reefscape.html", "/year/Reefscape.js", "/year/Rebuilt.html", "/year/Rebuilt.js",
+    "/year-libs/years.js", "/year-libs/style.css",
 ]
 async function runPrecache () {
     console.debug("[SW] Precaching resources")
@@ -56,7 +56,7 @@ async function getCacheData () {
 }
 
 // On request
-onfetch = function (ev) {
+self.addEventListener("fetch", function (ev) {
     // Need to do async work
     ev.waitUntil(async function () {
         // Make sure cache exists and is up to date
@@ -84,10 +84,10 @@ onfetch = function (ev) {
             ev.respondWith(Response.error())
         }
     })
-}
+})
 
 // On install - Set up cache
-self.oninstall = function (ev) {
+self.addEventListener("install", function (ev) {
     ev.waitUntil(async function () {
         let isOnline = await getGithubData(false)
         if (!isOnline) throw "[SW] Cannot access GitHub"
@@ -96,8 +96,8 @@ self.oninstall = function (ev) {
         await runPrecache()
         console.debug("[SW] Installed")
     })
-}
-self.onactivate = function (ev) {
+})
+self.addEventListener("activate", function (ev) {
     ev.waitUntil(async function () {
         let isOnline = await getGithubData(false)
         if (!isOnline) throw "[SW] Cannot access GitHub"
@@ -105,4 +105,4 @@ self.onactivate = function (ev) {
         await getCacheData()
         console.debug("[SW] Activated")
     })
-}
+})
