@@ -3,12 +3,17 @@ const gitUserName = "moonlightfox3", gitRepoName = "FRCScoutingApp"
 
 // Use the GitHub API
 async function getCommit () {
-    console.debug(`Getting latest commit data for GitHub repo '${gitUserName}/${gitRepoName}'`)
-    let resp = await fetch(`https://api.github.com/repos/${gitUserName}/${gitRepoName}/commits?per_page=1`)
+    try {
+        console.debug(`Getting latest commit data for GitHub repo '${gitUserName}/${gitRepoName}'`)
+        let resp = await fetch(`https://api.github.com/repos/${gitUserName}/${gitRepoName}/commits?per_page=1`)
 
-    if (!resp.ok) return null
-    let json = await resp.json()
-    return json[0]
+        if (!resp.ok) return null
+        let json = await resp.json()
+        return json[0]
+    } catch (er) {
+        console.debug("Could not get lastest commit data")
+        return null
+    }
 }
 let commit = null
 async function getGithubData (show) {

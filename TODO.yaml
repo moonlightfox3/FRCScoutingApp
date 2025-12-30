@@ -6,5 +6,5 @@ scouting_app.html
         Service worker
             Make sure to check the GitHub commit on page reload (currently only does on install and activate)
             Test if it works
-            
+
     Add button to submit generated .smscdt file to some kind of backend (maybe php?) - it could save it to a database of files

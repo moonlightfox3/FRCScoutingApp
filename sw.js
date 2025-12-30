@@ -9,6 +9,10 @@ const precacheResources = [ // No need to precache some resources
     "/year/", "/year/Crescendo.html", "/year/Crescendo.js", "/year/Reefscape.html", "/year/Reefscape.js", "/year/Rebuilt.html", "/year/Rebuilt.js",
     "/year-libs/", "/year-libs/years.js", "/year-libs/style.css",
 ]
+async function runPrecache () {
+    console.debug("[SW] Precaching resources")
+    await cache.addAll(precacheResources.map(val => `/FRCScoutingApp${val}`))
+}
 
 // Set up the cache
 let cacheName = null
@@ -89,8 +93,7 @@ oninstall = function (ev) {
         if (!isOnline) throw "[SW] Cannot access GitHub"
 
         await setupCache()
-        await cache.addAll(precacheResources.map(val => `/FRCScoutingApp${val}`))
-
+        await runPrecache()
         console.debug("[SW] Installed")
     })
 }
