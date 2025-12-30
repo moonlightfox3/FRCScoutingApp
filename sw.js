@@ -58,7 +58,7 @@ async function getCacheData () {
 // On request
 self.addEventListener("fetch", function (ev) {
     // Need to do async work
-    ev.waitUntil((async function () {
+    ev.respondWith((async function () {
         // Make sure cache exists and is up to date
         if (cacheCommitId == null) await getCacheData()
         if (cacheCommitId != commitId && commitId != null) {
@@ -69,7 +69,7 @@ self.addEventListener("fetch", function (ev) {
 
         // Check if the response is already cached, return it if it is
         let cachedResp = await caches.match(ev.request)
-        if (cachedResp != null) return ev.respondWith(cachedResp)
+        if (cachedResp != null) return cachedResp
 
         // Network stuff, catch fetch errors
         try {
@@ -78,10 +78,10 @@ self.addEventListener("fetch", function (ev) {
             
             // Cache the response (if it's successful), and return it
             if (resp.ok) await cache.put(ev.request, resp)
-            ev.respondWith(resp)
+            return resp
         } catch (er) {
             // Network error
-            ev.respondWith(Response.error())
+            return Response.error()
         }
     })())
 })
