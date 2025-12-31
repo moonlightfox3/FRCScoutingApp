@@ -69,8 +69,10 @@ async function getCacheData () {
 
 // On request
 self.addEventListener("fetch", function (ev) {
+    console.debug("[SW] Got request")
+
     // Don't cache some URLs
-    if (ev.request.url.includes("github.com")) return
+    if (ev.request.url.includes("github.com")) return console.debug("[SW] Ignoring request")
 
     // Need to do async work
     ev.respondWith((async function () {
@@ -85,18 +87,26 @@ self.addEventListener("fetch", function (ev) {
 
         // Check if the response is already cached, return it if it is
         let cachedResp = await caches.match(ev.request)
-        if (cachedResp != null) return cachedResp
+        if (cachedResp != null) {
+            console.debug("[SW] Responding from cache")
+            return cachedResp
+        }
 
         // Network stuff, catch fetch errors
         try {
             // Make a request
+            console.debug("[SW] Fetching response")
             let resp = await fetch(ev.request)
             
             // Cache the response (if it's successful), and return it
-            if (resp.ok) await cache.put(ev.request, resp)
+            if (resp.ok) {
+                console.debug("[SW] Caching good response")
+                await cache.put(ev.request, resp)
+            }
             return resp
         } catch (er) {
             // Network error
+            console.debug("[SW] Network error")
             return Response.error()
         }
     })())
