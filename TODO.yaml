@@ -1,3 +1,6 @@
+Add light mode / dark mode
+    Add toggle in index page, save in localstorage
+    Make the page style look better (add colorful ui elements to both modes)
 Add info window
     How to use, keybinds (keyboard/gamepad)
 Add button to submit generated .smscdt file to some kind of server/database backend
