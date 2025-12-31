@@ -69,7 +69,7 @@ async function getCacheData () {
 
 // On request
 self.addEventListener("fetch", function (ev) {
-    console.debug("[SW] Got request")
+    console.debug(`[SW] Got request: ${ev.request.url}`)
 
     // Don't cache some URLs
     if (ev.request.url.includes("github.com")) return console.debug("[SW] Ignoring request")
