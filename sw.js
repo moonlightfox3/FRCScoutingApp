@@ -126,7 +126,6 @@ self.addEventListener("install", function (ev) {
         console.debug("[SW] Installed")
         
         await self.skipWaiting()
-        await self.clients.claim()
     })())
 })
 self.addEventListener("activate", function (ev) {
@@ -138,5 +137,7 @@ self.addEventListener("activate", function (ev) {
 
         await getCacheData()
         console.debug("[SW] Activated")
+        
+        await self.clients.claim()
     })())
 })
