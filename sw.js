@@ -141,3 +141,18 @@ self.addEventListener("activate", function (ev) {
         await self.clients.claim()
     })())
 })
+self.addEventListener("message", function (ev) {
+    if (ev.data == "reload") {
+        console.debug("[SW] Reloading")
+
+        ev.waitUntil((async function () {
+            await getGithubData(false)
+            console.debug(`[SW] GitHub commit ID: ${commitId}`)
+
+            await getCacheData()
+            console.debug("[SW] Reloaded")
+        
+            await self.clients.claim()
+        })())
+    } else console.debug("[SW] Got unknown message")
+})
