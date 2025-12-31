@@ -92,23 +92,23 @@ self.addEventListener("fetch", function (ev) {
             return cachedResp
         }
 
-        // Network stuff, catch fetch errors
+        // Make a request
+        console.debug("[SW] Fetching response")
+        let resp = null
         try {
-            // Make a request
-            console.debug("[SW] Fetching response")
-            let resp = await fetch(ev.request)
-            
-            // Cache the response (if it's successful), and return it
-            if (resp.ok) {
-                console.debug("[SW] Caching good response")
-                await cache.put(ev.request, resp.clone())
-            }
-            return resp
+            resp = await fetch(ev.request)
         } catch (er) {
             // Network error
             console.debug("[SW] Network error")
             return Response.error()
         }
+            
+        // Cache the response (if it's successful), and return it
+        if (resp.ok) {
+            console.debug("[SW] Caching good response")
+            await cache.put(ev.request, resp.clone())
+        }
+        return resp
     })())
 })
 
