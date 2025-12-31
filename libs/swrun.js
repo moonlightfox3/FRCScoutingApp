@@ -10,3 +10,4 @@ async function registerServiceWorker () {
         console.debug("Error while registering service worker")
     }
 }
+addEventListener("load", () => registerServiceWorker())
