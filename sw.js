@@ -124,6 +124,8 @@ self.addEventListener("install", function (ev) {
         await setupCache()
         await runPrecache()
         console.debug("[SW] Installed")
+        
+        await self.skipWaiting()
     })())
 })
 self.addEventListener("activate", function (ev) {
