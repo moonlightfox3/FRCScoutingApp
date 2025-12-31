@@ -101,7 +101,7 @@ self.addEventListener("fetch", function (ev) {
             // Cache the response (if it's successful), and return it
             if (resp.ok) {
                 console.debug("[SW] Caching good response")
-                await cache.put(ev.request, resp)
+                await cache.put(ev.request, resp.clone())
             }
             return resp
         } catch (er) {
