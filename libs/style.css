@@ -56,4 +56,10 @@ div#profileExpand {
 }
 a.profileLink {
     color: lightgray;
+    text-decoration: underline;
+}
+button#profileSettings {
+    background-color: lightgray;
+    border-radius: 5px;
+    cursor: pointer;
 }

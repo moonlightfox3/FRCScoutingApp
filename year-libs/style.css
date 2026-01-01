@@ -1,3 +1,4 @@
+/* Input elements and buttons */
 input, textarea#notes, button#saveData, button#resetData, button#returnToYearSelect {
     background-color: lightgray;
     color: black;
@@ -12,6 +13,7 @@ button#saveData, button#resetData, button#returnToYearSelect {
     cursor: pointer;
 }
 
+/* General layout */
 div.formPart {
     position: absolute;
     top: 5px;

@@ -1,7 +1,6 @@
-Add light mode / dark mode
-    Add toggle in index page, save in localstorage
-    Make the page style look better (add colorful ui elements to both modes)
-Add info window
-    How to use, keybinds (keyboard/gamepad)
+Add info/settings window
+    How to use
+    Keybinds (keyboard/gamepad) - can be edited and saved in LocalStorage
+    Light/dark mode toggle - saves in LocalStorage
 Add button to submit generated .smscdt file to some kind of server/database backend
     Save it to a database of files, can get general stats/data from the files
