@@ -83,7 +83,8 @@ hr {
     margin-top: 10px;
     margin-bottom: 10px;
     
-    border-color: lightgray;
+    border: none;
+    border-top: 1px inset lightgray;
 }
 
 
@@ -98,13 +99,19 @@ body.light ::selection {
     background-color: lightskyblue !important;
 }
 
+/* Generic elements */
+button {
+    border-width: 1px !important;
+}
 
 /* Profile and settings */
 body.light div#profile {
     background-color: white !important;
+    border-color: black !important;
 }
 body.light div#profileExpand {
     background-color: white !important;
+    border-color: black !important;
 }
 body.light a.profileLink {
     color: gray !important;

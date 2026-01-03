@@ -1,0 +1,58 @@
+/* Year list */
+div#yearsEl {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Years */
+button.year {
+    background-color: darkgray;
+    cursor: pointer;
+    color: black;
+    border-radius: 5px;
+
+    display: inline-block;
+    width: 220px;
+    height: 180px;
+}
+button.year.current {
+    background-color: lightgray;
+}
+button.year.unreleased {
+    background-color: gray;
+    cursor: default;
+}
+button.year[disabled] {
+    cursor: default;
+}
+
+/* Year images */
+img.year-img {
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+
+    width: 100%;
+    height: auto;
+    margin-top: 3px;
+}
+
+
+/* Light mode (adds override rules to a dark mode stylesheet) */
+
+/* Years */
+button.year {
+    background-color: lightgray !important;
+}
+button.year.current {
+    background-color: white !important;
+}
+button.year.unreleased {
+    background-color: darkgray !important;
+}
+
+/* Year images */
+img.year-img {
+    background-color: lightgray !important;
+}

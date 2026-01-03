@@ -12,7 +12,10 @@ async function registerServiceWorker () {
     }
     console.debug("Registered service worker")
 }
-addEventListener("load", () => registerServiceWorker())
+addEventListener("load", function () {
+    registerServiceWorker()
+    if (!!parseInt(localStorage.getItem("FRCScoutingApp_lightMode"))) document.body.classList.add("light")
+})
 
 // Get from registration
 function getSw () {

@@ -42,7 +42,7 @@ profileSettings.innerHTML = `\
 
 <center>
     <b>Keybinds (keyboard/controller)</b><br>
-    <i>Different for each season</i>
+    <i>Different for each year</i>
 </center>
 Crescendo:<br>
 TODO<br>
@@ -66,7 +66,12 @@ TODO
     darkModeToggle.onchange = function () {
         console.debug(`Changing style to ${darkModeToggle.checked ? "dark" : "light"} mode`)
 
-        if (darkModeToggle.checked) document.body.classList.remove("light")
-        else document.body.classList.add("light")
+        if (darkModeToggle.checked) {
+            document.body.classList.remove("light")
+            localStorage.removeItem("FRCScoutingApp_lightMode")
+        } else {
+            document.body.classList.add("light")
+            localStorage.setItem("FRCScoutingApp_lightMode", "1")
+        }
     }
 }
