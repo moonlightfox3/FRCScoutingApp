@@ -125,6 +125,7 @@ self.addEventListener("install", function (ev) {
         await runPrecache()
         console.debug("[SW] Installed")
         
+        // Setup
         await self.skipWaiting()
     })())
 })
@@ -138,6 +139,7 @@ self.addEventListener("activate", function (ev) {
         await getCacheData()
         console.debug("[SW] Activated")
         
+        // Setup
         await self.clients.claim()
     })())
 })
@@ -152,7 +154,10 @@ self.addEventListener("message", function (ev) {
             await getCacheData()
             console.debug("[SW] Reloaded")
         
-            await self.clients.claim()
+            // Setup (may not be activated if registered very recently)
+            try {
+                await self.clients.claim()
+            } catch (er) {}
         })())
     } else console.debug("[SW] Got unknown message")
 })
