@@ -100,7 +100,10 @@ body.light ::selection {
 }
 
 /* Generic elements */
-button {
+body.light input {
+    border-width: 1px !important;
+}
+body.light button {
     border-width: 1px !important;
 }
 

@@ -36,7 +36,7 @@ profileSettings.innerHTML = `\
 
 <center>
     <b>General settings</b><br>
-    <input type="checkbox" id="darkModeToggle" checked><label for="darkModeToggle"> Dark mode</label>
+    <input type="checkbox" id="darkModeToggle" ${!!parseInt(localStorage.getItem("FRCScoutingApp_lightMode")) ? "" : "checked"}><label for="darkModeToggle"> Dark mode</label>
 </center>
 <hr>
 
