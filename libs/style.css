@@ -58,8 +58,10 @@ a.profileLink {
     color: lightgray;
     text-decoration: underline;
 }
-button#profileSettings {
+button#profileSettingsOpen {
     background-color: lightgray;
     border-radius: 5px;
     cursor: pointer;
+}
+div#profileSettings {
 }

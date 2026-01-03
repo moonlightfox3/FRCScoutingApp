@@ -1,8 +1,9 @@
 let profileExpanded = false
+let profileSettingsExpanded = false
 addEventListener("load", function () {
     let profile = document.createElement("div")
     profile.id = "profile"
-    profile.innerHTML = `Made by <i>Joe M. (moonlightfox3)</i>. <a class="profileLink" target="_blank" href="https://github.com/moonlightfox3/FRCScoutingApp"><b>GitHub repo here</b></a>. | <button id="profileSettings">Click to show page info and settings.</button>`
+    profile.innerHTML = `Made by <i>Joe M. (moonlightfox3)</i>. <a class="profileLink" target="_blank" href="https://github.com/moonlightfox3/FRCScoutingApp"><b>GitHub repo here</b></a>. | <button id="profileSettingsOpen">Click to show page info and settings.</button>`
     
     let profileExpand = document.createElement("div")
     profileExpand.id = "profileExpand"
@@ -15,6 +16,14 @@ addEventListener("load", function () {
         else profile.style.display = "none"
     }
 
-    profileSettings.onclick = function () { // TODO
+    let profileSettings = document.createElement("div")
+    profileSettings.id = "profileSettings"
+    profileSettings.innerHTML = ``
+
+    document.body.append(profileSettings)
+    profileSettingsOpen.onclick = function () {
+        profileSettingsExpanded = !profileSettingsExpanded
+        if (profileSettingsExpanded) profileSettings.style.display = "block"
+        else profileSettings.style.display = "none"
     }
 })
