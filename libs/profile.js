@@ -24,16 +24,25 @@ profileSettings.innerHTML = `\
     TODO
 </center>
 <hr>
+
 <center>
-    <b>Keybinds (keyboard/controller)</b><br>
-    <i>Different for each season</i><br>
-    Crescendo:<br>
-    TODO<br>
-    Reefscape:<br>
-    TODO<br>
-    Rebuilt:<br>
+    <b>General settings</b><br>
     TODO
 </center>
+<hr>
+
+<center>
+    <b>Keybinds (keyboard/controller)</b><br>
+    <i>Different for each season</i>
+</center>
+Crescendo:<br>
+TODO<br>
+<br>
+Reefscape:<br>
+TODO<br>
+<br>
+Rebuilt:<br>
+TODO
 `
 
     document.body.append(profileSettings)
