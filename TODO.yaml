@@ -5,4 +5,5 @@ Info/settings window
     Keybinds (keyboard/gamepad)
         Can be edited, saves in LocalStorage
     Light/dark mode toggle
+        Defaults based on OS preference?
         Saves in LocalStorage
