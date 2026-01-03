@@ -3,7 +3,7 @@ let profileSettingsExpanded = false
 addEventListener("load", function () {
     let profile = document.createElement("div")
     profile.id = "profile"
-    profile.innerHTML = `Made by <i>Joe M. (moonlightfox3)</i>. <a class="profileLink" target="_blank" href="https://github.com/moonlightfox3/FRCScoutingApp"><b>GitHub repo here</b></a>. | <button id="profileSettingsOpen">Click to show page info and settings.</button>`
+    profile.innerHTML = `Made by <i>Joe M. (moonlightfox3)</i>. <a class="profileLink" target="_blank" href="https://github.com/moonlightfox3/FRCScoutingApp"><b>GitHub repo here</b></a>. | <button id="profileSettingsOpen">Show page info and settings</button>`
     
     let profileExpand = document.createElement("div")
     profileExpand.id = "profileExpand"
@@ -18,7 +18,23 @@ addEventListener("load", function () {
 
     let profileSettings = document.createElement("div")
     profileSettings.id = "profileSettings"
-    profileSettings.innerHTML = ``
+profileSettings.innerHTML = `\
+<center>
+    <b>About this page</b><br>
+    TODO
+</center>
+<hr>
+<center>
+    <b>Keybinds (keyboard/controller)</b><br>
+    <i>Different for each season</i><br>
+    Crescendo:<br>
+    TODO<br>
+    Reefscape:<br>
+    TODO<br>
+    Rebuilt:<br>
+    TODO
+</center>
+`
 
     document.body.append(profileSettings)
     profileSettingsOpen.onclick = function () {

@@ -1,6 +1,8 @@
-Add info/settings window
-    How to use
-    Keybinds (keyboard/gamepad) - can be edited and saved in LocalStorage
-    Light/dark mode toggle - saves in LocalStorage
 Add button to submit generated .smscdt file to some kind of server/database backend
     Save it to a database of files, can get general stats/data from the files
+Info/settings window
+    How to use (short)
+    Keybinds (keyboard/gamepad)
+        Can be edited, saves in LocalStorage
+    Light/dark mode toggle
+        Saves in LocalStorage
