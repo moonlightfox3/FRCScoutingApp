@@ -42,17 +42,17 @@ img.year-img {
 /* Light mode (adds override rules to a dark mode stylesheet) */
 
 /* Years */
-button.year {
+body.light button.year {
     background-color: lightgray !important;
 }
-button.year.current {
+body.light button.year.current {
     background-color: white !important;
 }
-button.year.unreleased {
+body.light button.year.unreleased {
     background-color: darkgray !important;
 }
 
 /* Year images */
-img.year-img {
+body.light img.year-img {
     background-color: lightgray !important;
 }
