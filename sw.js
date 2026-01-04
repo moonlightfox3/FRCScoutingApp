@@ -137,6 +137,7 @@ self.addEventListener("activate", function (ev) {
         console.debug(`[SW] GitHub commit ID: ${commitId}`)
 
         await getCacheData()
+        if (cache == null) await setupCache()
         console.debug("[SW] Activated")
         
         // Setup
@@ -152,6 +153,7 @@ self.addEventListener("message", function (ev) {
             console.debug(`[SW] GitHub commit ID: ${commitId}`)
 
             await getCacheData()
+            if (cache == null) await setupCache()
             console.debug("[SW] Reloaded")
         
             // Setup (may not be activated if registered very recently)
