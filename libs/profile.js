@@ -66,6 +66,7 @@ ${keysToHtmlStr(2026)}
     darkModeToggle.onchange = function () {
         console.debug(`Changing style to ${darkModeToggle.checked ? "dark" : "light"} mode`)
 
+        // Toggle, save
         if (darkModeToggle.checked) {
             document.body.classList.remove("light")
             localStorage.removeItem("FRCScoutingApp_lightMode")
@@ -94,6 +95,7 @@ ${gamepadKeysStr}
 // Convert some keys to other text
 function getKeyAsText (key) {
     if (key == " ") return "Space"
+    else if (key == "enter") return "Enter"
     else return key
 }
 function getGamepadKeyAsText (key) {
@@ -117,11 +119,13 @@ function getGamepadKeyAsText (key) {
     else return key
 }
 function getKeyNameAsText (keyName) {
+    // Change underscores to parentheses
     if (keyName.includes("_")) {
         let underscoreIndex = keyName.indexOf("_")
         keyName = `${keyName.substring(0, underscoreIndex)} (${keyName.substring(underscoreIndex + 1)})`
     }
 
+    // Split words apart
     let keyNameOut = ""
     for (let i = 0; i < keyName.length; i++) {
         let prevChar = keyNameOut[keyNameOut.length - 1]
@@ -131,6 +135,7 @@ function getKeyNameAsText (keyName) {
         else keyNameOut += keyName[i].toLowerCase()
     }
 
+    // Special cases
     keyNameOut = keyNameOut.split(" ")
     for (let i = 0; i < keyNameOut.length; i++) {
         if (keyNameOut[i] == null) continue
@@ -145,8 +150,9 @@ function getKeyNameAsText (keyName) {
             if (change) keyNameOut[i + 1] = null
         }
     }
+    keyNameOut = keyNameOut.filter(val => val != null).join(" ")
 
-    return keyNameOut.filter(val => val != null).join(" ")
+    return keyNameOut
 }
 
 // Insert spaces in HTML
