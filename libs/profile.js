@@ -44,14 +44,14 @@ profileSettings.innerHTML = `\
     <b>Keybinds (keyboard/controller)</b><br>
     <i>Different for each year</i>
 </center>
-Crescendo:<br>
-TODO<br>
+<b>Crescendo:</b><br>
+${keysToHtmlStr(2024)}<br>
 <br>
-Reefscape:<br>
-TODO<br>
+<b>Reefscape:</b><br>
+${keysToHtmlStr(2025)}<br>
 <br>
-Rebuilt:<br>
-TODO
+<b>Rebuilt:</b><br>
+${keysToHtmlStr(2026)}
 `
 
     // Add settings menu to document, settings menu open/close button functionality
@@ -74,4 +74,45 @@ TODO
             localStorage.setItem("FRCScoutingApp_lightMode", "1")
         }
     }
+}
+
+// Get a list of keys as a string
+function keysToHtmlStr (year) {
+    setKeyVars(year)
+    let keyboardKeysStr = Object.keys(keys).map(val => `    ${val}: <i>${getKeyAsText(keys[val])}</i>`).join("<br>")
+    let gamepadKeysStr = Object.keys(gamepadKeys).map(val => `    ${val}: <i>${getGamepadKeyAsText(gamepadKeys[val])}</i>`).join("<br>")
+    setKeyVars(-1)
+
+return `\
+Keyboard<br>
+${keyboardKeysStr}<br>
+Gamepad<br>
+${gamepadKeysStr}
+`
+}
+
+// Convert some keys to other text
+function getKeyAsText (key) {
+    if (key == " ") return "Space"
+    else return key
+}
+function getGamepadKeyAsText (key) {
+    if (key == "RD") return "RightDown"
+    else if (key == "RR") return "RightRight"
+    else if (key == "RL") return "RightLeft"
+    else if (key == "RU") return "RightUp"
+    else if (key == "LBU") return "LeftBumper"
+    else if (key == "RBU") return "RightBumper"
+    else if (key == "LBD") return "LeftTrigger"
+    else if (key == "RBD") return "RightTrigger"
+    else if (key == "ML") return "MiddleLeft"
+    else if (key == "MR") return "MiddleRight"
+    else if (key == "JL") return "JoystickLeft"
+    else if (key == "JR") return "JoystickRight"
+    else if (key == "LU") return "LeftUp"
+    else if (key == "LD") return "LeftDown"
+    else if (key == "LL") return "LeftLeft"
+    else if (key == "LR") return "LeftRight"
+    else if (key == "MM") return "MiddleMiddle"
+    else return key
 }

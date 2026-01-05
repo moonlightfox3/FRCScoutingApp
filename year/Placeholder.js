@@ -1,58 +1,5 @@
 initDataFile(/* PLACEHOLDER */ 0)
-
-keys = {
-    invertAction: ";",
-    switchStageTeleop: " ",
-    switchStageAuto: "b",
-    toggleRobotCame: "t",
-    toggleRobotAutoLeftStart: "y",
-    focusNotesField: "p",
-    /* PLACEHOLDER */
-    defenseResistance_None: "z",
-    defenseResistance_Weak: "x",
-    defenseResistance_Strong: "c",
-    playingDefenseType_None: "v",
-    playingDefenseType_Passive: "g",
-    playingDefenseType_Active: "h",
-    playingDefenseStrength_VeryWeak: "n",
-    playingDefenseStrength_Weak: "m",
-    playingDefenseStrength_Average: ",",
-    playingDefenseStrength_Strong: ".",
-    playingDefenseStrength_VeryStrong: "/",
-    playingDefenseStrength_None: "'",
-    secondsBroken_1To10: "3",
-    secondsBroken_11To30: "4",
-    secondsBroken_31To60: "8",
-    secondsBroken_Over60: "9",
-    secondsBroken_None: "0",
-    endType_Park: "5",
-    /* PLACEHOLDER */
-    saveData: "enter",
-}
-/* PLACEHOLDER */
-// Unused keys:
-//  a, s, d, f, q, w, e, r
-//  j, k, l, u, i, o
-//  `, 1, 2, -, =, [, ], \
-//  Backspace
-gamepadKeys = {
-    invertAction: "LBD",
-    scoreMiss: "RBD",
-    switchStageTeleop: "RBU",
-    switchStageAuto: "LBU",
-    toggleRobotCame: "ML",
-    toggleRobotAutoLeftStart: "MR",
-    focusNotesField: "LU",
-    /* PLACEHOLDER */
-    saveData: "MM",
-}
-/* PLACEHOLDER */
-// Unused gamepad keys:
-//  RU, RL, RD, RR
-//  LL, LD, LR
-//  JL, JR
-// Unused gamepad axes:
-//  LX, LY, RX, RY
+setKeyVars(0)
 
 handleKey = function (key) {
     if (key == keys.switchStageTeleop) matchStageIsTeleopKeyboard = true

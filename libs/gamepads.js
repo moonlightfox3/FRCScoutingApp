@@ -11,7 +11,7 @@ class Gamepads {
 }
 class SimpleGamepad {
     // Button names
-    #buttonMapping = ["RD", "RR", "RL", "RU", "LBU", "RBU", "LBD", "RBD", "ML", "MR", "JL", "JR", "LU", "LD", "LL", "LR", "MM"]
+    static buttonMapping = ["RD", "RR", "RL", "RU", "LBU", "RBU", "LBD", "RBD", "ML", "MR", "JL", "JR", "LU", "LD", "LL", "LR", "MM"]
 
     #index
     #cursor
@@ -58,7 +58,7 @@ class SimpleGamepad {
     }
     get buttonsNamed () {
         let obj = {}, buttons = this.buttons
-        for (let i = 0; i < buttons.length; i++) obj[this.#buttonMapping[i] ?? `unknown${i - 17}`] = buttons[i]
+        for (let i = 0; i < buttons.length; i++) obj[SimpleGamepad.buttonMapping[i] ?? `unknown${i - 17}`] = buttons[i]
         return obj
     }
 
