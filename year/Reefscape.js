@@ -2,8 +2,8 @@ initDataFile(2025)
 setKeyVars(2025)
 
 handleKey = function (key) {
-    if (key == keys.switchStageTeleop) matchStageIsTeleopKeyboard = true
-    else if (key == keys.switchStageAuto) matchStageIsTeleopKeyboard = false
+    if (key == keys.switchStage_Teleop) matchStageIsTeleopKeyboard = true
+    else if (key == keys.switchStage_Auto) matchStageIsTeleopKeyboard = false
     else if (key == keys.toggleRobotCame) robotCame.checked = !robotCame.checked
     else if (key == keys.toggleRobotAutoLeftStart) autoPastLine.checked = !autoPastLine.checked
     else if (key == keys.focusNotesField) invertKeysKeyboard ? matchNum.focus() : notes.focus()
@@ -46,8 +46,8 @@ handleKey = function (key) {
     return true
 }
 handleKeyGamepad = function (key) {
-    if (key == gamepadKeys.switchStageTeleop) matchStageIsTeleopGamepad = true
-    else if (key == gamepadKeys.switchStageAuto) matchStageIsTeleopGamepad = false
+    if (key == gamepadKeys.switchStage_Teleop) matchStageIsTeleopGamepad = true
+    else if (key == gamepadKeys.switchStage_Auto) matchStageIsTeleopGamepad = false
     else if (key == gamepadKeys.toggleRobotCame) robotCame.checked = !robotCame.checked
     else if (key == gamepadKeys.toggleRobotAutoLeftStart) autoPastLine.checked = !autoPastLine.checked
     else if (key == gamepadKeys.focusNotesField) {

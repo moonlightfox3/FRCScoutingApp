@@ -2,8 +2,8 @@
 let allKeys = {
     2024: {
         invertAction: ";",
-        switchStageTeleop: " ",
-        switchStageAuto: "b",
+        switchStage_Teleop: " ",
+        switchStage_Auto: "b",
         toggleRobotCame: "t",
         toggleRobotAutoLeftStart: "y",
         focusNotesField: "p",
@@ -39,8 +39,8 @@ let allKeys = {
     },
     2025: {
         invertAction: ";",
-        switchStageTeleop: " ",
-        switchStageAuto: "b",
+        switchStage_Teleop: " ",
+        switchStage_Auto: "b",
         toggleRobotCame: "t",
         toggleRobotAutoLeftStart: "y",
         focusNotesField: "p",
@@ -85,8 +85,8 @@ let allKeys = {
     },
     2026: {
         invertAction: ";",
-        switchStageTeleop: " ",
-        switchStageAuto: "b",
+        switchStage_Teleop: " ",
+        switchStage_Auto: "b",
         toggleRobotCame: "t",
         toggleRobotAutoLeftStart: "y",
         focusNotesField: "p",
@@ -120,8 +120,8 @@ let allKeys = {
     },
     0: {
         invertAction: ";",
-        switchStageTeleop: " ",
-        switchStageAuto: "b",
+        switchStage_Teleop: " ",
+        switchStage_Auto: "b",
         toggleRobotCame: "t",
         toggleRobotAutoLeftStart: "y",
         focusNotesField: "p",
@@ -158,8 +158,8 @@ let allGamepadKeys = {
     2024: {
         invertAction: "LBD",
         scoreMiss: "RBD",
-        switchStageTeleop: "RBU",
-        switchStageAuto: "LBU",
+        switchStage_Teleop: "RBU",
+        switchStage_Auto: "LBU",
         toggleRobotCame: "ML",
         toggleRobotAutoLeftStart: "MR",
         focusNotesField: "LU",
@@ -176,8 +176,8 @@ let allGamepadKeys = {
     2025: {
         invertAction: "LBD",
         scoreMiss: "RBD",
-        switchStageTeleop: "RBU",
-        switchStageAuto: "LBU",
+        switchStage_Teleop: "RBU",
+        switchStage_Auto: "LBU",
         toggleRobotCame: "ML",
         toggleRobotAutoLeftStart: "MR",
         focusNotesField: "LU",
@@ -197,8 +197,8 @@ let allGamepadKeys = {
     2026: {
         invertAction: "LBD",
         scoreMiss: "RBD",
-        switchStageTeleop: "RBU",
-        switchStageAuto: "LBU",
+        switchStage_Teleop: "RBU",
+        switchStage_Auto: "LBU",
         toggleRobotCame: "ML",
         toggleRobotAutoLeftStart: "MR",
         focusNotesField: "LU",
@@ -215,8 +215,8 @@ let allGamepadKeys = {
     0: {
         invertAction: "LBD",
         scoreMiss: "RBD",
-        switchStageTeleop: "RBU",
-        switchStageAuto: "LBU",
+        switchStage_Teleop: "RBU",
+        switchStage_Auto: "LBU",
         toggleRobotCame: "ML",
         toggleRobotAutoLeftStart: "MR",
         focusNotesField: "LU",

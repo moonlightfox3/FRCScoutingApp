@@ -117,7 +117,6 @@ function getGamepadKeyAsText (key) {
     else return key
 }
 function getKeyNameAsText (keyName) {
-    keyName = keyName[0].toUpperCase() + keyName.substring(1)
     if (keyName.includes("_")) {
         let underscoreIndex = keyName.indexOf("_")
         keyName = `${keyName.substring(0, underscoreIndex)} (${keyName.substring(underscoreIndex + 1)})`
@@ -125,8 +124,11 @@ function getKeyNameAsText (keyName) {
 
     let keyNameOut = ""
     for (let i = 0; i < keyName.length; i++) {
-        if (/[A-Z]/g.test(keyName[i])) keyNameOut += " "
-        keyNameOut += keyName[i]
+        let makeCapital = keyNameOut[keyNameOut.length - 1] == "("
+
+        if (/[A-Z]/g.test(keyName[i]) && !makeCapital) keyNameOut += " "
+        if (i == 0 || makeCapital) keyNameOut += keyName[i].toUpperCase()
+        else keyNameOut += keyName[i].toLowerCase()
     }
 
     return keyNameOut
