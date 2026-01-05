@@ -1,7 +1,5 @@
 Add button to submit generated .smscdt file to some kind of server/database backend
     Save it to a database of files, can get general stats/data from the files
-Info/settings window
-    Keybinds (keyboard/gamepad)
-        Can be edited, saves in LocalStorage
+    
 Service worker
     If possible, check if latest commit has been pushed to GitHub Pages, and don't update cache if it hasn't
