@@ -7,9 +7,9 @@ handleKey = function (key) {
     else if (key == keys.toggleRobotCame) robotCame.checked = !robotCame.checked
     else if (key == keys.toggleRobotAutoLeftStart) autoPastLine.checked = !autoPastLine.checked
     else if (key == keys.focusNotesField) invertKeysKeyboard ? matchNum.focus() : notes.focus()
-    else if (key == keys.spkHit) modifyInputValueKeyboard(opNoteSpk, autoNoteSpk)
+    else if (key == keys.speakerHit) modifyInputValueKeyboard(opNoteSpk, autoNoteSpk)
     else if (key == keys.ampHit) modifyInputValueKeyboard(opNoteAmp, autoNoteAmp)
-    else if (key == keys.spkMiss) modifyInputValueKeyboard(opNoteSpkMiss, autoNoteSpkMiss)
+    else if (key == keys.speakerMiss) modifyInputValueKeyboard(opNoteSpkMiss, autoNoteSpkMiss)
     else if (key == keys.ampMiss) modifyInputValueKeyboard(opNoteAmpMiss, autoNoteAmpMiss)
     else if (key == keys.defenseResistance_None) resistDefNone.checked = true
     else if (key == keys.defenseResistance_Weak) resistDefWeak.checked = true
@@ -47,7 +47,7 @@ handleKeyGamepad = function (key) {
             if (document.activeElement == notes) notes.blur()
             else notes.focus()
         }
-    } else if (key == gamepadKeys.spk) modifyInputValueGamepad(opNoteSpk, opNoteSpkMiss, autoNoteSpk, autoNoteSpkMiss)
+    } else if (key == gamepadKeys.speaker) modifyInputValueGamepad(opNoteSpk, opNoteSpkMiss, autoNoteSpk, autoNoteSpkMiss)
     else if (key == gamepadKeys.amp) modifyInputValueGamepad(opNoteAmp, opNoteAmpMiss, autoNoteAmp, autoNoteAmpMiss)
 
     else return false

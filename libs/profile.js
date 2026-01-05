@@ -124,14 +124,22 @@ function getKeyNameAsText (keyName) {
 
     let keyNameOut = ""
     for (let i = 0; i < keyName.length; i++) {
-        let makeCapital = keyNameOut[keyNameOut.length - 1] == "("
+        let prevChar = keyNameOut[keyNameOut.length - 1]
 
-        if (/[A-Z]/g.test(keyName[i]) && !makeCapital) keyNameOut += " "
-        if (i == 0 || makeCapital) keyNameOut += keyName[i].toUpperCase()
+        if ((/[A-Z]/g.test(keyName[i]) || (/[0-9]/g.test(keyName[i]) && !/[0-9]/g.test(prevChar))) && prevChar != "(") keyNameOut += " "
+        if (i == 0 || prevChar == "(") keyNameOut += keyName[i].toUpperCase()
         else keyNameOut += keyName[i].toLowerCase()
     }
 
-    return keyNameOut
+    keyNameOut = keyNameOut.split(" ")
+    for (let i = 0; i < keyNameOut.length; i++) {
+        if (keyNameOut[i] == "l1") keyNameOut[i] = "L1"
+        else if (keyNameOut[i] == "l2") keyNameOut[i] = "L2"
+        else if (keyNameOut[i] == "l3") keyNameOut[i] = "L3"
+        else if (keyNameOut[i] == "l4") keyNameOut[i] = "L4"
+    }
+
+    return keyNameOut.join(" ")
 }
 
 // Insert spaces in HTML
