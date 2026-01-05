@@ -44,13 +44,13 @@ profileSettings.innerHTML = `\
     <b>Keybinds (keyboard/controller)</b><br>
     <i>Different for each year</i>
 </center>
-<b>Crescendo:</b><br>
+Crescendo:<br>
 ${keysToHtmlStr(2024)}<br>
 <br>
-<b>Reefscape:</b><br>
+Reefscape:<br>
 ${keysToHtmlStr(2025)}<br>
 <br>
-<b>Rebuilt:</b><br>
+Rebuilt:<br>
 ${keysToHtmlStr(2026)}
 `
 
@@ -79,14 +79,14 @@ ${keysToHtmlStr(2026)}
 // Get a list of keys as a string
 function keysToHtmlStr (year) {
     setKeyVars(year)
-    let keyboardKeysStr = Object.keys(keys).map(val => `${htmlSpaces(4)}${val}: ${getKeyAsText(keys[val])}`).join("<br>")
-    let gamepadKeysStr = Object.keys(gamepadKeys).map(val => `${htmlSpaces(4)}${val}: ${getGamepadKeyAsText(gamepadKeys[val])}`).join("<br>")
+    let keyboardKeysStr = Object.keys(keys).map(val => `${htmlSpaces(8)}${capitalizeKeyName(val)}: ${getKeyAsText(keys[val])}`).join("<br>")
+    let gamepadKeysStr = Object.keys(gamepadKeys).map(val => `${htmlSpaces(8)}${capitalizeKeyName(val)}: ${getGamepadKeyAsText(gamepadKeys[val])}`).join("<br>")
     setKeyVars(-1)
 
 return `\
-Keyboard:<br>
+${htmlSpaces(4)}Keyboard:<br>
 ${keyboardKeysStr}<br>
-Gamepad:<br>
+${htmlSpaces(4)}Gamepad:<br>
 ${gamepadKeysStr}
 `
 }
@@ -115,6 +115,9 @@ function getGamepadKeyAsText (key) {
     else if (key == "LR") return "LeftRight"
     else if (key == "MM") return "MiddleMiddle"
     else return key
+}
+function capitalizeKeyName (keyName) {
+    return keyName[0].toUpperCase() + keyName.substring(1)
 }
 
 // Insert spaces in HTML
