@@ -79,8 +79,8 @@ ${keysToHtmlStr(2026)}
 // Get a list of keys as a string
 function keysToHtmlStr (year) {
     setKeyVars(year)
-    let keyboardKeysStr = Object.keys(keys).map(val => `${htmlSpaces(8)}${capitalizeKeyName(val)}: ${getKeyAsText(keys[val])}`).join("<br>")
-    let gamepadKeysStr = Object.keys(gamepadKeys).map(val => `${htmlSpaces(8)}${capitalizeKeyName(val)}: ${getGamepadKeyAsText(gamepadKeys[val])}`).join("<br>")
+    let keyboardKeysStr = Object.keys(keys).map(val => `${htmlSpaces(8)}${getKeyNameAsText(val)}: ${getKeyAsText(keys[val])}`).join("<br>")
+    let gamepadKeysStr = Object.keys(gamepadKeys).map(val => `${htmlSpaces(8)}${getKeyNameAsText(val)}: ${getGamepadKeyAsText(gamepadKeys[val])}`).join("<br>")
     setKeyVars(-1)
 
 return `\
@@ -116,8 +116,20 @@ function getGamepadKeyAsText (key) {
     else if (key == "MM") return "MiddleMiddle"
     else return key
 }
-function capitalizeKeyName (keyName) {
-    return keyName[0].toUpperCase() + keyName.substring(1)
+function getKeyNameAsText (keyName) {
+    keyName = keyName[0].toUpperCase() + keyName.substring(1)
+    if (keyName.includes("_")) {
+        let underscoreIndex = keyName.indexOf("_")
+        keyName = `${keyName.substring(0, underscoreIndex)} (${keyName.substring(underscoreIndex + 1)})`
+    }
+
+    let keyNameOut = ""
+    for (let i = 0; i < keyName.length; i++) {
+        if (/[A-Z]/g.test(keyName[i])) keyNameOut += " "
+        keyNameOut += keyName[i]
+    }
+
+    return keyNameOut
 }
 
 // Insert spaces in HTML
