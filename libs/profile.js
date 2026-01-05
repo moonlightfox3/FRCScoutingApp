@@ -133,13 +133,20 @@ function getKeyNameAsText (keyName) {
 
     keyNameOut = keyNameOut.split(" ")
     for (let i = 0; i < keyNameOut.length; i++) {
-        if (keyNameOut[i] == "l1") keyNameOut[i] = "L1"
-        else if (keyNameOut[i] == "l2") keyNameOut[i] = "L2"
-        else if (keyNameOut[i] == "l3") keyNameOut[i] = "L3"
-        else if (keyNameOut[i] == "l4") keyNameOut[i] = "L4"
+        if (keyNameOut[i] == null) continue
+        else if (keyNameOut[i] == "l") {
+            let change = true
+            if (keyNameOut[i + 1] == "1") keyNameOut[i] = "L1"
+            else if (keyNameOut[i + 1] == "2") keyNameOut[i] = "L2"
+            else if (keyNameOut[i + 1] == "3") keyNameOut[i] = "L3"
+            else if (keyNameOut[i + 1] == "4") keyNameOut[i] = "L4"
+            else change = false
+
+            if (change) keyNameOut[i + 1] = null
+        }
     }
 
-    return keyNameOut.join(" ")
+    return keyNameOut.filter(val => val != null).join(" ")
 }
 
 // Insert spaces in HTML

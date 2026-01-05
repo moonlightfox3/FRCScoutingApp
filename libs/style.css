@@ -123,6 +123,7 @@ body.light div#profile {
 }
 body.light div#profileExpand {
     background-color: white !important;
+    color: gray !important;
     border-color: gray !important;
 }
 body.light a.profileLink {
