@@ -79,14 +79,14 @@ ${keysToHtmlStr(2026)}
 // Get a list of keys as a string
 function keysToHtmlStr (year) {
     setKeyVars(year)
-    let keyboardKeysStr = Object.keys(keys).map(val => `    ${val}: <i>${getKeyAsText(keys[val])}</i>`).join("<br>")
-    let gamepadKeysStr = Object.keys(gamepadKeys).map(val => `    ${val}: <i>${getGamepadKeyAsText(gamepadKeys[val])}</i>`).join("<br>")
+    let keyboardKeysStr = Object.keys(keys).map(val => `${htmlSpaces(4)}${val}: ${getKeyAsText(keys[val])}`).join("<br>")
+    let gamepadKeysStr = Object.keys(gamepadKeys).map(val => `${htmlSpaces(4)}${val}: ${getGamepadKeyAsText(gamepadKeys[val])}`).join("<br>")
     setKeyVars(-1)
 
 return `\
-Keyboard<br>
+Keyboard:<br>
 ${keyboardKeysStr}<br>
-Gamepad<br>
+Gamepad:<br>
 ${gamepadKeysStr}
 `
 }
@@ -115,4 +115,9 @@ function getGamepadKeyAsText (key) {
     else if (key == "LR") return "LeftRight"
     else if (key == "MM") return "MiddleMiddle"
     else return key
+}
+
+// Insert spaces in HTML
+function htmlSpaces (count) {
+    return "&nbsp;".repeat(count)
 }
