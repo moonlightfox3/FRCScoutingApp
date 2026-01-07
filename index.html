@@ -71,6 +71,10 @@ ${noImgYears.map(val => `  ${val}`).join("\n")}\
         }
     }
 
+    // Allow scrolling the page to move the status bar off the year buttons
+    document.body.append(document.createElement("br"))
+    document.body.append(document.createElement("br"))
+
     // Setup
     gamepadElCursorInit(
         true,
