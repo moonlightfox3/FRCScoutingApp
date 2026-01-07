@@ -79,7 +79,7 @@ button#profileSettingsOpen {
 }
 div#profileSettings {
     display: none;
-    position: absolute;
+    position: fixed;
     width: calc(100% - 42px);
     height: calc(100% - 42px - 32px);
     left: 10px;
@@ -104,7 +104,7 @@ hr {
 button#installButton {
     position: fixed;
     left: calc(100% - 50px - 40px);
-    top: calc(100% - 20px - 16px);
+    top: calc(100% - 20px - 8px);
     z-index: 97;
 
     background-color: lightgray;
