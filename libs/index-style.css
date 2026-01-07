@@ -46,7 +46,7 @@ body.light button.year {
     background-color: lightgray !important;
 }
 body.light button.year.current {
-    background-color: white !important;
+    background-color: whitesmoke !important;
 }
 body.light button.year.unreleased {
     background-color: darkgray !important;

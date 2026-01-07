@@ -36,7 +36,7 @@ function getCommitId () {
     // Was the commit fetched?
     if (commit == null) return null
 
-    return commit.sha.substring(0, 8)
+    return commit.sha.substring(0, 7)
 }
 function getCommitDate () {
     // Was the commit fetched?
@@ -48,18 +48,13 @@ function getCommitDate () {
 }
 
 // Show the update status element
-let updateDateEl = null
 function showCommitUpdate (isOnline) {
     hideCommitUpdate()
     
-    updateDateEl = document.createElement("div")
+    let updateDateEl = document.createElement("div")
+    updateDateEl.id = "updateDateEl"
     if (isOnline) updateDateEl.innerText = `Updated ${commitDate} (commit ${commitId})`
     else updateDateEl.innerText = "App loaded from your browser's offline cache"
-
-    updateDateEl.style.position = "sticky"
-    updateDateEl.style.left = "5px"
-    updateDateEl.style.top = "calc(100% - 30px)"
-    updateDateEl.style.width = "calc(100% - 60px)"
     
     document.body.append(updateDateEl)
 }

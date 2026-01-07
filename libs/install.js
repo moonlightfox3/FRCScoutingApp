@@ -5,13 +5,13 @@ const isAndroid = navigator.userAgent.includes("Android")
 console.debug(`Is PWA: ${isPWA}, is iPhone: ${isIphone}, is Android: ${isAndroid}`)
 
 // Theme color (titlebar color on computers and Android, second background color on iPhones)
-let themeColorEl = null
 function setThemeColor (color) {
     // Make sure this is a PWA
     if (!isPWA) return
     if (themeColorEl == null) {
         // Use a <meta> element
-        themeColorEl = document.createElement("meta")
+        let themeColorEl = document.createElement("meta")
+        themeColorEl.id = "themeColorEl"
         themeColorEl.name = "theme-color"
         document.head.append(themeColorEl)
     }
@@ -33,25 +33,12 @@ else setThemeColor("darkviolet")
 let displayInstallButton = () => {}
 if (isPWA) resizeTo(1105, 590) // Window setup
 else {
-    let installButton = null
     function showInstallButton (clickCallback = () => {}) {
         hideInstallButton()
 
-        installButton = document.createElement("button")
+        let installButton = document.createElement("button")
+        installButton.id = "installButton"
         installButton.innerText = "Install"
-        installButton.style.position = "sticky"
-        installButton.style.left = "calc(100% - 50px - 40px)"
-        installButton.style.top = "calc(100% - 20px)"
-        installButton.style.zIndex = "97"
-        installButton.style.backgroundColor = "lightgray"
-        installButton.style.color = "black"
-        installButton.style.borderRadius = "5px"
-        installButton.style.cursor = "pointer"
-        installButton.style.paddingLeft = "6px"
-        installButton.style.paddingRight = "6px"
-        installButton.style.paddingTop = "1px"
-        installButton.style.paddingBottom = "1px"
-        installButton.style.fontSize = "14px"
         installButton.onclick = () => clickCallback()
         document.body.append(installButton)
     }
@@ -68,6 +55,7 @@ else {
             // Automatic installation isn't supported on iPhones
             showInstallButton(function () {
 alert(`\
+iPhone install instructions:
 1. Press the browser share/export button.
 2. Click 'Add to Home Screen'.
 `)
@@ -76,6 +64,7 @@ alert(`\
             // Automatic installation isn't supported on Android
             showInstallButton(function () {
 alert(`\
+Android install instructions:
 1. Press the browser options button.
 2. Click 'Add shortcut'.
 `)

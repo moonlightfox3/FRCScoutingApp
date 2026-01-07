@@ -95,6 +95,32 @@ hr {
     border-top: 1px inset lightgray;
 }
 
+/* GitHub update status */
+div#updateDateEl {
+    position: absolute;
+    width: calc(100% - 60px);
+    left: 5px;
+    top: calc(100% - 30px);
+}
+
+/* Install button */
+button#installButton {
+    position: absolute;
+    left: calc(100% - 50px - 40px);
+    top: calc(100% - 20px);
+    z-index: 97;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+
+    background-color: lightgray;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
 
 /* Light mode (adds override rules to a dark mode stylesheet) */
 
