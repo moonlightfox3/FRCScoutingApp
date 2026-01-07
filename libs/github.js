@@ -59,8 +59,5 @@ function showCommitUpdate (isOnline) {
     document.body.append(updateDateEl)
 }
 function hideCommitUpdate () {
-    if (updateDateEl != null) {
-        updateDateEl.remove()
-        updateDateEl = null
-    }
+    if (document.querySelector("div#updateDateEl") != null) updateDateEl.remove()
 }

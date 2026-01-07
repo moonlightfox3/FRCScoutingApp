@@ -8,7 +8,7 @@ console.debug(`Is PWA: ${isPWA}, is iPhone: ${isIphone}, is Android: ${isAndroid
 function setThemeColor (color) {
     // Make sure this is a PWA
     if (!isPWA) return
-    if (themeColorEl == null) {
+    if (document.querySelector("meta#themeColorEl") == null) {
         // Use a <meta> element
         let themeColorEl = document.createElement("meta")
         themeColorEl.id = "themeColorEl"
