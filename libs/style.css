@@ -31,9 +31,8 @@ button {
     border: 2px solid black;
 }
 
-/* Profile and settings */
-div#profile {
-    display: none;
+/* Profile and settings, GitHub update status */
+div#profile, div#updateDateEl {
     position: fixed;
     left: 0px;
     top: calc(100% - 32px - 2px);
@@ -46,6 +45,9 @@ div#profile {
     border-radius: 30px;
     text-align: center;
     line-height: 30px;
+}
+div#profile {
+    display: none;
 }
 div#profileExpand {
     position: fixed;
@@ -95,17 +97,9 @@ hr {
     border-top: 1px inset lightgray;
 }
 
-/* GitHub update status */
-div#updateDateEl {
-    position: absolute;
-    width: calc(100% - 60px);
-    left: 5px;
-    top: calc(100% - 30px);
-}
-
 /* Install button */
 button#installButton {
-    position: absolute;
+    position: fixed;
     left: calc(100% - 50px - 40px);
     top: calc(100% - 20px);
     z-index: 97;
