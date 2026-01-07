@@ -18,8 +18,13 @@ function createProfileMenus () {
     document.body.append(profile, profileExpand)
     profileExpand.onclick = function () {
         profileExpanded = !profileExpanded
-        if (profileExpanded) profile.style.display = "block"
-        else profile.style.display = "none"
+        if (profileExpanded) {
+            profile.style.display = "block"
+            updateDateEl.style.display = "none"
+        } else {
+            updateDateEl.style.display = "block"
+            profile.style.display = "none"
+        }
     }
 
     // Settings menu

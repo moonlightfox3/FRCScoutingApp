@@ -104,7 +104,7 @@ hr {
 button#installButton {
     position: fixed;
     left: calc(100% - 50px - 40px);
-    top: calc(100% - 20px);
+    top: calc(100% - 20px - 16px);
     z-index: 97;
 
     background-color: lightgray;
@@ -136,6 +136,10 @@ body.light button {
 
 /* Profile and settings */
 body.light div#profile {
+    background-color: white !important;
+    border-color: gray !important;
+}
+body.light div#updateDateEl {
     background-color: white !important;
     border-color: gray !important;
 }
