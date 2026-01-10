@@ -20,10 +20,7 @@ function setThemeColor (color) {
 function resetThemeColor () {
     // Make sure this is a PWA
     if (!isPWA) return
-    if (themeColorEl != null) {
-        themeColorEl.remove()
-        themeColorEl = null
-    }
+    if (themeColorEl != null) themeColorEl.remove()
 }
 // Window setup
 if (isIphone || isAndroid) setThemeColor("black")
@@ -43,10 +40,7 @@ else {
         document.body.append(installButton)
     }
     function hideInstallButton () {
-        if (document.querySelector("installButton") != null) {
-            installButton.remove()
-            installButton = null
-        }
+        if (document.querySelector("installButton") != null) installButton.remove()
     }
     addEventListener("appinstalled", () => hideInstallButton())
 
