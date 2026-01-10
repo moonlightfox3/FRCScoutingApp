@@ -2,6 +2,7 @@
 * {
     outline: none;
     user-select: none;
+    font-family: "Roboto";
 }
 body, ::selection {
     background-color: black;
@@ -27,7 +28,7 @@ body {
 
 /* Generic elements */
 input, button {
-    border: 1px solid black;
+    border: 1px solid lightgray;
 }
 
 /* Profile and settings, GitHub update status */
@@ -39,7 +40,7 @@ div#profile, div#updateDateEl {
     height: 32px;
     
     background-color: black;
-    border: 1px solid lightgray;
+    border: 1px solid gray;
     border-radius: 30px;
     text-align: center;
     line-height: 30px;
@@ -60,18 +61,18 @@ div#profileExpand {
     z-index: 99;
     
     background-color: black;
-    border: 2px solid lightgray;
+    border: 2px solid gray;
     border-radius: 30px;
     text-align: center;
     line-height: 30px;
     cursor: pointer;
 }
 a.profileLink {
-    color: lightgray;
+    color: gray;
     text-decoration: underline;
 }
 button#profileSettingsOpen {
-    background-color: lightgray;
+    background-color: gray;
     color: black;
     border-radius: 5px;
     cursor: pointer;
@@ -86,7 +87,7 @@ div#profileSettings {
     padding: 10px;
 
     background-color: black;
-    border: 1px solid lightgray;
+    border: 1px solid gray;
     border-radius: 5px;
     overflow-y: scroll;
     scrollbar-color: lightgray black;
@@ -96,7 +97,7 @@ hr {
     margin-bottom: 10px;
     
     border: none;
-    border-top: 1px inset lightgray;
+    border-top: 1px inset gray;
 }
 
 /* Install button */
@@ -106,7 +107,7 @@ button#installButton {
     top: calc(100% - 20px - 7px);
     z-index: 97;
 
-    background-color: lightgray;
+    background-color: gray;
     color: black;
     border-radius: 5px;
     cursor: pointer;

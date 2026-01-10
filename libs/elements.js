@@ -7,6 +7,29 @@ class UINumberInputElement extends HTMLElement {
 
         let style = document.createElement("style")
         style.textContent = `\
+            input, button {
+                background-color: lightgray;
+            }
+            input {
+                cursor: text;
+            }
+            button {
+                cursor: pointer;
+            }
+            
+            input#input {
+                width: 57px;
+                border-right: none;
+            }
+            button#increase {
+                width: "56px";
+                border-left: none;
+                border-right: none;
+            }
+            button#decrease {
+                width: "56px";
+                border-left: none;
+            }
         `
 
         let numberInput = document.createElement("input") // 57px wide
