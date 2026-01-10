@@ -43,7 +43,7 @@ else {
         document.body.append(installButton)
     }
     function hideInstallButton () {
-        if (installButton != null) {
+        if (document.querySelector("installButton") != null) {
             installButton.remove()
             installButton = null
         }

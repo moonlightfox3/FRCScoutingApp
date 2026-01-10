@@ -7,26 +7,26 @@ class UINumberInputElement extends HTMLElement {
 
         let style = document.createElement("style")
         style.textContent = `\
-            input, button {
+            ui-input-number input, button {
                 background-color: lightgray;
             }
-            input {
+            ui-input-numberinput {
                 cursor: text;
             }
-            button {
+            ui-input-numberbutton {
                 cursor: pointer;
             }
             
-            input#input {
+            ui-input-numberinput#input {
                 width: 57px;
                 border-right: none;
             }
-            button#increase {
+            ui-input-numberbutton#increase {
                 width: "56px";
                 border-left: none;
                 border-right: none;
             }
-            button#decrease {
+            ui-input-numberbutton#decrease {
                 width: "56px";
                 border-left: none;
             }
