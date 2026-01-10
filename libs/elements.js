@@ -19,6 +19,7 @@ class UINumberInputElement extends HTMLElement {
                 cursor: pointer;
                 width: 53px;
                 border: none;
+                border-left: 1px solid darkgray;
             }
         `
 
