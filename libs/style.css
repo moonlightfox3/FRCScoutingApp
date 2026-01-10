@@ -1,7 +1,11 @@
+/* Imports */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* Generic setup */
 * {
     outline: none;
     user-select: none;
+    font-family: "Roboto";
 }
 body, ::selection {
     background-color: black;
