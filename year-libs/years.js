@@ -3,8 +3,8 @@ console.debug(`Loading default year code`)
 matchNum.focus()
 
 // Externally set config
-let keys = null // 'invertAction' and 'saveData' are required here
-let gamepadKeys = null // 'invertAction', 'scoreMiss', and 'saveData' are required here
+let keys = null // 'invertAction' and 'downloadData' are required here
+let gamepadKeys = null // 'invertAction', 'scoreMiss', and 'downloadData' are required here
 let handleKey = key => {}
 let handleKeyGamepad = key => {}
 
@@ -36,7 +36,7 @@ onkeydown = function (ev) {
 
     // Check the key
     if (key == keys.invertAction) invertKeysKeyboard = true
-    else if (key == keys.saveData) downloadData()
+    else if (key == keys.downloadData) downloadData()
     else if (handleKey(key)) null
 
     // Cancel if needed
@@ -78,7 +78,7 @@ function onGamepadPress (key) {
     if (!gamepad.cursor.isClickReady) return
     
     // Check the buttons
-    if (key == gamepadKeys.saveData) downloadData()
+    if (key == gamepadKeys.downloadData) downloadData()
     else if (handleKeyGamepad(key)) null
 }
 // Helper function for increasing/decreasing number inputs
@@ -97,7 +97,7 @@ gamepadLoopInit(checkGamepad)
 gamepadPressListenerInit(onGamepadPress, key => {})
 
 // Files
-saveData.onclick = () => downloadData()
+downloadData.onclick = () => downloadData()
 // Prompt before leaving the page, if any form element was changed
 onbeforeunload = function (ev) {
     if (getFormChanged()) ev.preventDefault()

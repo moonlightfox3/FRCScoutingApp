@@ -30,7 +30,7 @@ let allKeys = {
         secondsBroken_None: "0",
         endType_Park: "5",
         endType_Climb: "7",
-        saveData: "enter",
+        downloadData: "enter",
         // Unused keys:
         //  a, s, f, q, w, r
         //  j, l, u, o
@@ -78,7 +78,7 @@ let allKeys = {
         endType_Park: "5",
         endType_Deep: "6",
         endType_Shallow: "7",
-        saveData: "enter",
+        downloadData: "enter",
         // Unused keys:
         //  `, 1, 2, -, =, [, ], \
         //  Backspace
@@ -110,7 +110,7 @@ let allKeys = {
         secondsBroken_None: "0",
         endType_Park: "5",
         /* PLACEHOLDER */
-        saveData: "enter",
+        downloadData: "enter",
         /* PLACEHOLDER */
         // Unused keys:
         //  a, s, d, f, q, w, e, r
@@ -145,7 +145,7 @@ let allKeys = {
         secondsBroken_None: "0",
         endType_Park: "5",
         /* PLACEHOLDER */
-        saveData: "enter",
+        downloadData: "enter",
         /* PLACEHOLDER */
         // Unused keys:
         //  a, s, d, f, q, w, e, r
@@ -165,7 +165,7 @@ let allGamepadKeys = {
         focusNotesField: "LU",
         speaker: "RL",
         amp: "LR",
-        saveData: "MM",
+        downloadData: "MM",
         // Unused gamepad keys:
         //  RU, RD, RR
         //  LL, LD
@@ -188,7 +188,7 @@ let allGamepadKeys = {
         algaeProcessor: "LL",
         algaeNet: "LD",
         algaeDescore: "LR",
-        saveData: "MM",
+        downloadData: "MM",
         // Unused gamepad keys:
         //  JL, JR
         // Unused gamepad axes:
@@ -203,7 +203,7 @@ let allGamepadKeys = {
         toggleRobotAutoLeftStart: "MR",
         focusNotesField: "LU",
         /* PLACEHOLDER */
-        saveData: "MM",
+        downloadData: "MM",
         /* PLACEHOLDER */
         // Unused gamepad keys:
         //  RU, RL, RD, RR
@@ -221,7 +221,7 @@ let allGamepadKeys = {
         toggleRobotAutoLeftStart: "MR",
         focusNotesField: "LU",
         /* PLACEHOLDER */
-        saveData: "MM",
+        downloadData: "MM",
         /* PLACEHOLDER */
         // Unused gamepad keys:
         //  RU, RL, RD, RR

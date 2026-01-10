@@ -26,7 +26,7 @@ const dataFileCurrentVersion = 1
 let dataYear = null
 let dataElems = null // index 0 is the match number, index 1 is the team number (both are type=text inputs)
 
-// Get the input elements that should be saved
+// Get the input elements that should be exported
 let dataElemsDefaultVals = null
 function initDataFile (year) {
     // Setup
@@ -92,7 +92,7 @@ function setDataElemsDefaults () {
 
 // Import file
 function importData (text) {
-    // Check that the elements to save were gotten
+    // Check that the elements to export were gotten
     if (dataYear == null) return
     let data = JSON.parse(`[${text}]`)
     
@@ -115,13 +115,13 @@ function importData (text) {
 }
 // Export file
 function exportData () {
-    // Check that the elements to save were gotten
+    // Check that the elements to export were gotten
     if (dataYear == null) return null
     let data = null
 
     // Check version
     if (dataFileCurrentVersion == 1) {
-        // Save elements
+        // Export elements
         data = new Array(dataElems.length)
         for (let i = 0; i < dataElems.length; i++) {
             let elem = dataElems[i], val = elem.value
@@ -138,7 +138,7 @@ function exportData () {
 }
 // Download file
 function downloadData () {
-    // Check that the elements to save were gotten
+    // Check that the elements to export were gotten
     if (dataYear == null) return null
     let data = exportData()
     // File name
@@ -153,7 +153,7 @@ function downloadData () {
 
 // Check if any form element was changed
 function getFormChanged () {
-    // Check that the elements to save were gotten
+    // Check that the elements to export were gotten
     if (dataYear == null) return null
 
     for (let i = 0; i < dataElems.length; i++) {

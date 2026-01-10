@@ -4,4 +4,5 @@ Add button to submit generated .smscdt file to some kind of server/database back
 Service worker
     If possible, check if latest commit has been pushed to GitHub Pages, and don't update cache if it hasn't
 
-Maybe make buttons for each number input (increase/decrease)
+Make buttons for each number input (increase/decrease)
+    Custom element
