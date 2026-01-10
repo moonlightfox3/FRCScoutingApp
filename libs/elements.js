@@ -22,12 +22,12 @@ class UINumberInputElement extends HTMLElement {
                 border-right: none;
             }
             button#increase {
-                width: "56px";
+                width: 56px;
                 border-left: none;
                 border-right: none;
             }
             button#decrease {
-                width: "56px";
+                width: 56px;
                 border-left: none;
             }
         `
