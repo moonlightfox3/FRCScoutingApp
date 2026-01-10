@@ -5,24 +5,6 @@ class UINumberInputElement extends HTMLElement {
         
         let shadow = this.attachShadow({mode: "open"})
 
-        let style = document.createElement("style")
-        style.textContent = `\
-            input, button {
-                background-color: lightgray;
-            }
-            input {
-                cursor: text;
-                width: 54px;
-                border: none;
-            }
-            button {
-                cursor: pointer;
-                width: 53px;
-                border: none;
-                border-left: 1px solid darkgray;
-            }
-        `
-
         let numberInput = document.createElement("input") // 57px wide
         numberInput.id = "input"
         numberInput.type = "number"
@@ -40,18 +22,32 @@ class UINumberInputElement extends HTMLElement {
             numberInput.value = parseInt(numberInput.value)
             if (numberInput.value == "") numberInput.value = "0"
         })
+        numberInput.style.backgroundColor = "lightgray"
+        numberInput.style.cursor = "text"
+        numberInput.style.width = "54px"
+        numberInput.style.border = "none"
         
         let increaseButton = document.createElement("button") // 56px wide
         increaseButton.id = "increase"
         increaseButton.innerText = "+"
         increaseButton.onclick = () => numberInput.value = parseInt(numberInput.value) + 1
+        increaseButton.style.backgroundColor = "lightgray"
+        increaseButton.style.cursor = "pointer"
+        increaseButton.style.width = "53px"
+        increaseButton.style.border = "none"
+        increaseButton.style.borderLeft = "1px solid darkgray"
 
         let decreaseButton = document.createElement("button") // 56px wide
         decreaseButton.id = "decrease"
         decreaseButton.innerText = "-"
         decreaseButton.onclick = () => numberInput.value = parseInt(numberInput.value) - 1
+        decreaseButton.style.backgroundColor = "lightgray"
+        decreaseButton.style.cursor = "pointer"
+        decreaseButton.style.width = "53px"
+        decreaseButton.style.border = "none"
+        decreaseButton.style.borderLeft = "1px solid darkgray"
 
-        shadow.append(style, numberInput, increaseButton, decreaseButton)
+        shadow.append(numberInput, increaseButton, decreaseButton)
     }
     
     static observedAttributes = ["placeholder"]
