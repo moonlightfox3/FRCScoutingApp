@@ -1,6 +1,6 @@
 /* Input elements and buttons */
 input, textarea#notes, button#downloadData, button#resetData, button#returnToYearSelect {
-    background-color: gray;
+    background-color: lightgray;
     color: black;
     border-radius: 5px;
 }
