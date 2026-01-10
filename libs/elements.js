@@ -8,13 +8,36 @@ class UINumberInputElement extends HTMLElement {
         let style = document.createElement("style")
         style.textContent = `\
         `
-        shadow.append(style)
 
-        let numberInput = document.createElement("input")
+        let numberInput = document.createElement("input") // 57px wide
         numberInput.id = "input"
         numberInput.type = "number"
         numberInput.value = "0"
-        shadow.append(numberInput)
+        numberInput.addEventListener("change", function () {
+            if (numberInput.value == "") {
+                numberInput.value = "0"
+                return
+            }
+
+            numberInput.value = numberInput.value.replaceAll("+", "")
+            let minusOne = numberInput.value.indexOf("-"); let minusTwo = numberInput.value.indexOf("-", minusOne + 1)
+            if (minusTwo > -1) numberInput.value = numberInput.value.substring(0, minusTwo) + numberInput.value.substring(minusTwo + 1)
+
+            numberInput.value = parseInt(numberInput.value)
+            if (numberInput.value == "") numberInput.value = "0"
+        })
+        
+        let increaseButton = document.createElement("button") // 56px wide
+        increaseButton.id = "increase"
+        increaseButton.innerText = "+"
+        increaseButton.onclick = () => numberInput.value = parseInt(numberInput.value) + 1
+
+        let decreaseButton = document.createElement("button") // 56px wide
+        decreaseButton.id = "decrease"
+        decreaseButton.innerText = "-"
+        decreaseButton.onclick = () => numberInput.value = parseInt(numberInput.value) - 1
+
+        shadow.append(style, numberInput, increaseButton, decreaseButton)
     }
     
     static observedAttributes = ["placeholder"]
