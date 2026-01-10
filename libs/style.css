@@ -33,6 +33,9 @@ body {
 input, button {
     border: 1px solid black;
 }
+input {
+    width: 160px;
+}
 
 /* Profile and settings, GitHub update status */
 div#profile, div#updateDateEl {

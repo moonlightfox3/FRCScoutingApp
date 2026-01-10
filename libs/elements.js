@@ -12,23 +12,13 @@ class UINumberInputElement extends HTMLElement {
             }
             input {
                 cursor: text;
+                width: 54px;
+                border: none;
             }
             button {
                 cursor: pointer;
-            }
-            
-            input {
-                width: 57px;
-                border-right: none;
-            }
-            button#increase {
-                width: 56px;
-                border-left: none;
-                border-right: none;
-            }
-            button#decrease {
-                width: 56px;
-                border-left: none;
+                width: 53px;
+                border: none;
             }
         `
 
