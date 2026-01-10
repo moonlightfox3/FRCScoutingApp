@@ -10,23 +10,23 @@ class UINumberInputElement extends HTMLElement {
             ui-input-number input, button {
                 background-color: lightgray;
             }
-            ui-input-numberinput {
+            ui-input-number input {
                 cursor: text;
             }
-            ui-input-numberbutton {
+            ui-input-number button {
                 cursor: pointer;
             }
             
-            ui-input-numberinput#input {
+            ui-input-number input#input {
                 width: 57px;
                 border-right: none;
             }
-            ui-input-numberbutton#increase {
+            ui-input-number button#increase {
                 width: "56px";
                 border-left: none;
                 border-right: none;
             }
-            ui-input-numberbutton#decrease {
+            ui-input-number button#decrease {
                 width: "56px";
                 border-left: none;
             }
