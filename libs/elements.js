@@ -4,7 +4,7 @@ class UINumberInputElement extends HTMLElement {
         super()
         let shadow = this.attachShadow({mode: "open"})
 
-        let numberInput = document.createElement("input") // 57px wide
+        let numberInput = document.createElement("input")
         numberInput.id = "input"
         numberInput.type = "number"
         numberInput.value = "0"
@@ -27,7 +27,7 @@ class UINumberInputElement extends HTMLElement {
         numberInput.style.width = "54px"
         numberInput.style.border = "none"
         
-        let increaseButton = document.createElement("button") // 56px wide
+        let increaseButton = document.createElement("button")
         increaseButton.id = "increase"
         increaseButton.innerText = "+"
         increaseButton.onclick = () => numberInput.value = parseInt(numberInput.value) + 1
@@ -38,7 +38,7 @@ class UINumberInputElement extends HTMLElement {
         increaseButton.style.border = "none"
         increaseButton.style.borderLeft = "1px solid darkgray"
 
-        let decreaseButton = document.createElement("button") // 56px wide
+        let decreaseButton = document.createElement("button")
         decreaseButton.id = "decrease"
         decreaseButton.innerText = "-"
         decreaseButton.onclick = () => numberInput.value = parseInt(numberInput.value) - 1
@@ -50,8 +50,6 @@ class UINumberInputElement extends HTMLElement {
         decreaseButton.style.borderLeft = "1px solid darkgray"
 
         shadow.append(numberInput, increaseButton, decreaseButton)
-        this.style.border = "1px solid gray"
-        this.style.borderRadius = "5px"
     }
     
     static observedAttributes = ["placeholder"]
@@ -59,6 +57,8 @@ class UINumberInputElement extends HTMLElement {
     set placeholder (value) { this.setAttribute("placeholder", value) }
 
     connectedCallback () {
+        this.style.border = "1px solid gray"
+        this.style.borderRadius = "5px"
     }
     attributeChangedCallback (name, oldVal, newVal) {
         if (name == "placeholder") this.shadowRoot.querySelector("input#input").placeholder = newVal

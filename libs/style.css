@@ -30,7 +30,7 @@ body {
 }
 
 /* Generic elements */
-input, button {
+input[type=text], input[type=number], button, textarea {
     border: 1px solid gray;
 }
 input[type=text], input[type=number] {
