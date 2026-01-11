@@ -21,56 +21,60 @@
     getGithubData(true)
     
     const years = {
-        2024: "Crescendo",
         2025: "Reefscape",
         2026: "Rebuilt",
     }
-    const unreleasedYears = [2026]
+    const pitYears = {
+        2026: "Rebuilt",
+    }
+    const unreleasedYears = []
     const unavailableYears = [2026]
     const noImgYears = []
-console.debug(`\
-Years:
-${Object.keys(years).map(val => `  ${val}: ${years[val]}`).join("\n")}
-Unreleased years:
-${unreleasedYears.map(val => `  ${val}`).join("\n")}
-Unavailable years:
-${unavailableYears.map(val => `  ${val}`).join("\n")}
-Years without images:
-${noImgYears.map(val => `  ${val}`).join("\n")}\
-`)
 
     // Create button elements automatically
-    let currentYear = new Date().getFullYear()
+    const currentYear = new Date().getFullYear()
     let currentYearElIdx = null
-    for (let i = 0; i < Object.keys(years).length; i++) {
-        let year = Object.keys(years)[i]
-        let name = years[year]
+    function displayYears (years, isPit) {
+        yearsEl.append(`${isPit ? "Pit" : "Match"} scouting:`)
+        let br = document.createElement("div")
+        br.className = "break"
+        yearsEl.append(br)
 
-        let a = document.createElement("a")
-        a.className = "year-link"
-        a.href = `./year/${name}.html`
-        let button = document.createElement("button")
-        button.className = "year"
-        button.id = `${year}`
-        button.innerText = `${name} (${year})`
-        if (currentYear == +year) button.classList.add("current")
-        if (unreleasedYears.includes(+year)) button.classList.add("unreleased")
-        button.disabled = unavailableYears.includes(+year)
+        for (let i = 0; i < Object.keys(years).length; i++) {
+            let year = Object.keys(years)[i]
+            let name = years[year]
 
-        if (!noImgYears.includes(+year)) {
-            let img = document.createElement("img")
-            img.className = "year-img"
-            img.src = `./year-img/${name}.png`
-            button.append(img)
+            let a = document.createElement("a")
+            a.className = "year-link"
+            a.href = `./year${isPit ? "-pit" : ""}/${name}.html`
+            let button = document.createElement("button")
+            button.className = "year"
+            button.id = `${year}`
+            button.innerText = `${name} (${year})`
+            if (currentYear == +year) button.classList.add("current")
+            if (unreleasedYears.includes(+year)) button.classList.add("unreleased")
+            button.disabled = unavailableYears.includes(+year)
+
+            if (!noImgYears.includes(+year)) {
+                let img = document.createElement("img")
+                img.className = "year-img"
+                img.src = `./year-img/${name}.png`
+                button.append(img)
+            }
+            
+            a.append(button)
+            yearsEl.append(a)
+            if (currentYear == +year) {
+                button.focus()
+                currentYearElIdx = i
+            }
         }
-        
-        a.append(button)
-        yearsEl.append(a)
-        if (currentYear == +year) {
-            button.focus()
-            currentYearElIdx = i
-        }
+        let br2 = document.createElement("div")
+        br2.className = "break"
+        yearsEl.append(br2)
     }
+    displayYears(years, false)
+    displayYears(pitYears, true)
 
     // Allow scrolling the page to move the status bar off the year buttons
     document.body.append(document.createElement("br"))

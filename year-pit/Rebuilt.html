@@ -1,0 +1,50 @@
+<!doctype html>
+<title>Log Pit - Rebuilt (2026)</title>
+<link rel="icon" href="../icons/icon.svg">
+<link rel="apple-touch-icon" sizes="1024x1024" href="../icons/apple-touch-icon-1024x1024.png">
+<link rel="manifest" href="../manifest.json">
+<link rel="stylesheet" href="../libs/style.css">
+<link rel="stylesheet" href="../year-libs/style.css">
+<script src="../libs/elements.js"></script>
+
+<form id="dataForm">
+    <div class="formPart" id="formPart1">
+        Main:<br>
+        <input id="teamNum" placeholder="Team number (ex. 1234)"><br>
+        <br>
+
+        Auto:<br>
+        Climb height: <ui-input-number id="autoClimb" placeholder="Height"></ui-input-number><br>
+        <textarea id="autoNotes" placeholder="Auto notes" spellcheck="false"></textarea><br>
+        <br>
+        
+        Teleop:<br>
+        Climb height: <ui-input-number id="opClimb" placeholder="Height"></ui-input-number><br>
+        <textarea id="opNotes" placeholder="Notes" spellcheck="false"></textarea>
+    </div>
+    <div class="formPart" id="formPart2">
+        General:<br>
+        <input id="fuelCount" placeholder="Fuel capacity"><br>
+        <input type="checkbox" id="pickFuelFloor" checked><label for="pickFuelFloor"> Can get fuel from floor</label><br>
+        <input type="checkbox" id="throughBump" checked><label for="throughBump"> Can cross bump</label><br>
+        <input type="checkbox" id="throughTrench" checked><label for="throughTrench"> Can go through trench</label><br>
+        <br>
+        
+        Misc notes:<br>
+        <textarea id="notes" placeholder="Notes" spellcheck="false"></textarea><br>
+        <button id="downloadDataBtn" type="button">Download data</button><button id="saveDataBrowserBtn" type="button">Save in browser</button><br>
+        Rebuilt (2026) - Pit<br>
+        <button id="resetData" type="reset" onclick="return confirm('Are you sure you want to reset the form?')">Reset data</button><a href="../index.html"><button id="returnToYearSelect" type="button">Return to year selection</button></a>
+    </div>
+    <div class="formPart" id="formPart3">
+    </div>
+</form>
+
+<script src="../libs/swrun.js"></script>
+<script src="../libs/gamepads.js"></script>
+<script src="../libs/gamepadControl.js"></script>
+<script src="../libs/install.js"></script>
+<script src="../libs/datafile.js"></script>
+<script src="../year-libs/keys.js"></script>
+<script src="../year-libs/years.js"></script>
+<script src="./Rebuilt.js"></script>

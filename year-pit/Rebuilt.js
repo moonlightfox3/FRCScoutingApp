@@ -1,5 +1,5 @@
-initDataFile(2024)
-setKeyVars(2024)
+initDataFile(2026, true)
+setKeyVars(2026, true)
 
 handleKey = function (key) {
     if (key == keys.switchStage_Teleop) matchStageIsTeleopKeyboard = true
@@ -7,10 +7,7 @@ handleKey = function (key) {
     else if (key == keys.toggleRobotCame) robotCame.checked = !robotCame.checked
     else if (key == keys.toggleRobotAutoLeftStart) autoPastLine.checked = !autoPastLine.checked
     else if (key == keys.focusNotesField) invertKeysKeyboard ? matchNum.focus() : notes.focus()
-    else if (key == keys.speakerHit) modifyInputValueKeyboard(opNoteSpk, autoNoteSpk)
-    else if (key == keys.ampHit) modifyInputValueKeyboard(opNoteAmp, autoNoteAmp)
-    else if (key == keys.speakerMiss) modifyInputValueKeyboard(opNoteSpkMiss, autoNoteSpkMiss)
-    else if (key == keys.ampMiss) modifyInputValueKeyboard(opNoteAmpMiss, autoNoteAmpMiss)
+    /* PLACEHOLDER */
     else if (key == keys.defenseResistance_None) resistDefNone.checked = true
     else if (key == keys.defenseResistance_Weak) resistDefWeak.checked = true
     else if (key == keys.defenseResistance_Strong) resistDefStrong.checked = true
@@ -29,7 +26,7 @@ handleKey = function (key) {
     else if (key == keys.secondsBroken_Over60) breakSecMore.checked = true
     else if (key == keys.secondsBroken_None) breakSecNone.checked = true
     else if (key == keys.endType_Park) invertKeysKeyboard ? endPosFail.checked = true : endPosPark.checked = true
-    else if (key == keys.endType_Climb) invertKeysKeyboard ? endPosClimbFail.checked = true : endPosClimb.checked = true
+    /* PLACEHOLDER */
 
     else return false
     return true
@@ -47,8 +44,8 @@ handleKeyGamepad = function (key) {
             if (document.activeElement == notes) notes.blur()
             else notes.focus()
         }
-    } else if (key == gamepadKeys.speaker) modifyInputValueGamepad(opNoteSpk, opNoteSpkMiss, autoNoteSpk, autoNoteSpkMiss)
-    else if (key == gamepadKeys.amp) modifyInputValueGamepad(opNoteAmp, opNoteAmpMiss, autoNoteAmp, autoNoteAmpMiss)
+    }
+    /* PLACEHOLDER */
 
     else return false
     return true

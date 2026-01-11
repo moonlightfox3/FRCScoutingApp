@@ -1,6 +1,4 @@
 console.debug(`Loading default year code`)
-// Autofocus (using the 'autofocus' element attribute can be annoying for users on iPhones)
-matchNum.focus()
 
 // Externally set config
 let keys = null // 'invertAction' and 'downloadData' are required here
@@ -31,7 +29,7 @@ onkeydown = function (ev) {
         return
     }
     // Don't check the key if an input element is focused
-    if (document.activeElement == matchNum || document.activeElement == teamNum || document.activeElement == notes) return
+    if (document.activeElement?.type == "text" || document.activeElement instanceof UINumberInputElement || document.activeElement instanceof HTMLTextAreaElement) return
     let shouldCancel = true
 
     // Check the key
@@ -98,6 +96,7 @@ gamepadPressListenerInit(onGamepadPress, key => {})
 
 // Form stuff
 downloadDataBtn.onclick = () => downloadData()
+saveDataBrowserBtn.onclick = () => { saveDataBrowser(); alert("Saved locally!\nPlease download these files or upload them to a server when possible.") }
 dataForm.onreset = function () {
     let inputs = dataForm.querySelectorAll("ui-input-number")
     for (let input of inputs) input.reset()

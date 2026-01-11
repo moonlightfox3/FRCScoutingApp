@@ -1,10 +1,13 @@
 Needs
-    Add button to submit data or file to some kind of server - form submit button?
+    Server
+        Add button to submit LocalStorage (can submit as practice or for an event) - form submit button? (also clears LocalStorage on success, tells user the result)
+        Holds list of events and current event (can clear very old events to save storage, but keep a few recent ones)
+    Pit scouting - index toggle, load different forms
     Service worker - if possible, check if latest commit has been pushed to GitHub Pages, and don't update cache if it hasn't
-    Pit scouting - toggle? May need different form
 
 Wants
     Dev branch - test code before using on main
+    LocalStorage file viewer
 
 Luxuries
     Internal tab system (different pages)

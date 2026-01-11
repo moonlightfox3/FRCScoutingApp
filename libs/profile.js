@@ -49,9 +49,6 @@ profileSettings.innerHTML = `\
     <b>Keybinds (keyboard/controller)</b><br>
     <i>Different for each year</i>
 </center>
-Crescendo:<br>
-${keysToHtmlStr(2024)}<br>
-<br>
 Reefscape:<br>
 ${keysToHtmlStr(2025)}<br>
 <br>
@@ -84,7 +81,7 @@ ${keysToHtmlStr(2026)}
 
 // Get a list of keys as a string
 function keysToHtmlStr (year) {
-    setKeyVars(year)
+    setKeyVars(year, false)
     let keyboardKeysStr = Object.keys(keys).map(val => `${htmlSpaces(8)}${getKeyNameAsText(val)}: ${getKeyAsText(keys[val])}`).join("<br>")
     let gamepadKeysStr = Object.keys(gamepadKeys).map(val => `${htmlSpaces(8)}${getKeyNameAsText(val)}: ${getGamepadKeyAsText(gamepadKeys[val])}`).join("<br>")
     setKeyVars(-1)

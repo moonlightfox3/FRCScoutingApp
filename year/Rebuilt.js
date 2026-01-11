@@ -1,5 +1,5 @@
-initDataFile(2026)
-setKeyVars(2026)
+initDataFile(2026, false)
+setKeyVars(2026, false)
 
 handleKey = function (key) {
     if (key == keys.switchStage_Teleop) matchStageIsTeleopKeyboard = true

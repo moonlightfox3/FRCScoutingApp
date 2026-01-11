@@ -4,6 +4,9 @@ div#yearsEl {
     flex-wrap: wrap;
     align-items: center;
 }
+div.break {
+    flex: 0 0 100%;
+}
 
 /* Years */
 button.year {

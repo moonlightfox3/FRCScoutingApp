@@ -24,14 +24,16 @@ const dataFileExcludeElems = ["br", "label", "a", "button"]
 const dataFileCurrentVersion = 1
 
 let dataYear = null
+let dataIsPit = false
 let dataElems = null // index 0 is the match number, index 1 is the team number (both are type=text inputs)
 
 // Get the input elements that should be exported
 let dataElemsDefaultVals = null
-function initDataFile (year) {
+function initDataFile (year, isPit) {
     // Setup
     console.debug(`Initializing data file for year '${year}'`)
     dataYear = year
+    dataIsPit = isPit
     dataElems = []
     dataElemsDefaultVals = []
 
@@ -142,13 +144,34 @@ function downloadData () {
     if (dataYear == null) return null
     let data = exportData()
     // File name
-    let name = `${dataElems[0].value.replaceAll(" ", "")}-${dataElems[1].value.replaceAll(" ", "")}.smscdt${dataYear}`
+    let name = `${dataElems[0].value.replaceAll(" ", "")}${dataIsPit ? "" : "-" + dataElems[1].value.replaceAll(" ", "")}.${dataIsPit ? "pit_" : ""}smscdt${dataYear}`
 
     // Download file with an <a> element
     let a = document.createElement("a")
     a.download = name
     a.href = `data:text/plain;base64,${btoa(data)}`
     a.click()
+}
+// Save file in browser
+function saveDataBrowser () {
+    // Check that the elements to export were gotten
+    if (dataYear == null) return null
+    let data = exportData()
+    // File name
+    let name = `${dataElems[0].value.replaceAll(" ", "")}${dataIsPit ? "" : "-" + dataElems[1].value.replaceAll(" ", "")}.${dataIsPit ? "pit_" : ""}smscdt${dataYear}`
+
+    // Get storage
+    let storage = localStorage.getItem("FRCScoutingApp_files")
+    if (storage == null) storage = {}
+    else storage = JSON.parse(storage)
+
+    // Add to storage
+    if (storage[dataIsPit ? "pit" : "match"] == null) storage[dataIsPit ? "pit" : "match"] = {}
+    if (storage[dataIsPit ? "pit" : "match"][dataYear] == null) storage[dataIsPit ? "pit" : "match"][dataYear] = []
+    storage[dataIsPit ? "pit" : "match"][dataYear].push({name, data})
+    // Save storage
+    storage = JSON.stringify(storage)
+    localStorage.setItem("FRCScoutingApp_files", storage)
 }
 
 // Check if any form element was changed

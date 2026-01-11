@@ -9,12 +9,6 @@
 			}
 		},
 		{
-			"action": "year/Crescendo.html",
-			"accept": {
-				"application/octet-stream": [".smscdt2024"]
-			}
-		},
-		{
 			"action": "year/Reefscape.html",
 			"accept": {
 				"application/octet-stream": [".smscdt2025"]
