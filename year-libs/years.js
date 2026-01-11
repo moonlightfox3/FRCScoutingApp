@@ -97,7 +97,7 @@ gamepadLoopInit(checkGamepad)
 gamepadPressListenerInit(onGamepadPress, key => {})
 
 // Files
-downloadData.onclick = () => downloadData()
+downloadDataBtn.onclick = () => downloadData()
 // Prompt before leaving the page, if any form element was changed
 onbeforeunload = function (ev) {
     if (getFormChanged()) ev.preventDefault()
