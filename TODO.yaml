@@ -5,6 +5,7 @@ Needs
 
 Wants
     Make buttons for each number input (increase/decrease) - custom element
+    Dev branch - test code before using on main
 
 Luxuries
-    Internal tab system
+    Internal tab system (different pages)

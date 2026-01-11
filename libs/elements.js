@@ -56,7 +56,7 @@ class UINumberInputElement extends HTMLElement {
         decreaseButton.style.display = "inline-block"
         decreaseButton.style.position = "relative"
         decreaseButton.style.left = "-106px"
-        increaseButton.style.flex = "0 0 53px"
+        decreaseButton.style.flex = "0 0 53px"
         decreaseButton.style.outline = "none"
         decreaseButton.style.backgroundColor = "lightgray"
         decreaseButton.style.color = "black"
@@ -76,6 +76,8 @@ class UINumberInputElement extends HTMLElement {
 
     get value () { return this.shadowRoot.querySelector("input#input").value }
     set value (value) { this.shadowRoot.querySelector("input#input").value = value }
+
+    get type () { return "number" }
 
     connectedCallback () {
         this.style.backgroundColor = "lightgray"
