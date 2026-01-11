@@ -21,33 +21,45 @@ class UINumberInputElement extends HTMLElement {
             numberInput.value = parseInt(numberInput.value)
             if (numberInput.value == "") numberInput.value = "0"
         })
+        numberInput.style.position = "relative"
+        numberInput.style.top = "-2px"
         numberInput.style.outline = "none"
         numberInput.style.backgroundColor = "lightgray"
         numberInput.style.cursor = "text"
         numberInput.style.width = "54px"
+        numberInput.style.height = "15px"
         numberInput.style.border = "none"
+        numberInput.style.borderRadius = "5px"
         
         let increaseButton = document.createElement("button")
         increaseButton.id = "increase"
         increaseButton.innerText = "+"
         increaseButton.onclick = () => numberInput.value = parseInt(numberInput.value) + 1
+        increaseButton.style.position = "relative"
+        increaseButton.style.top = "-2px"
         increaseButton.style.outline = "none"
         increaseButton.style.backgroundColor = "lightgray"
         increaseButton.style.cursor = "pointer"
         increaseButton.style.width = "53px"
+        increaseButton.style.height = "17px"
         increaseButton.style.border = "none"
         increaseButton.style.borderLeft = "1px solid darkgray"
+        increaseButton.style.borderRadius = "5px"
 
         let decreaseButton = document.createElement("button")
         decreaseButton.id = "decrease"
         decreaseButton.innerText = "-"
         decreaseButton.onclick = () => numberInput.value = parseInt(numberInput.value) - 1
+        decreaseButton.style.position = "relative"
+        decreaseButton.style.top = "-2px"
         decreaseButton.style.outline = "none"
         decreaseButton.style.backgroundColor = "lightgray"
         decreaseButton.style.cursor = "pointer"
         decreaseButton.style.width = "53px"
+        decreaseButton.style.height = "17px"
         decreaseButton.style.border = "none"
         decreaseButton.style.borderLeft = "1px solid darkgray"
+        decreaseButton.style.borderRadius = "5px"
 
         shadow.append(numberInput, increaseButton, decreaseButton)
     }
@@ -57,6 +69,8 @@ class UINumberInputElement extends HTMLElement {
     set placeholder (value) { this.setAttribute("placeholder", value) }
 
     connectedCallback () {
+        this.style.backgroundColor = "lightgray"
+        this.style.height = "19px"
         this.style.border = "1px solid gray"
         this.style.borderRadius = "5px"
     }
