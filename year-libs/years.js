@@ -96,8 +96,13 @@ function modifyInputValueGamepad (inputTeleopHit, inputTeleopMiss, inputAutoHit 
 gamepadLoopInit(checkGamepad)
 gamepadPressListenerInit(onGamepadPress, key => {})
 
-// Files
+// Form stuff
 downloadDataBtn.onclick = () => downloadData()
+dataForm.onreset = function () {
+    let inputs = dataForm.querySelectorAll("ui-input-number")
+    for (let input of inputs) input.reset()
+}
+
 // Prompt before leaving the page, if any form element was changed
 onbeforeunload = function (ev) {
     if (getFormChanged()) ev.preventDefault()

@@ -90,5 +90,9 @@ class UINumberInputElement extends HTMLElement {
     attributeChangedCallback (name, oldVal, newVal) {
         if (name == "placeholder") this.shadowRoot.querySelector("input#input").placeholder = newVal
     }
+
+    reset () {
+        this.shadowRoot.querySelector("input#input").value = "0"
+    }
 }
 customElements.define("ui-input-number", UINumberInputElement)
