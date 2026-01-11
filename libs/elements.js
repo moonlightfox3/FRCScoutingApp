@@ -2,7 +2,6 @@
 class UINumberInputElement extends HTMLElement {
     constructor () {
         super()
-        
         let shadow = this.attachShadow({mode: "open"})
 
         let numberInput = document.createElement("input") // 57px wide
@@ -51,6 +50,8 @@ class UINumberInputElement extends HTMLElement {
         decreaseButton.style.borderLeft = "1px solid darkgray"
 
         shadow.append(numberInput, increaseButton, decreaseButton)
+        this.style.border = "1px solid gray"
+        this.style.borderRadius = "5px"
     }
     
     static observedAttributes = ["placeholder"]

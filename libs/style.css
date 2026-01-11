@@ -31,7 +31,7 @@ body {
 
 /* Generic elements */
 input, button {
-    border: 1px solid black;
+    border: 1px solid gray;
 }
 input[type=text], input[type=number] {
     width: 160px;
