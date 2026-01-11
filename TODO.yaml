@@ -1,8 +1,10 @@
-Add button to submit generated .smscdt file to some kind of server/database backend
-    Save it to a database of files, can get general stats/data from the files
-    
-Service worker
-    If possible, check if latest commit has been pushed to GitHub Pages, and don't update cache if it hasn't
+Needs
+    Add button to submit data (not file) to Google Sheets
+    Service worker - if possible, check if latest commit has been pushed to GitHub Pages, and don't update cache if it hasn't
+    Pit scouting - toggle? May need different form
 
-Make buttons for each number input (increase/decrease)
-    Custom element
+Wants
+    Make buttons for each number input (increase/decrease) - custom element
+
+Luxuries
+    Internal tab system

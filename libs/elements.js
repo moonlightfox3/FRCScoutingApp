@@ -22,6 +22,7 @@ class UINumberInputElement extends HTMLElement {
             numberInput.value = parseInt(numberInput.value)
             if (numberInput.value == "") numberInput.value = "0"
         })
+        numberInput.style.outline = "none"
         numberInput.style.backgroundColor = "lightgray"
         numberInput.style.cursor = "text"
         numberInput.style.width = "54px"
@@ -31,6 +32,7 @@ class UINumberInputElement extends HTMLElement {
         increaseButton.id = "increase"
         increaseButton.innerText = "+"
         increaseButton.onclick = () => numberInput.value = parseInt(numberInput.value) + 1
+        numberInput.style.outline = "none"
         increaseButton.style.backgroundColor = "lightgray"
         increaseButton.style.cursor = "pointer"
         increaseButton.style.width = "53px"
@@ -41,6 +43,7 @@ class UINumberInputElement extends HTMLElement {
         decreaseButton.id = "decrease"
         decreaseButton.innerText = "-"
         decreaseButton.onclick = () => numberInput.value = parseInt(numberInput.value) - 1
+        numberInput.style.outline = "none"
         decreaseButton.style.backgroundColor = "lightgray"
         decreaseButton.style.cursor = "pointer"
         decreaseButton.style.width = "53px"
