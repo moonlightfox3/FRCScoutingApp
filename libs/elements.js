@@ -21,6 +21,7 @@ class UINumberInputElement extends HTMLElement {
             numberInput.value = parseInt(numberInput.value)
             if (numberInput.value == "") numberInput.value = "0"
         })
+        numberInput.style.display = "inline-block"
         numberInput.style.position = "relative"
         numberInput.style.left = "0"
         numberInput.style.top = "-2px"
@@ -37,9 +38,10 @@ class UINumberInputElement extends HTMLElement {
         increaseButton.id = "increase"
         increaseButton.innerText = "+"
         increaseButton.onclick = () => numberInput.value = parseInt(numberInput.value) + 1
+        increaseButton.style.display = "inline-block"
         increaseButton.style.position = "relative"
-        increaseButton.style.left = "58px"
-        increaseButton.style.top = "-21px"
+        increaseButton.style.left = "-106px"
+        increaseButton.style.top = "0"
         increaseButton.style.outline = "none"
         increaseButton.style.backgroundColor = "lightgray"
         increaseButton.style.color = "black"
@@ -54,9 +56,10 @@ class UINumberInputElement extends HTMLElement {
         decreaseButton.id = "decrease"
         decreaseButton.innerText = "-"
         decreaseButton.onclick = () => numberInput.value = parseInt(numberInput.value) - 1
+        decreaseButton.style.display = "inline-block"
         decreaseButton.style.position = "relative"
-        decreaseButton.style.left = "58px"
-        decreaseButton.style.top = "-21px"
+        decreaseButton.style.left = "-106px"
+        decreaseButton.style.top = "0"
         decreaseButton.style.outline = "none"
         decreaseButton.style.backgroundColor = "lightgray"
         decreaseButton.style.color = "black"
@@ -74,12 +77,16 @@ class UINumberInputElement extends HTMLElement {
     get placeholder () { return this.getAttribute("placeholder") }
     set placeholder (value) { this.setAttribute("placeholder", value) }
 
+    get value () { return this.shadowRoot.querySelector("input#input").value }
+    set value (value) { this.shadowRoot.querySelector("input#input").value = value }
+
     connectedCallback () {
         this.style.backgroundColor = "lightgray"
         this.style.width = "164px"
         this.style.height = "18px"
         this.style.border = "1px solid gray"
         this.style.borderRadius = "5px"
+        this.style.display = "inline-flex"
     }
     attributeChangedCallback (name, oldVal, newVal) {
         if (name == "placeholder") this.shadowRoot.querySelector("input#input").placeholder = newVal

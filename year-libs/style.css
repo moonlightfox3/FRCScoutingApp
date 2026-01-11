@@ -1,5 +1,5 @@
 /* Input elements and buttons */
-input[type=text], input[type=number], textarea#notes, button#downloadDataBtn, button#resetData, button#returnToYearSelect {
+input:not([type]), input[type=number], textarea#notes, button#downloadDataBtn, button#resetData, button#returnToYearSelect {
     background-color: lightgray;
     color: black;
     border-radius: 5px;
