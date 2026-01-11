@@ -21,14 +21,14 @@ class UINumberInputElement extends HTMLElement {
             numberInput.value = parseInt(numberInput.value)
             if (numberInput.value == "") numberInput.value = "0"
         })
-        numberInput.style.position = "absolute"
+        numberInput.style.position = "relative"
         numberInput.style.left = "0"
-        numberInput.style.top = "0"
+        numberInput.style.top = "-2px"
         numberInput.style.outline = "none"
         numberInput.style.backgroundColor = "lightgray"
         numberInput.style.color = "black"
         numberInput.style.cursor = "text"
-        numberInput.style.width = "156px"
+        numberInput.style.width = "160px"
         numberInput.style.height = "16px"
         numberInput.style.border = "none"
         numberInput.style.borderRadius = "5px"
@@ -39,7 +39,7 @@ class UINumberInputElement extends HTMLElement {
         increaseButton.onclick = () => numberInput.value = parseInt(numberInput.value) + 1
         increaseButton.style.position = "relative"
         increaseButton.style.left = "58px"
-        increaseButton.style.top = "-2px"
+        increaseButton.style.top = "-21px"
         increaseButton.style.outline = "none"
         increaseButton.style.backgroundColor = "lightgray"
         increaseButton.style.color = "black"
@@ -56,7 +56,7 @@ class UINumberInputElement extends HTMLElement {
         decreaseButton.onclick = () => numberInput.value = parseInt(numberInput.value) - 1
         decreaseButton.style.position = "relative"
         decreaseButton.style.left = "58px"
-        decreaseButton.style.top = "-2px"
+        decreaseButton.style.top = "-21px"
         decreaseButton.style.outline = "none"
         decreaseButton.style.backgroundColor = "lightgray"
         decreaseButton.style.color = "black"
