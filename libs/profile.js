@@ -45,7 +45,7 @@ profileSettings.innerHTML = `\
 <hr>
 
 <center>
-    <b>Match keybinds (keyboard/controller)</b><br>
+    <b>Match keybinds</b><br>
     <i>Different for each year</i>
 </center>
 Reefscape:<br>
@@ -56,7 +56,7 @@ ${keysToHtmlStr(2026, false)}
 <hr>
 
 <center>
-    <b>Pit keybinds (keyboard/controller)</b><br>
+    <b>Pit keybinds</b><br>
     <i>Different for each year</i>
 </center>
 Rebuilt:<br>
