@@ -80,7 +80,7 @@ self.addEventListener("fetch", function (ev) {
         // Make sure cache exists and is up to date
         if (commitId == null) await getGithubData(false)
         if (cacheCommitId == null) await getCacheData()
-        if (cacheCommitId != commitId && commitId != null) {
+        if (commitId != null && commitId != cacheCommitId && hasDeployedToPages()) {
             console.debug("[SW] Upgrading cache")
             caches.delete(`${cachePrefix}${cacheCommitId}`) // Still works even if the cache doesn't exist
             setupCache()

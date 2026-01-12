@@ -1,5 +1,4 @@
 Needs
-    Service worker - if possible, check if latest commit has been pushed to GitHub Pages, and don't update cache if it hasn't
     Server
         Add button to submit LocalStorage (can submit as practice or for an event) - form type=submit button? (also clears LocalStorage on success, tells user the result)
         Holds list of events and current event (can clear somewhat old events to save storage, but might as well keep a few recent ones)
