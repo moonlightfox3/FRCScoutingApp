@@ -53,9 +53,9 @@ handleKeyGamepad = function (key) {
             else notes.focus()
         }
     }
-    else if (key == gamepadKeys.focusTeleopActiveBehavior) opActiveBehavior.focus()
-    else if (key == gamepadKeys.focusTeleopInactiveBehavior) opInactiveBehavior.focus()
-    else if (key == gamepadKeys.focusSecondsBrokenCause) breakCause.focus()
+    else if (key == gamepadKeys.focusTeleopActiveBehavior) document.activeElement == opActiveBehavior ? opActiveBehavior.blur() : opActiveBehavior.focus()
+    else if (key == gamepadKeys.focusTeleopInactiveBehavior) document.activeElement == opInactiveBehavior ? opInactiveBehavior.blur() : opInactiveBehavior.focus()
+    else if (key == gamepadKeys.focusSecondsBrokenCause) document.activeElement == breakCause ? breakCause.blur() : breakCause.focus()
     else if (key == gamepadKeys.scoreBy10) scoreBy10Gamepad = true
     else if (key == gamepadKeys.fuelShotWhenInactive) modifyInputValueGamepad(opInactiveShots, opInactiveShots, null, null, scoreBy10Gamepad ? 10 : 1)
     else if (key == gamepadKeys.climbHeight) modifyInputValueGamepad(opClimb, opClimb, autoClimb, autoClimb)
