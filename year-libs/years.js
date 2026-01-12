@@ -41,7 +41,7 @@ onkeydown = function (ev) {
     else if (key == keys.switchStage_Teleop) matchStageIsTeleopKeyboard = true
     else if (key == keys.switchStage_Auto) matchStageIsTeleopKeyboard = false
     else if (key == keys.downloadData) downloadData()
-    else if (key == keys.saveDataInBrowser) saveDataBrowser()
+    else if (key == keys.saveDataInBrowser) saveDataBrowserBtn.click()
     else if (handleKey(key)) null
 
     // Cancel if needed
@@ -87,7 +87,7 @@ function onGamepadPress (key) {
     if (key == gamepadKeys.switchStage_Teleop) matchStageIsTeleopGamepad = true
     else if (key == gamepadKeys.switchStage_Auto) matchStageIsTeleopGamepad = false
     else if (key == gamepadKeys.downloadData) downloadData()
-    else if (key == gamepadKeys.saveDataInBrowser) saveDataBrowser()
+    else if (key == gamepadKeys.saveDataInBrowser) saveDataBrowserBtn.click()
     else if (handleKeyGamepad(key)) null
 }
 function onGamepadUnpress (key) {

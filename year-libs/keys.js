@@ -132,12 +132,13 @@ let allKeys = {
             toggleCanGoThroughTrench: "l",
             focusOwnNotesField: "o",
             focusNotesField: "p",
-            focusFuelCapacity: "m",
+            scoreBy10: "y",
+            fuelCapacity: "m",
             climbHeight: "n",
             downloadData: "enter",
             saveDataInBrowser: "\\",
             // Unused keys:
-            //  a, s, d, f, q, w, e, r, t, y
+            //  a, s, d, f, q, w, e, r, t
             //  g, h, u, i, z, x, c, v
             //  `, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -, =, [, ]
             //  ', ,, ., /
@@ -178,8 +179,8 @@ let allGamepadKeys = {
             focusNotesField: "LU",
             focusTeleopActiveBehavior: "LL",
             focusTeleopInactiveBehavior: "LD",
-            focusSecondsBrokenCause: "RBD",
-            scoreBy10: "MR",
+            focusSecondsBrokenCause: "MR",
+            scoreBy10: "RBD",
             fuelShotWhenInactive: "RU",
             climbHeight: "RL",
             fuelShot: "RR",
@@ -221,12 +222,12 @@ let allGamepadKeys = {
             toggleCanGoThroughTrench: "RD",
             focusOwnNotesField: "LR",
             focusNotesField: "LU",
-            focusFuelCapacity: "LD",
+            scoreBy10: "RBD",
+            fuelCapacity: "LD",
             climbHeight: "RR",
             downloadData: "MM",
             saveDataInBrowser: "JR",
             // Unused gamepad keys:
-            //  RBD
             //  LL
             //  JL
             // Unused gamepad axes:
