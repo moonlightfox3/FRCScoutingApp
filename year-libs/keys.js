@@ -43,7 +43,7 @@ let allKeys = {
             endType_Deep: "6",
             endType_Shallow: "7",
             downloadData: "enter",
-            saveDataBrowser: "\\",
+            saveDataInBrowser: "\\",
             // Unused keys:
             //  `, 1, 2, -, =, [, ]
             //  Backspace
@@ -79,7 +79,7 @@ let allKeys = {
             secondsBroken_Over60: "9",
             secondsBroken_None: "0",
             downloadData: "enter",
-            saveDataBrowser: "\\",
+            saveDataInBrowser: "\\",
             // Unused keys:
             //  g, h, u, i, z, x, c, v
             //  `, 1, 2, 5, 6, 7, -, =, [, ]
@@ -113,7 +113,7 @@ let allKeys = {
             endType_Park: "5",
             /* PLACEHOLDER */
             downloadData: "enter",
-            saveDataBrowser: "\\",
+            saveDataInBrowser: "\\",
             /* PLACEHOLDER */
             // Unused keys:
             //  a, s, d, f, q, w, e, r
@@ -135,7 +135,7 @@ let allKeys = {
             focusFuelCapacity: "m",
             climbHeight: "n",
             downloadData: "enter",
-            saveDataBrowser: "\\",
+            saveDataInBrowser: "\\",
             // Unused keys:
             //  a, s, d, f, q, w, e, r, t, y
             //  g, h, u, i, z, x, c, v
@@ -163,7 +163,7 @@ let allGamepadKeys = {
             algaeNet: "LD",
             algaeDescore: "LR",
             downloadData: "MM",
-            saveDataBrowser: "JR",
+            saveDataInBrowser: "JR",
             // Unused gamepad keys:
             //  JL
             // Unused gamepad axes:
@@ -185,7 +185,7 @@ let allGamepadKeys = {
             fuelShot: "RR",
             fuelMissed: "RD",
             downloadData: "MM",
-            saveDataBrowser: "JR",
+            saveDataInBrowser: "JR",
             // Unused gamepad keys:
             //  JL
             // Unused gamepad axes:
@@ -201,7 +201,7 @@ let allGamepadKeys = {
             focusNotesField: "LU",
             /* PLACEHOLDER */
             downloadData: "MM",
-            saveDataBrowser: "JR",
+            saveDataInBrowser: "JR",
             /* PLACEHOLDER */
             // Unused gamepad keys:
             //  RU, RL, RD, RR
@@ -224,7 +224,7 @@ let allGamepadKeys = {
             focusFuelCapacity: "LD",
             climbHeight: "RR",
             downloadData: "MM",
-            saveDataBrowser: "JR",
+            saveDataInBrowser: "JR",
             // Unused gamepad keys:
             //  RBD
             //  LL

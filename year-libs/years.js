@@ -3,8 +3,8 @@ console.debug(`Loading default year code`)
 teamNum.focus()
 
 // Externally set config
-let keys = null // 'invertAction', 'switchStage_Teleop', 'switchStage_Auto', 'downloadData', and 'saveDataBrowser' are required here
-let gamepadKeys = null // 'invertAction', 'switchStage_Teleop', 'switchStage_Auto', 'downloadData', and 'saveDataBrowser' are required here. 'scoreMiss' is optional here
+let keys = null // 'invertAction', 'switchStage_Teleop', 'switchStage_Auto', 'downloadData', and 'saveDataInBrowser' are required here
+let gamepadKeys = null // 'invertAction', 'switchStage_Teleop', 'switchStage_Auto', 'downloadData', and 'saveDataInBrowser' are required here. 'scoreMiss' is optional here
 let handleKey = key => {}
 let handleKeyUp = key => {}
 let handleKeyGamepad = key => {}
@@ -41,7 +41,7 @@ onkeydown = function (ev) {
     else if (key == keys.switchStage_Teleop) matchStageIsTeleopKeyboard = true
     else if (key == keys.switchStage_Auto) matchStageIsTeleopKeyboard = false
     else if (key == keys.downloadData) downloadData()
-    else if (key == keys.saveDataBrowser) saveDataBrowser()
+    else if (key == keys.saveDataInBrowser) saveDataBrowser()
     else if (handleKey(key)) null
 
     // Cancel if needed
@@ -87,7 +87,7 @@ function onGamepadPress (key) {
     if (key == gamepadKeys.switchStage_Teleop) matchStageIsTeleopGamepad = true
     else if (key == gamepadKeys.switchStage_Auto) matchStageIsTeleopGamepad = false
     else if (key == gamepadKeys.downloadData) downloadData()
-    else if (key == gamepadKeys.saveDataBrowser) saveDataBrowser()
+    else if (key == gamepadKeys.saveDataInBrowser) saveDataBrowser()
     else if (handleKeyGamepad(key)) null
 }
 function onGamepadUnpress (key) {
