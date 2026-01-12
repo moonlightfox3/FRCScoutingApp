@@ -79,8 +79,21 @@ async function hasDeployedToPages () {
         return null
     }
 
+    // Check hash
     if (!resp.ok) return null
     let json = await resp.json()
-    // Check commit hash
-    return json[0].sha == commit.sha
+    if (json[0].sha != commit.sha) return false
+
+    try {
+        resp = await fetch(`${json[0].statuses_url}?per_page=1`)
+    } catch (er) {
+        // Network error
+        console.debug("Could not get GitHub Pages status")
+        return null
+    }
+    
+    // Check state
+    if (!resp.ok) return null
+    json = await resp.json()
+    return json[0].state == "success"
 }
