@@ -34,8 +34,7 @@ profileSettings.innerHTML = `\
 <center>
     <b>About this page</b><br>
     This is an open-source scouting app for FRC.<br>
-    It's designed to be used on a computer with a keyboard, or a phone/tablet with a game controller, but can also be used with a mouse or touchscreen.<br>
-    Settings and keybinds are listed below. There's also a link to the source code of this page in the profile bar, next to the button to open this menu.
+    It's designed to be used on a computer with a keyboard, or a phone/tablet with a game controller, but can also be used with a mouse or touchscreen.
 </center>
 <hr>
 
