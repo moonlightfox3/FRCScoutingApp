@@ -39,8 +39,12 @@ handleKeyUp = function (key) {
 }
 handleKeyGamepad = function (key) {
     if (key == gamepadKeys.toggleRobotCame) robotCame.checked = !robotCame.checked
-    else if (key == gamepadKeys.focusOwnNotesField) matchStageIsTeleopGamepad ? null : autoNotes.focus()
-    else if (key == gamepadKeys.focusNotesField) {
+    else if (key == gamepadKeys.focusOwnNotesField) {
+        if (!matchStageIsTeleopGamepad) {
+            if (document.activeElement == autoNotes) autoNotes.blur()
+            else autoNotes.focus()
+        }
+    } else if (key == gamepadKeys.focusNotesField) {
         if (invertKeysGamepad) {
             if (document.activeElement == teamNum) matchNum.focus()
             else teamNum.focus()

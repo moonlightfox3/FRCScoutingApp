@@ -23,8 +23,15 @@ handleKeyGamepad = function (key) {
     if (key == gamepadKeys.toggleGetFuelFromFloor) pickFuelFloor.checked = !pickFuelFloor.checked
     else if (key == gamepadKeys.toggleCanCrossBump) throughBump.checked = !throughBump.checked
     else if (key == gamepadKeys.toggleCanGoThroughTrench) throughTrench.checked = !throughTrench.checked
-    else if (key == gamepadKeys.focusOwnNotesField) matchStageIsTeleopGamepad ? opNotes.focus() : autoNotes.focus()
-    else if (key == gamepadKeys.focusNotesField) {
+    else if (key == gamepadKeys.focusOwnNotesField) {
+        if (matchStageIsTeleopGamepad) {
+            if (document.activeElement == opNotes) opNotes.blur()
+            else opNotes.focus()
+        } else {
+            if (document.activeElement == autoNotes) autoNotes.blur()
+            else autoNotes.focus()
+        }
+    } else if (key == gamepadKeys.focusNotesField) {
         if (invertKeysGamepad) teamNum.focus()
         else {
             if (document.activeElement == notes) notes.blur()
