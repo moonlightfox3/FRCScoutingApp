@@ -25,7 +25,7 @@ async function getGithubData (show) {
 
     commitId = getCommitId()
     commitDate = getCommitDate()
-    deployedToPages = hasDeployedToPages()
+    deployedToPages = await hasDeployedToPages()
 
     if (show) showCommitUpdate(isOnline)
     return isOnline
