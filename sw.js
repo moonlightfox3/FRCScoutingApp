@@ -80,7 +80,7 @@ self.addEventListener("fetch", function (ev) {
         // Make sure cache exists and is up to date
         if (commitId == null) await getGithubData(false)
         if (cacheCommitId == null) await getCacheData()
-        if (commitId != null && commitId != cacheCommitId && hasDeployedToPages()) {
+        if (commitId != null && commitId != cacheCommitId && deployedToPages) {
             console.debug("[SW] Upgrading cache")
             caches.delete(`${cachePrefix}${cacheCommitId}`) // Still works even if the cache doesn't exist
             setupCache()
@@ -121,7 +121,7 @@ self.addEventListener("install", function (ev) {
     ev.waitUntil((async function () {
         await getGithubData(false)
         console.debug(`[SW] GitHub commit ID: ${commitId}`)
-        console.debug(`[SW] Has deployed to GitHub Pages: ${hasDeployedToPages()}`)
+        console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
 
         await setupCache()
         await runPrecache()
@@ -137,7 +137,7 @@ self.addEventListener("activate", function (ev) {
     ev.waitUntil((async function () {
         await getGithubData(false)
         console.debug(`[SW] GitHub commit ID: ${commitId}`)
-        console.debug(`[SW] Has deployed to GitHub Pages: ${hasDeployedToPages()}`)
+        console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
 
         await getCacheData()
         if (cache == null) await setupCache()
@@ -154,7 +154,7 @@ self.addEventListener("message", function (ev) {
         ev.waitUntil((async function () {
             await getGithubData(false)
             console.debug(`[SW] GitHub commit ID: ${commitId}`)
-            console.debug(`[SW] Has deployed to GitHub Pages: ${hasDeployedToPages()}`)
+            console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
 
             await getCacheData()
             if (cache == null) await setupCache()

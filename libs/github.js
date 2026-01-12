@@ -18,14 +18,16 @@ async function getCommit () {
     return json[0]
 }
 let commit = null
+let deployedToPages = null
 async function getGithubData (show) {
     commit = await getCommit()
     let isOnline = commit != null
 
     commitId = getCommitId()
     commitDate = getCommitDate()
-    if (show) showCommitUpdate(isOnline)
+    deployedToPages = hasDeployedToPages()
 
+    if (show) showCommitUpdate(isOnline)
     return isOnline
 }
 
