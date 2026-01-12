@@ -5,8 +5,10 @@ div#yearsEl {
     align-items: center;
 }
 div.break {
-    height: 16px;
     flex: 0 0 100%;
+}
+div.break.large {
+    height: 16px;
 }
 
 /* Years */
