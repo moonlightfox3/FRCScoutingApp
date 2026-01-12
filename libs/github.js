@@ -95,5 +95,5 @@ async function hasDeployedToPages () {
     // Check state
     if (!resp.ok) return null
     json = await resp.json()
-    return json[0].state == "inactive"
+    return json[0].state == "success"
 }
