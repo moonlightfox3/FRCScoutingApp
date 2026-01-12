@@ -1,4 +1,6 @@
 console.debug(`Loading default year code`)
+// Autofocus (using the 'autofocus' element attribute can be annoying for users on iPhones)
+teamNum.focus()
 
 // Externally set config
 let keys = null // 'invertAction', 'switchStage_Teleop', 'switchStage_Auto', 'downloadData', and 'saveDataBrowser' are required here
