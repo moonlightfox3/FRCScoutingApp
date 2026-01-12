@@ -6,7 +6,6 @@
     outline: none;
     user-select: none;
     font-family: "Roboto";
-    font-size: 16px;
 }
 body, ::selection {
     background-color: black;
