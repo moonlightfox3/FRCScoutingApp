@@ -60,9 +60,6 @@ ${keysToHtmlStr(2026, false)}
     <b>Pit keybinds (keyboard/controller)</b><br>
     <i>Different for each year</i>
 </center>
-Reefscape:<br>
-${keysToHtmlStr(2025, true)}<br>
-<br>
 Rebuilt:<br>
 ${keysToHtmlStr(2026, true)}
 `
