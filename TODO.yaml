@@ -4,7 +4,7 @@ Needs
         Holds list of events and current event (can clear somewhat old events to save storage, but might as well keep a few recent ones)
 
 Wants
-    Dev branch - test code before using on main (will GitHub Pages host this?)
+    Dev branch - test code before using on main (will GitHub Pages host this? also does the GitHub API usage change for this?)
 
 Luxuries
     LocalStorage file viewer

@@ -121,6 +121,7 @@ self.addEventListener("install", function (ev) {
     ev.waitUntil((async function () {
         await getGithubData(false)
         console.debug(`[SW] GitHub commit ID: ${commitId}`)
+        console.debug(`[SW] Has deployed to GitHub Pages: ${hasDeployedToPages()}`)
 
         await setupCache()
         await runPrecache()
@@ -136,6 +137,7 @@ self.addEventListener("activate", function (ev) {
     ev.waitUntil((async function () {
         await getGithubData(false)
         console.debug(`[SW] GitHub commit ID: ${commitId}`)
+        console.debug(`[SW] Has deployed to GitHub Pages: ${hasDeployedToPages()}`)
 
         await getCacheData()
         if (cache == null) await setupCache()
@@ -152,6 +154,7 @@ self.addEventListener("message", function (ev) {
         ev.waitUntil((async function () {
             await getGithubData(false)
             console.debug(`[SW] GitHub commit ID: ${commitId}`)
+            console.debug(`[SW] Has deployed to GitHub Pages: ${hasDeployedToPages()}`)
 
             await getCacheData()
             if (cache == null) await setupCache()
