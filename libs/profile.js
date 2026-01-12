@@ -46,14 +46,25 @@ profileSettings.innerHTML = `\
 <hr>
 
 <center>
-    <b>Keybinds (keyboard/controller)</b><br>
+    <b>Match keybinds (keyboard/controller)</b><br>
     <i>Different for each year</i>
 </center>
 Reefscape:<br>
-${keysToHtmlStr(2025)}<br>
+${keysToHtmlStr(2025, false)}<br>
 <br>
 Rebuilt:<br>
-${keysToHtmlStr(2026)}
+${keysToHtmlStr(2026, false)}
+<hr>
+
+<center>
+    <b>Pit keybinds (keyboard/controller)</b><br>
+    <i>Different for each year</i>
+</center>
+Reefscape:<br>
+${keysToHtmlStr(2025, true)}<br>
+<br>
+Rebuilt:<br>
+${keysToHtmlStr(2026, true)}
 `
 
     // Add settings menu to document, settings menu open/close button functionality
@@ -80,8 +91,8 @@ ${keysToHtmlStr(2026)}
 }
 
 // Get a list of keys as a string
-function keysToHtmlStr (year) {
-    setKeyVars(year, false)
+function keysToHtmlStr (year, isPit) {
+    setKeyVars(year, isPit)
     let keyboardKeysStr = Object.keys(keys).map(val => `${htmlSpaces(8)}${getKeyNameAsText(val)}: ${getKeyAsText(keys[val])}`).join("<br>")
     let gamepadKeysStr = Object.keys(gamepadKeys).map(val => `${htmlSpaces(8)}${getKeyNameAsText(val)}: ${getGamepadKeyAsText(gamepadKeys[val])}`).join("<br>")
     setKeyVars(-1)

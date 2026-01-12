@@ -43,8 +43,9 @@ let allKeys = {
             endType_Deep: "6",
             endType_Shallow: "7",
             downloadData: "enter",
+            saveDataBrowser: "\\",
             // Unused keys:
-            //  `, 1, 2, -, =, [, ], \
+            //  `, 1, 2, -, =, [, ]
             //  Backspace
         },
         2026: {
@@ -52,15 +53,20 @@ let allKeys = {
             switchStage_Teleop: " ",
             switchStage_Auto: "b",
             toggleRobotCame: "t",
-            toggleRobotAutoLeftStart: "y",
+            focusOwnNotesField: "o",
             focusNotesField: "p",
-            /* PLACEHOLDER */
-            defenseResistance_None: "z",
-            defenseResistance_Weak: "x",
-            defenseResistance_Strong: "c",
-            playingDefenseType_None: "v",
-            playingDefenseType_Passive: "g",
-            playingDefenseType_Active: "h",
+            focusTeleopActiveBehavior: "j",
+            focusTeleopInactiveBehavior: "k",
+            focusSecondsBrokenCause: "l",
+            scoreBy10: "y",
+            fuelShotWhenInactive: "a",
+            climbHeight: "s",
+            fuelShot: "d",
+            fuelMissed: "f",
+            teleopCycleTime_1To3: "q",
+            teleopCycleTime_4To6: "w",
+            teleopCycleTime_7To10: "e",
+            teleopCycleTime_Over10: "r",
             playingDefenseStrength_VeryWeak: "n",
             playingDefenseStrength_Weak: "m",
             playingDefenseStrength_Average: ",",
@@ -72,14 +78,11 @@ let allKeys = {
             secondsBroken_31To60: "8",
             secondsBroken_Over60: "9",
             secondsBroken_None: "0",
-            endType_Park: "5",
-            /* PLACEHOLDER */
             downloadData: "enter",
-            /* PLACEHOLDER */
+            saveDataBrowser: "\\",
             // Unused keys:
-            //  a, s, d, f, q, w, e, r
-            //  j, k, l, u, i, o
-            //  `, 1, 2, -, =, [, ], \
+            //  g, h, u, i, z, x, c, v
+            //  `, 1, 2, 5, 6, 7, -, =, [, ]
             //  Backspace
         },
         0: {
@@ -110,15 +113,36 @@ let allKeys = {
             endType_Park: "5",
             /* PLACEHOLDER */
             downloadData: "enter",
+            saveDataBrowser: "\\",
             /* PLACEHOLDER */
             // Unused keys:
             //  a, s, d, f, q, w, e, r
             //  j, k, l, u, i, o
-            //  `, 1, 2, -, =, [, ], \
+            //  `, 1, 2, 6, 7, -, =, [, ]
             //  Backspace
         },
     },
     pit: {
+        2026: {
+            invertAction: ";",
+            switchStage_Teleop: " ",
+            switchStage_Auto: "b",
+            toggleGetFuelFromFloor: "j",
+            toggleCanCrossBump: "k",
+            toggleCanGoThroughTrench: "l",
+            focusOwnNotesField: "o",
+            focusNotesField: "p",
+            focusFuelCapacity: "m",
+            climbHeight: "n",
+            downloadData: "enter",
+            saveDataBrowser: "\\",
+            // Unused keys:
+            //  a, s, d, f, q, w, e, r, t, y
+            //  g, h, u, i, z, x, c, v
+            //  `, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -, =, [, ]
+            //  ', ,, ., /
+            //  Backspace
+        },
     },
 }
 let allGamepadKeys = {
@@ -139,26 +163,31 @@ let allGamepadKeys = {
             algaeNet: "LD",
             algaeDescore: "LR",
             downloadData: "MM",
+            saveDataBrowser: "JR",
             // Unused gamepad keys:
-            //  JL, JR
+            //  JL
             // Unused gamepad axes:
             //  LX, LY, RX, RY
         },
         2026: {
             invertAction: "LBD",
-            scoreMiss: "RBD",
             switchStage_Teleop: "RBU",
             switchStage_Auto: "LBU",
             toggleRobotCame: "ML",
-            toggleRobotAutoLeftStart: "MR",
+            focusOwnNotesField: "LR",
             focusNotesField: "LU",
-            /* PLACEHOLDER */
+            focusTeleopActiveBehavior: "LL",
+            focusTeleopInactiveBehavior: "LD",
+            focusSecondsBrokenCause: "RBD",
+            scoreBy10: "MR",
+            fuelShotWhenInactive: "RU",
+            climbHeight: "RL",
+            fuelShot: "RR",
+            fuelMissed: "RD",
             downloadData: "MM",
-            /* PLACEHOLDER */
+            saveDataBrowser: "JR",
             // Unused gamepad keys:
-            //  RU, RL, RD, RR
-            //  LL, LD, LR
-            //  JL, JR
+            //  JL
             // Unused gamepad axes:
             //  LX, LY, RX, RY
         },
@@ -172,16 +201,37 @@ let allGamepadKeys = {
             focusNotesField: "LU",
             /* PLACEHOLDER */
             downloadData: "MM",
+            saveDataBrowser: "JR",
             /* PLACEHOLDER */
             // Unused gamepad keys:
             //  RU, RL, RD, RR
             //  LL, LD, LR
-            //  JL, JR
+            //  JL
             // Unused gamepad axes:
             //  LX, LY, RX, RY
         },
     },
     pit: {
+        2026: {
+            invertAction: "LBD",
+            switchStage_Teleop: "RBU",
+            switchStage_Auto: "LBU",
+            toggleGetFuelFromFloor: "RU",
+            toggleCanCrossBump: "RL",
+            toggleCanGoThroughTrench: "RD",
+            focusOwnNotesField: "LR",
+            focusNotesField: "LU",
+            focusFuelCapacity: "LD",
+            climbHeight: "RR",
+            downloadData: "MM",
+            saveDataBrowser: "JR",
+            // Unused gamepad keys:
+            //  RBD
+            //  LL
+            //  JL
+            // Unused gamepad axes:
+            //  LX, LY, RX, RY
+        },
     },
 }
 

@@ -1,19 +1,24 @@
 initDataFile(2026, false)
 setKeyVars(2026, false)
 
+let scoreBy10Keyboard = false
+let scoreBy10Gamepad = false
 handleKey = function (key) {
-    if (key == keys.switchStage_Teleop) matchStageIsTeleopKeyboard = true
-    else if (key == keys.switchStage_Auto) matchStageIsTeleopKeyboard = false
-    else if (key == keys.toggleRobotCame) robotCame.checked = !robotCame.checked
-    else if (key == keys.toggleRobotAutoLeftStart) autoPastLine.checked = !autoPastLine.checked
-    else if (key == keys.focusNotesField) invertKeysKeyboard ? matchNum.focus() : notes.focus()
-    /* PLACEHOLDER */
-    else if (key == keys.defenseResistance_None) resistDefNone.checked = true
-    else if (key == keys.defenseResistance_Weak) resistDefWeak.checked = true
-    else if (key == keys.defenseResistance_Strong) resistDefStrong.checked = true
-    else if (key == keys.playingDefenseType_None) playDefNone.checked = true
-    else if (key == keys.playingDefenseType_Passive) playDefPassive.checked = true
-    else if (key == keys.playingDefenseType_Active) playDefActive.checked = true
+    if (key == keys.toggleRobotCame) robotCame.checked = !robotCame.checked
+    else if (key == keys.focusOwnNotesField) matchStageIsTeleopKeyboard ? null : autoNotes.focus()
+    else if (key == keys.focusNotesField) invertKeysKeyboard ? teamNum.focus() : notes.focus()
+    else if (key == keys.focusTeleopActiveBehavior) opActiveBehavior.focus()
+    else if (key == keys.focusTeleopInactiveBehavior) opInactiveBehavior.focus()
+    else if (key == keys.focusSecondsBrokenCause) breakCause.focus()
+    else if (key == keys.scoreBy10) scoreBy10Keyboard = true
+    else if (key == keys.fuelShotWhenInactive) modifyInputValueKeyboard(opInactiveShots, null, scoreBy10Keyboard ? 10 : 1)
+    else if (key == keys.climbHeight) modifyInputValueKeyboard(opClimb, autoClimb)
+    else if (key == keys.fuelShot) modifyInputValueKeyboard(opBurstSize, autoShots, scoreBy10Keyboard ? 10 : 1)
+    else if (key == keys.fuelMissed) modifyInputValueKeyboard(opBurstMisses, autoMisses, scoreBy10Keyboard ? 10 : 1)
+    else if (key == keys.teleopCycleTime_1To3) opCycleTime3.checked = true
+    else if (key == keys.teleopCycleTime_4To6) opCycleTime6.checked = true
+    else if (key == keys.teleopCycleTime_7To10) opCycleTime10.checked = true
+    else if (key == keys.teleopCycleTime_Over10) opCycleTimeMore.checked = true
     else if (key == keys.playingDefenseStrength_VeryWeak) playDefStrenVWeak.checked = true
     else if (key == keys.playingDefenseStrength_Weak) playDefStrenWeak.checked = true
     else if (key == keys.playingDefenseStrength_Average) playDefStrenAvg.checked = true
@@ -25,28 +30,37 @@ handleKey = function (key) {
     else if (key == keys.secondsBroken_31To60) breakSec60.checked = true
     else if (key == keys.secondsBroken_Over60) breakSecMore.checked = true
     else if (key == keys.secondsBroken_None) breakSecNone.checked = true
-    else if (key == keys.endType_Park) invertKeysKeyboard ? endPosFail.checked = true : endPosPark.checked = true
-    /* PLACEHOLDER */
 
     else return false
     return true
 }
+handleKeyUp = function (key) {
+    if (key == keys.scoreBy10) scoreBy10Keyboard = false
+}
 handleKeyGamepad = function (key) {
-    if (key == gamepadKeys.switchStage_Teleop) matchStageIsTeleopGamepad = true
-    else if (key == gamepadKeys.switchStage_Auto) matchStageIsTeleopGamepad = false
-    else if (key == gamepadKeys.toggleRobotCame) robotCame.checked = !robotCame.checked
-    else if (key == gamepadKeys.toggleRobotAutoLeftStart) autoPastLine.checked = !autoPastLine.checked
+    if (key == gamepadKeys.toggleRobotCame) robotCame.checked = !robotCame.checked
+    else if (key == gamepadKeys.focusOwnNotesField) matchStageIsTeleopGamepad ? null : autoNotes.focus()
     else if (key == gamepadKeys.focusNotesField) {
         if (invertKeysGamepad) {
-            if (document.activeElement == matchNum) teamNum.focus()
-            else matchNum.focus()
+            if (document.activeElement == teamNum) matchNum.focus()
+            else teamNum.focus()
         } else {
             if (document.activeElement == notes) notes.blur()
             else notes.focus()
         }
     }
-    /* PLACEHOLDER */
+    else if (key == gamepadKeys.focusTeleopActiveBehavior) opActiveBehavior.focus()
+    else if (key == gamepadKeys.focusTeleopInactiveBehavior) opInactiveBehavior.focus()
+    else if (key == gamepadKeys.focusSecondsBrokenCause) breakCause.focus()
+    else if (key == gamepadKeys.scoreBy10) scoreBy10Gamepad = true
+    else if (key == gamepadKeys.fuelShotWhenInactive) modifyInputValueGamepad(opInactiveShots, opInactiveShots, null, null, scoreBy10Gamepad ? 10 : 1)
+    else if (key == gamepadKeys.climbHeight) modifyInputValueGamepad(opClimb, opClimb, autoClimb, autoClimb)
+    else if (key == gamepadKeys.fuelShot) modifyInputValueGamepad(opBurstSize, opBurstSize, autoShots, autoShots, scoreBy10Gamepad ? 10 : 1)
+    else if (key == gamepadKeys.fuelMissed) modifyInputValueGamepad(opBurstMisses, opBurstMisses, autoMisses, autoMisses, scoreBy10Gamepad ? 10 : 1)
 
     else return false
     return true
+}
+handleKeyUpGamepad = function (key) {
+    if (key == gamepadKeys.scoreBy10) scoreBy10Gamepad = false
 }

@@ -1,10 +1,12 @@
 console.debug(`Loading default year code`)
 
 // Externally set config
-let keys = null // 'invertAction' and 'downloadData' are required here
-let gamepadKeys = null // 'invertAction', 'scoreMiss', and 'downloadData' are required here
+let keys = null // 'invertAction', 'switchStage_Teleop', 'switchStage_Auto', 'downloadData', and 'saveDataBrowser' are required here
+let gamepadKeys = null // 'invertAction', 'switchStage_Teleop', 'switchStage_Auto', 'downloadData', and 'saveDataBrowser' are required here. 'scoreMiss' is optional here
 let handleKey = key => {}
+let handleKeyUp = key => {}
 let handleKeyGamepad = key => {}
+let handleKeyUpGamepad = key => {}
 
 // Keyboard
 let invertKeysKeyboard = false
@@ -24,8 +26,8 @@ onkeydown = function (ev) {
             let pos = notes.selectionStart
             notes.value = notes.value.substring(0, pos) + " ".repeat(4) + notes.value.substring(notes.selectionEnd)
             notes.selectionStart = notes.selectionEnd = pos + 4
-        } else if (document.activeElement == matchNum) teamNum.focus()
-        else matchNum.focus()
+        } else if (!dataIsPit && document.activeElement == teamNum) matchNum.focus()
+        else teamNum.focus()
         return
     }
     // Don't check the key if an input element is focused
@@ -34,7 +36,10 @@ onkeydown = function (ev) {
 
     // Check the key
     if (key == keys.invertAction) invertKeysKeyboard = true
+    else if (key == keys.switchStage_Teleop) matchStageIsTeleopKeyboard = true
+    else if (key == keys.switchStage_Auto) matchStageIsTeleopKeyboard = false
     else if (key == keys.downloadData) downloadData()
+    else if (key == keys.saveDataBrowser) saveDataBrowser()
     else if (handleKey(key)) null
 
     // Cancel if needed
@@ -48,12 +53,13 @@ onkeyup = function (ev) {
     // Check the key
     let key = ev.key.toLowerCase()
     if (key == keys.invertAction) invertKeysKeyboard = false
+    else if (handleKeyUp(key)) null
 }
 // Helper function for increasing/decreasing number inputs
-function modifyInputValueKeyboard (inputTeleop, inputAuto = inputTeleop) {
-    let val = invertKeysKeyboard ? -1 : 1
-    if (matchStageIsTeleopKeyboard) inputTeleop.value = parseInt(inputTeleop.value) + val
-    else inputAuto.value = parseInt(inputAuto.value) + val
+function modifyInputValueKeyboard (inputTeleop, inputAuto = inputTeleop, amount = 1) {
+    let val = invertKeysKeyboard ? -amount : amount
+    if (matchStageIsTeleopKeyboard) inputTeleop != null ? inputTeleop.value = parseInt(inputTeleop.value) + val : null
+    else inputAuto != null ? inputAuto.value = parseInt(inputAuto.value) + val : null
 }
 
 // Gamepad
@@ -68,7 +74,7 @@ function checkGamepad () {
     // Check the buttons
     let buttons = gamepad.buttonsNamed
     invertKeysGamepad = buttons[gamepadKeys.invertAction] > 0
-    scoreMissGamepad = buttons[gamepadKeys.scoreMiss] > 0
+    scoreMissGamepad = buttons[gamepadKeys?.scoreMiss] > 0
 }
 function onGamepadPress (key) {
     // Should the buttons be processed?
@@ -76,23 +82,34 @@ function onGamepadPress (key) {
     if (!gamepad.cursor.isClickReady) return
     
     // Check the buttons
-    if (key == gamepadKeys.downloadData) downloadData()
+    if (key == gamepadKeys.switchStage_Teleop) matchStageIsTeleopGamepad = true
+    else if (key == gamepadKeys.switchStage_Auto) matchStageIsTeleopGamepad = false
+    else if (key == gamepadKeys.downloadData) downloadData()
+    else if (key == gamepadKeys.saveDataBrowser) saveDataBrowser()
     else if (handleKeyGamepad(key)) null
 }
+function onGamepadUnpress (key) {
+    // Should the buttons be processed?
+    if (gamepadKeys == null) return
+    if (!gamepad.cursor.isClickReady) return
+
+    // Check the buttons
+    if (handleKeyUpGamepad(key)) null
+}
 // Helper function for increasing/decreasing number inputs
-function modifyInputValueGamepad (inputTeleopHit, inputTeleopMiss, inputAutoHit = inputTeleopHit, inputAutoMiss = inputTeleopMiss) {
-    let val = invertKeysGamepad ? -1 : 1
+function modifyInputValueGamepad (inputTeleopHit, inputTeleopMiss = inputTeleopHit, inputAutoHit = inputTeleopHit, inputAutoMiss = inputTeleopMiss, amount = 1) {
+    let val = invertKeysGamepad ? -amount : amount
     if (matchStageIsTeleopGamepad) {
-        if (scoreMissGamepad) inputTeleopMiss.value = parseInt(inputTeleopMiss.value) + val
-        else inputTeleopHit.value = parseInt(inputTeleopHit.value) + val
+        if (scoreMissGamepad) inputTeleopMiss != null ? inputTeleopMiss.value = parseInt(inputTeleopMiss.value) + val : null
+        else inputTeleopHit != null ? inputTeleopHit.value = parseInt(inputTeleopHit.value) + val : null
     } else {
-        if (scoreMissGamepad) inputAutoMiss.value = parseInt(inputAutoMiss.value) + val
-        else inputAutoHit.value = parseInt(inputAutoHit.value) + val
+        if (scoreMissGamepad) inputAutoMiss != null ? inputAutoMiss.value = parseInt(inputAutoMiss.value) + val : null
+        else inputAutoHit != null ? inputAutoHit.value = parseInt(inputAutoHit.value) + val : null
     }
 }
 // Get the gamepad
 gamepadLoopInit(checkGamepad)
-gamepadPressListenerInit(onGamepadPress, key => {})
+gamepadPressListenerInit(onGamepadPress, onGamepadUnpress)
 
 // Form stuff
 downloadDataBtn.onclick = () => downloadData()
