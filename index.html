@@ -35,9 +35,7 @@
     const currentYear = new Date().getFullYear()
     let currentYearElIdx = null
     function displayYears (years, isPit) {
-        let text = document.createElement("b")
-        text.innerText = `${isPit ? "Pit" : "Match"} scouting:`
-        yearsEl.append(text)
+        yearsEl.append(`${isPit ? "Pit" : "Match"} scouting:`)
         let br = document.createElement("div")
         br.className = "break"
         yearsEl.append(br)
