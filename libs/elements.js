@@ -30,6 +30,8 @@ class UINumberInputElement extends HTMLElement {
         numberInput.style.height = "16px"
         numberInput.style.border = "none"
         numberInput.style.borderRadius = "5px"
+        numberInput.style.paddingTop = "1px"
+        numberInput.style.paddingBottom = "1px"
         
         let increaseButton = document.createElement("button")
         increaseButton.id = "increase"
