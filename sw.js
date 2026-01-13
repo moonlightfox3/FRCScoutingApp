@@ -69,29 +69,37 @@ async function getCacheData () {
     console.debug("[SW] Got cache")
 }
 
+// Should cache
+function shouldCheckCache (url) {
+    return !url.includes("github.com")
+}
+
 // On request
 self.addEventListener("fetch", function (ev) {
     console.debug(`[SW] Got request: ${ev.request.url}`)
 
-    // Don't cache some URLs
-    if (ev.request.url.includes("github.com")) return console.debug("[SW] Ignoring request")
-
     // Need to do async work
     ev.respondWith((async function () {
-        // Make sure cache exists and is up to date
-        if (commitId == null) await getGithubData(false)
-        if (cacheCommitId == null) await getCacheData()
-        if (commitId != null && commitId != cacheCommitId && deployedToPages) {
-            console.debug("[SW] Upgrading cache")
-            caches.delete(`${cachePrefix}${cacheCommitId}`) // Still works even if the cache doesn't exist
-            setupCache()
-        }
+        // Should check cache?
+        let shouldCheck = shouldCheckCache()
+        if (!shouldCheck) console.debug("[SW] Passing request")
 
-        // Check if the response is already cached, return it if it is
-        let cachedResp = await caches.match(ev.request)
-        if (cachedResp != null) {
-            console.debug("[SW] Responding from cache")
-            return cachedResp
+        if (shouldCheck) {
+            // Make sure cache exists and is up to date
+            if (commitId == null) await getGithubData(false)
+            if (cacheCommitId == null) await getCacheData()
+            if (commitId != null && commitId != cacheCommitId && deployedToPages) {
+                console.debug("[SW] Upgrading cache")
+                caches.delete(`${cachePrefix}${cacheCommitId}`) // Still works even if the cache doesn't exist
+                setupCache()
+            }
+
+            // Check if the response is already cached, return it if it is
+            let cachedResp = await caches.match(ev.request)
+            if (cachedResp != null) {
+                console.debug("[SW] Responding from cache")
+                return cachedResp
+            }
         }
 
         // Make a request
@@ -104,9 +112,9 @@ self.addEventListener("fetch", function (ev) {
             console.debug("[SW] Network error")
             return Response.error()
         }
-            
+        
         // Cache the response (if it's successful), and return it
-        if (resp.ok) {
+        if (shouldCheck && resp.ok) {
             console.debug("[SW] Caching good response")
             if (cache == null) await getCacheData()
             await cache.put(ev.request, resp.clone())
