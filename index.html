@@ -27,9 +27,9 @@
     const pitYears = {
         2026: "Rebuilt",
     }
-    const tools = [
-        "storageViewer",
-    ]
+    const tools = {
+        "storageViewer": "Storage Viewer",
+    }
     const unreleasedYears = []
     const unavailableYears = []
     const noImgYears = []
@@ -82,15 +82,16 @@
         yearsEl.append("Tools:")
         displayBreak(false)
 
-        for (let i = 0; i < tools.length; i++) {
-            let tool = tools[i]
+        for (let i = 0; i < Object.keys(tools).length; i++) {
+            let tool = Object.keys(tools)[i]
+            let name = tools[tool]
 
             let a = document.createElement("a")
             a.className = "tool-link"
             a.href = `./tool/${tool}.html`
             let button = document.createElement("button")
             button.className = "tool"
-            button.innerText = tool
+            button.innerText = name
             button.disabled = unavailableTools.includes(tool)
 
             a.append(button)

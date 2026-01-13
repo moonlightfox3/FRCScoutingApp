@@ -44,6 +44,13 @@ img.year-img {
     margin-top: 3px;
 }
 
+/* Tools */
+button.tool {
+    background-color: lightgray;
+    color: black;
+    border-radius: 5px;
+}
+
 
 /* Light mode (adds override rules to a dark mode stylesheet) */
 
