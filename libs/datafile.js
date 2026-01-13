@@ -166,9 +166,9 @@ function saveDataBrowser () {
     else storage = JSON.parse(storage)
 
     // Add to storage
-    if (storage[dataIsPit ? "pit" : "match"] == null) storage[dataIsPit ? "pit" : "match"] = {}
-    if (storage[dataIsPit ? "pit" : "match"][dataYear] == null) storage[dataIsPit ? "pit" : "match"][dataYear] = []
-    storage[dataIsPit ? "pit" : "match"][dataYear].push({name, data})
+    if (storage[dataIsPit ? "pits" : "matches"] == null) storage[dataIsPit ? "pits" : "matches"] = {}
+    if (storage[dataIsPit ? "pits" : "matches"][dataYear] == null) storage[dataIsPit ? "pits" : "matches"][dataYear] = []
+    storage[dataIsPit ? "pits" : "matches"][dataYear].push({name, data})
     // Save storage
     storage = JSON.stringify(storage)
     localStorage.setItem("FRCScoutingApp_files", storage)

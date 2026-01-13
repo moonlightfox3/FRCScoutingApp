@@ -1,0 +1,6 @@
+/* Buttons */
+button#refreshBtn, button#clearBtn {
+    background-color: lightgray;
+    color: black;
+    border-radius: 5px;
+}

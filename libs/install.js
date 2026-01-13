@@ -1,8 +1,9 @@
 // Platform
+const currentYear = new Date().getFullYear()
 const isPWA = matchMedia("(display-mode: standalone)").matches
 const isIphone = navigator.platform == "iPhone"
 const isAndroid = navigator.userAgent.includes("Android")
-console.debug(`Is PWA: ${isPWA}, is iPhone: ${isIphone}, is Android: ${isAndroid}`)
+console.debug(`Year: ${currentYear}, is PWA: ${isPWA}, is iPhone: ${isIphone}, is Android: ${isAndroid}`)
 
 // Theme color (titlebar color on computers and Android, second background color on iPhones)
 function setThemeColor (color) {

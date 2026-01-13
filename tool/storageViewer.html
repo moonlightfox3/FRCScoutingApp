@@ -1,0 +1,62 @@
+<!doctype html>
+<title>Browser Storage Viewer</title>
+<link rel="icon" href="./icons/icon.svg">
+<link rel="apple-touch-icon" sizes="1024x1024" href="./icons/apple-touch-icon-1024x1024.png">
+<link rel="manifest" href="./manifest.json">
+<link rel="stylesheet" href="./libs/style.css">
+<link rel="stylesheet" href="./storageViewer-style.css">
+<script src="./libs/elements.js"></script>
+
+<button id="refreshBtn">Refresh</button> | <button id="downloadBtn">Download</button> | <button id="clearBtn">Clear</button>
+<hr>
+<div id="displayEl">
+    <ul id="matchesEl">
+    </ul>
+    <ul id="pitsEl">
+    </ul>
+</div>
+
+<script src="./libs/swrun.js"></script>
+<script src="./libs/gamepads.js"></script>
+<script src="./libs/gamepadControl.js"></script>
+<script src="./libs/install.js"></script>
+<script>
+    function displayStorage () {
+        matchesEl.innerHTML = ""
+        pitsEl.innerHTML = ""
+
+        let storage = localStorage.getItem("FRCScoutingApp_files")
+        if (storage == null) return
+        storage = JSON.parse(storage)
+
+        displayStoragePart(storage.matches ?? {}, matchesEl)
+        displayStoragePart(storage.pits ?? {}, pitsEl)
+    }
+    function displayStoragePart (storage, el) {
+        for (let year of Object.keys(storage)) {
+            let li = document.createElement("li")
+            let ul = document.createElement("ul")
+            for (let match of storage[year]) {
+                let li = document.createElement("li")
+                li.append(`${year}: ${match.name}`)
+                // TODO
+
+                ul.append(li)
+            }
+
+            li.append(ul)
+            el.append(li)
+        }
+    }
+    displayStorage()
+    refreshBtn.onclick = () => displayStorage()
+
+    downloadBtn.onclick = function () {
+        // TODO
+    }
+
+    clearBtn.onclick = function () {
+        if (!confirm("Are you sure you want to clear your browser's storage?\nThis will delete all saved files!")) return
+        localStorage.removeItem("FRCScoutingApp_files")
+    }
+</script>

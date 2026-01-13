@@ -27,18 +27,25 @@
     const pitYears = {
         2026: "Rebuilt",
     }
+    const tools = [
+        "storageViewer",
+    ]
     const unreleasedYears = []
     const unavailableYears = []
     const noImgYears = []
+    const unavailableTools = []
 
     // Create button elements automatically
-    const currentYear = new Date().getFullYear()
     let currentYearElIdx = null
-    function displayYears (years, isPit) {
-        yearsEl.append(`${isPit ? "Pit" : "Match"} scouting:`)
+    function displayBreak (isLarge) {
         let br = document.createElement("div")
         br.className = "break"
+        if (isLarge) br.classList.add("large")
         yearsEl.append(br)
+    }
+    function displayYears (years, isPit) {
+        yearsEl.append(`${isPit ? "Pit" : "Match"} scouting:`)
+        displayBreak(false)
 
         for (let i = 0; i < Object.keys(years).length; i++) {
             let year = Object.keys(years)[i]
@@ -69,17 +76,30 @@
                 currentYearElIdx = i
             }
         }
-        let br2 = document.createElement("div")
-        br2.className = "break"
-        br2.classList.add("large")
-        yearsEl.append(br2)
+        displayBreak(true)
+    }
+    function displayTools (tools) {
+        yearsEl.append("Tools:")
+        displayBreak(false)
+
+        for (let i = 0; i < tools.length; i++) {
+            let tool = tools[i]
+
+            let a = document.createElement("a")
+            a.className = "tool-link"
+            a.href = `./tool/${tool}.html`
+            let button = document.createElement("button")
+            button.className = "tool"
+            button.innerText = tool
+            button.disabled = unavailableTools.includes(tool)
+
+            a.append(button)
+            yearsEl.append(button)
+        }
     }
     displayYears(years, false)
     displayYears(pitYears, true)
-
-    // Allow scrolling the page to move the status bar off the year buttons
-    document.body.append(document.createElement("br"))
-    document.body.append(document.createElement("br"))
+    displayTools(tools)
 
     // Setup
     gamepadElCursorInit(
