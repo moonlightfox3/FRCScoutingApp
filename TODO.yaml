@@ -9,3 +9,6 @@ Wants
 Luxuries
     LocalStorage file viewer
         Download LocalStorage files
+        Delete LocalStorage files
+        Show LocalStorage file save time/date
+    Add button to clear cache and force reload (maybe)

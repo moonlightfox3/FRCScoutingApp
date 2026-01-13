@@ -54,10 +54,10 @@
                         if (!confirm("Are you sure you want to delete this file?")) return
 
                         delete storage[year][match]
-                        alert("File deleted.")
-                        displayStorage()
+                        setTimeout(() => displayStorage())
                         return storage
-                    } else alert("Invalid input.")
+                    } else if (action == "") return
+                    else alert("Invalid input.")
                 }
 
                 el.append(li)
