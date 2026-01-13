@@ -49,7 +49,7 @@
                     } else if (action == "2") {
                         if (!confirm("Are you sure you want to delete this file?")) return
 
-                        delete storage[year][match]
+                        delete storage[part][year][match]
                         let storageStr = JSON.stringify(storage)
                         localStorage.setItem("FRCScoutingApp_files", storageStr)
                         

@@ -1,5 +1,5 @@
 /* Buttons */
-button#backBtn, button#clearStorageBtn, button#clearCacheBtn, button#removeSwBtn, button#reloadBtn, button#closeBtn {
+button#backBtn, button#clearStorageBtn, button#clearCacheBtn, button#removeSwBtn {
     background-color: lightgray;
     cursor: pointer;
     color: black;
