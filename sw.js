@@ -38,6 +38,9 @@ async function setupCache () {
     // Find the cache, create one if there isn't one already
     cache = await caches.open(cacheName)
     console.debug("[SW] Created cache")
+    
+    // Precache
+    await runPrecache()
 }
 
 // Get the cache
@@ -133,7 +136,6 @@ self.addEventListener("install", function (ev) {
         console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
 
         await setupCache()
-        await runPrecache()
         console.debug("[SW] Installed")
         
         // Setup
