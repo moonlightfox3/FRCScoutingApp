@@ -5,3 +5,8 @@ button#backBtn, button#refreshBtn, button#downloadBtn, button#clearBtn {
     color: black;
     border-radius: 5px;
 }
+
+/* Lists */
+li {
+    cursor: pointer;
+}

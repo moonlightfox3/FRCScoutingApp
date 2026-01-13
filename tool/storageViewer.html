@@ -29,32 +29,39 @@
         if (storage == null) return
         storage = JSON.parse(storage)
 
-        displayStoragePart(storage.matches ?? {}, matchesEl, "Matches:")
-        displayStoragePart(storage.pits ?? {}, pitsEl, "Pits:")
+        let newMatchStorage = displayStoragePart(storage.matches ?? {}, matchesEl)
+        if (newMatchStorage != undefined) storage.matches = newMatchStorage
+        let newPitStorage = displayStoragePart(storage.pits ?? {}, pitsEl)
+        if (newPitStorage != undefined) storage.pits = newPitStorage
+
+        storage = JSON.stringify(storage)
+        localStorage.setItem("FRCScoutingApp_files", storage)
     }
-    function displayStoragePart (storage, el, text) {
-        let li = document.createElement("li")
-        li.innerText = text
-        el.append(li)
+    function displayStoragePart (storage, el) {
         for (let year of Object.keys(storage)) {
-            let li = document.createElement("li")
-            let ul = document.createElement("ul")
             for (let match of storage[year]) {
                 let li = document.createElement("li")
-                li.append(`${year}: ${match.name}`)
+                li.innerText = match.name
                 li.onclick = function () {
-                    // Download file with an <a> element
-                    let a = document.createElement("a")
-                    a.download = match.name
-                    a.href = `data:text/plain;base64,${btoa(match.data)}`
-                    a.click()
+                    let action = prompt("What do you want to do with this file?\n1. Download\n2. Delete")
+                    if (action == "1") {
+                        // Download file with an <a> element
+                        let a = document.createElement("a")
+                        a.download = match.name
+                        a.href = `data:text/plain;base64,${btoa(match.data)}`
+                        a.click()
+                    } else if (action == "2") {
+                        if (!confirm("Are you sure you want to delete this file?")) return
+
+                        delete storage[year][match]
+                        alert("File deleted.")
+                        displayStorage()
+                        return storage
+                    } else alert("Invalid input.")
                 }
 
-                ul.append(li)
+                el.append(li)
             }
-
-            li.append(ul)
-            el.append(li)
         }
     }
     displayStorage()
