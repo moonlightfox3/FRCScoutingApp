@@ -93,8 +93,8 @@ self.addEventListener("fetch", function (ev) {
             if (cacheCommitId == null) await getCacheData()
             if (commitId != null && commitId != cacheCommitId && deployedToPages) {
                 console.debug("[SW] Upgrading cache")
-                caches.delete(`${cachePrefix}${cacheCommitId}`) // Still works even if the cache doesn't exist
-                setupCache()
+                await caches.delete(`${cachePrefix}${cacheCommitId}`) // Still works even if the cache doesn't exist
+                await setupCache()
             }
 
             // Check if the response is already cached, return it if it is
@@ -135,6 +135,8 @@ self.addEventListener("install", function (ev) {
         console.debug(`[SW] GitHub commit ID: ${commitId}`)
         console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
 
+        await getCacheData()
+        if (cache != null) await caches.delete(`${cachePrefix}${cacheCommitId}`)
         await setupCache()
         console.debug("[SW] Installed")
         
