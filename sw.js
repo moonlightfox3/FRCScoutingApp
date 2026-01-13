@@ -98,7 +98,7 @@ self.addEventListener("fetch", function (ev) {
         console.debug("[SW] Fetching response")
         let resp = null
         try {
-            resp = await fetch(ev.request)
+            resp = await fetch(ev.request, {cache: "reload"})
         } catch (er) {
             // Network error
             console.debug("[SW] Network error")
