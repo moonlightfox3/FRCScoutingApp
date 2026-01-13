@@ -47,6 +47,7 @@ img.year-img {
 /* Tools */
 button.tool {
     background-color: lightgray;
+    cursor: pointer;
     color: black;
     border-radius: 5px;
 }
