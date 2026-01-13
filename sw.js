@@ -81,7 +81,7 @@ self.addEventListener("fetch", function (ev) {
     // Need to do async work
     ev.respondWith((async function () {
         // Should check cache?
-        let shouldCheck = shouldCheckCache()
+        let shouldCheck = shouldCheckCache(ev.request.url)
         if (!shouldCheck) console.debug("[SW] Passing request")
 
         if (shouldCheck) {
