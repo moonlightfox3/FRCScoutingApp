@@ -1,6 +1,7 @@
 /* Buttons */
 button#backBtn, button#refreshBtn, button#downloadBtn, button#clearBtn {
     background-color: lightgray;
+    cursor: pointer;
     color: black;
     border-radius: 5px;
 }
