@@ -56,7 +56,7 @@ function showCommitUpdate (isOnline) {
     let updateDateEl = document.createElement("div")
     updateDateEl.id = "updateDateEl"
     if (isOnline) updateDateEl.innerText = `Commit ${commitId} (${commitDate})${!deployedToPages ? " - Updated content available soon" : ""}`
-    else updateDateEl.innerText = "App loaded from your browser's offline cache"
+    else updateDateEl.innerText = "Failed to check GitHub. App may be loaded from your browser's offline cache"
     
     document.body.append(updateDateEl)
 }
