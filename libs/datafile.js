@@ -138,17 +138,23 @@ function exportData () {
     let text = JSON.stringify([dataFileCurrentVersion, ...data]).slice(1, -1)
     return text
 }
+// File name
+function getDataFileName () {
+    let date = new Date()
+    let month = (date.getMonth() + 1).toString().padStart(2, "0"), day = date.getDate().toString().padStart(2, "0"), hour = date.getHours().toString().padStart(2, "0")
+    let minute = date.getMinutes().toString().padStart(2, "0"), second = date.getSeconds().toString().padStart(2, "0"), millisecond = date.getMilliseconds().toString().padStart(3, "0")
+    let time = month + day + hour + minute + second + millisecond
+    return `${dataElems[0].value.replaceAll(" ", "")}${dataIsPit ? "" : "-" + dataElems[1].value.replaceAll(" ", "")}_${time}.${dataIsPit ? "pit_" : ""}smscdt${dataYear}`
+}
 // Download file
 function downloadData () {
     // Check that the elements to export were gotten
     if (dataYear == null) return null
     let data = exportData()
-    // File name
-    let name = `${dataElems[0].value.replaceAll(" ", "")}${dataIsPit ? "" : "-" + dataElems[1].value.replaceAll(" ", "")}.${dataIsPit ? "pit_" : ""}smscdt${dataYear}`
 
     // Download file with an <a> element
     let a = document.createElement("a")
-    a.download = name
+    a.download = getDataFileName()
     a.href = `data:text/plain;base64,${btoa(data)}`
     a.click()
 }
@@ -157,8 +163,6 @@ function saveDataBrowser () {
     // Check that the elements to export were gotten
     if (dataYear == null) return null
     let data = exportData()
-    // File name
-    let name = `${dataElems[0].value.replaceAll(" ", "")}${dataIsPit ? "" : "-" + dataElems[1].value.replaceAll(" ", "")}.${dataIsPit ? "pit_" : ""}smscdt${dataYear}`
 
     // Get storage
     let storage = localStorage.getItem("FRCScoutingApp_files")
@@ -168,7 +172,7 @@ function saveDataBrowser () {
     // Add to storage
     if (storage[dataIsPit ? "pits" : "matches"] == null) storage[dataIsPit ? "pits" : "matches"] = {}
     if (storage[dataIsPit ? "pits" : "matches"][dataYear] == null) storage[dataIsPit ? "pits" : "matches"][dataYear] = []
-    storage[dataIsPit ? "pits" : "matches"][dataYear].push({name, data})
+    storage[dataIsPit ? "pits" : "matches"][dataYear].push({name: getDataFileName(), data})
     // Save storage
     storage = JSON.stringify(storage)
     localStorage.setItem("FRCScoutingApp_files", storage)

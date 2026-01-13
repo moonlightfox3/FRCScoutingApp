@@ -1,0 +1,7 @@
+/* Buttons */
+button#backBtn, button#clearStorageBtn, button#clearCacheBtn, button#removeSwBtn, button#reloadBtn, button#closeBtn {
+    background-color: lightgray;
+    cursor: pointer;
+    color: black;
+    border-radius: 5px;
+}

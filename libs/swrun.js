@@ -17,6 +17,9 @@ addEventListener("load", function () {
     registerServiceWorker()
     if (!!parseInt(localStorage.getItem("FRCScoutingApp_lightMode"))) document.body.classList.add("light")
 })
+async function unregisterServiceWorker () {
+    await swRegistration.unregister()
+}
 
 // Get service worker from registration
 function getSw () {

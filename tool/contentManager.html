@@ -1,0 +1,55 @@
+<!doctype html>
+<title>Content Manager</title>
+<link rel="icon" href="../icons/icon.svg">
+<link rel="apple-touch-icon" sizes="1024x1024" href="../icons/apple-touch-icon-1024x1024.png">
+<link rel="manifest" href="../manifest.json">
+<link rel="stylesheet" href="../libs/style.css">
+<link rel="stylesheet" href="./contentManager-style.css">
+<script src="../libs/elements.js"></script>
+
+<a href="../index.html"><button id="backBtn">Back</button></a> | Content Manager
+<hr>
+<button id="clearStorageBtn">Clear LocalStorage</button><br>
+<button id="clearCacheBtn">Clear cache(s)</button><br>
+<button id="removeSwBtn">Remove service worker</button><br>
+<button id="reloadBtn">Reload</button><br>
+<button id="closeBtn">Close</button>
+
+<script src="../libs/swrun.js"></script>
+<script src="../libs/install.js"></script>
+<script>
+    clearStorageBtn.onclick = function () {
+        if (!confirm("Are you sure you want to clear LocalStorage?\nThis will remove your saved files and reset your settings.")) return
+
+        localStorage.removeItem("FRCScoutingApp_lightMode")
+        localStorage.removeItem("FRCScoutingApp_files")
+
+        alert("LocalStorage cleared.")
+    }
+    clearCacheBtn.onclick = async function () {
+        if (!confirm("Are you sure you want to clear the cache(s)?\nThis will prevent you from using this page offline until you reload it again while online.")) return
+
+        let names = await caches.keys()
+        let relevantNames = names.filter(val => val.startsWith("FRCScoutingApp_"))
+        for (let name of relevantNames) await caches.delete(name)
+
+        alert("Cache(s) cleared.")
+    }
+    removeSwBtn.onclick = async function () {
+        if (!confirm("Are you sure you want to remove the service worker?\nThis will prevent you from using this page offline until you reload it again while online.")) return
+
+        await unregisterServiceWorker()
+        
+        alert("Service worker removed.")
+    }
+    reloadBtn.onclick = function () {
+        if (!confirm("Are you sure you want to reload this page?")) return
+
+        location.reload()
+    }
+    closeBtn.onclick = function () {
+        if (!confirm("Are you sure you want to close this page?")) return
+
+        close()
+    }
+</script>

@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="./storageViewer-style.css">
 <script src="../libs/elements.js"></script>
 
-<a href="../index.html"><button id="backBtn">Back</button></a> | <button id="refreshBtn">Refresh</button> | <button id="clearBtn">Clear</button>
+<a href="../index.html"><button id="backBtn">Back</button></a> | <button id="refreshBtn">Refresh</button> | <button id="clearBtn">Clear</button> | Browser Storage Viewer
 <hr>
 <div id="displayEl">
     <ul id="matchesEl">
@@ -17,8 +17,6 @@
 </div>
 
 <script src="../libs/swrun.js"></script>
-<script src="../libs/gamepads.js"></script>
-<script src="../libs/gamepadControl.js"></script>
 <script src="../libs/install.js"></script>
 <script>
     function displayStorage () {
@@ -29,17 +27,15 @@
         if (storage == null) return
         storage = JSON.parse(storage)
 
-        let newMatchStorage = displayStoragePart(storage.matches ?? {}, matchesEl)
-        if (newMatchStorage != undefined) storage.matches = newMatchStorage
-        let newPitStorage = displayStoragePart(storage.pits ?? {}, pitsEl)
-        if (newPitStorage != undefined) storage.pits = newPitStorage
-
-        storage = JSON.stringify(storage)
-        localStorage.setItem("FRCScoutingApp_files", storage)
+        displayStoragePart(storage, "matches", matchesEl)
+        displayStoragePart(storage, "pits", pitsEl)
     }
-    function displayStoragePart (storage, el) {
-        for (let year of Object.keys(storage)) {
-            for (let match of storage[year]) {
+    function displayStoragePart (storage, part, el) {
+        let storagePart = storage[part]
+        if (storagePart == undefined) return
+
+        for (let year of Object.keys(storagePart)) {
+            for (let match of storagePart[year]) {
                 let li = document.createElement("li")
                 li.innerText = match.name
                 li.onclick = function () {
@@ -54,9 +50,11 @@
                         if (!confirm("Are you sure you want to delete this file?")) return
 
                         delete storage[year][match]
-                        setTimeout(() => displayStorage())
-                        return storage
-                    } else if (action == "") return
+                        let storageStr = JSON.stringify(storage)
+                        localStorage.setItem("FRCScoutingApp_files", storageStr)
+                        
+                        displayStorage()
+                    } else if (action == "" || action == null) return
                     else alert("Invalid input.")
                 }
 
