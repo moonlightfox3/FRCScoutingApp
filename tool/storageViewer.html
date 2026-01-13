@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="./storageViewer-style.css">
 <script src="../libs/elements.js"></script>
 
-<a href="../index.html"><button id="backBtn">Back</button></a> | <button id="refreshBtn">Refresh</button> | <button id="downloadBtn">Download</button> | <button id="clearBtn">Clear</button>
+<a href="../index.html"><button id="backBtn">Back</button></a> | <button id="refreshBtn">Refresh</button> | <button id="clearBtn">Clear</button>
 <hr>
 <div id="displayEl">
     <ul id="matchesEl">
@@ -33,14 +33,22 @@
         displayStoragePart(storage.pits ?? {}, pitsEl, "Pits:")
     }
     function displayStoragePart (storage, el, text) {
-        el.append(text)
+        let li = document.createElement("li")
+        li.innerText = text
+        el.append(li)
         for (let year of Object.keys(storage)) {
             let li = document.createElement("li")
             let ul = document.createElement("ul")
             for (let match of storage[year]) {
                 let li = document.createElement("li")
                 li.append(`${year}: ${match.name}`)
-                // TODO
+                li.onclick = function () {
+                    // Download file with an <a> element
+                    let a = document.createElement("a")
+                    a.download = match.name
+                    a.href = `data:text/plain;base64,${btoa(match.data)}`
+                    a.click()
+                }
 
                 ul.append(li)
             }
@@ -51,10 +59,6 @@
     }
     displayStorage()
     refreshBtn.onclick = () => displayStorage()
-
-    downloadBtn.onclick = function () {
-        // TODO
-    }
 
     clearBtn.onclick = function () {
         if (!confirm("Are you sure you want to clear your browser's storage?\nThis will delete all saved files!")) return
