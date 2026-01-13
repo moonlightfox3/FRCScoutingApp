@@ -1,5 +1,5 @@
 /* Buttons */
-button#refreshBtn, button#clearBtn {
+button#backBtn, button#refreshBtn, button#downloadBtn, button#clearBtn {
     background-color: lightgray;
     color: black;
     border-radius: 5px;
