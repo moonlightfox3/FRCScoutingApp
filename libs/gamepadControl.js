@@ -4,13 +4,12 @@ Gamepads.addConnectListener(gp => gamepad = gp)
 Gamepads.addDisconnectListener(gp => gamepad = null)
 
 // Gamepad cursor - callbacks
-function gamepadElCursorInit (isHorizontal, cursorEls, highlightCallback, unhighlightCallback, clickCallback, cursorPosOverride = null) {
+function gamepadElCursorInit (isHorizontal, cursorEls, highlightCallback, unhighlightCallback, clickCallback) {
     gamepadCursorIsHorizontal = isHorizontal
     gamepadCursorEls = cursorEls
     gamepadElCursorHighlight = highlightCallback
     gamepadElCursorUnhighlight = unhighlightCallback
     gamepadElCursorClick = clickCallback
-    if (cursorPosOverride != null) gamepadCursorPos = cursorPosOverride
 }
 let gamepadElCursorHighlight = el => {}
 let gamepadElCursorUnhighlight = el => {}

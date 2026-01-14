@@ -37,7 +37,6 @@
     const unavailableTools = []
 
     // Create button elements automatically
-    let currentYearElIdx = null
     function displayBreak (isLarge) {
         let br = document.createElement("div")
         br.className = "break"
@@ -72,10 +71,6 @@
             
             a.append(button)
             yearsEl.append(a)
-            if (currentYear == +year) {
-                button.focus()
-                currentYearElIdx = i
-            }
         }
         displayBreak(true)
     }
@@ -110,7 +105,6 @@
         el => el.style.color = "gray",
         el => el.style.color = "black",
         el => el.click(),
-        currentYearElIdx,
     )
     displayInstallButton()
 </script>
