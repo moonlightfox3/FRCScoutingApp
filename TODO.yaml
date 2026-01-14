@@ -7,3 +7,9 @@ Needs
 Wants
 
 Luxuries
+
+Testing
+    Does device sleep if using only keyboard or controller?
+        Controller on computer
+        Keyboard on phone
+        Controller on phone
