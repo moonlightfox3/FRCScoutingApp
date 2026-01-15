@@ -1,7 +1,10 @@
 Needs
     Server - Supabase
-        Add button to submit LocalStorage (can submit as practice or for an event) - form type=submit button? (also clears LocalStorage on success, tells user the result)
-        Holds list of events and current event (can clear somewhat old events to save storage, but might as well keep a few recent ones)
+        Managed manually, not with the API
+        Database
+            Table for list of all events, including which one is the current event (also a testing event)
+            Table for each event
+        Add button to submit LocalStorage - form type=submit button? (also clears LocalStorage on success, tells user the result)
 
 Wants
 
