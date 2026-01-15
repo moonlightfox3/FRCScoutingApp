@@ -38,7 +38,7 @@
             for (let i = 0; i < storagePart[year].length; i++) {
                 let match = storagePart[year][i]
                 let li = document.createElement("li")
-                li.innerText = match.name
+                li.innerText = `${match.name} (${match.data.length} bytes)`
                 li.onclick = function () {
                     let action = prompt("What do you want to do with this file?\n1. Download\n2. Delete")
                     if (action == "1") {
