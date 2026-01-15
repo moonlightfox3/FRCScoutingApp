@@ -1,4 +1,6 @@
 // Supabase database library
-const supabase = await import("https://unpkg.com/@supabase/supabase-js@2")
-
-const dbUrl = "https://gzykzdsyjbxommolnzvx.supabase.co"
+let server
+(async function () {
+    server = await import("https://unpkg.com/@supabase/supabase-js@2")
+})()
+const serverUrl = "https://gzykzdsyjbxommolnzvx.supabase.co"

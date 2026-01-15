@@ -74,7 +74,7 @@ async function getCacheData () {
 
 // Should cache
 function shouldCheckCache (url) {
-    return !url.includes("github.com")
+    return !url.includes("github.com") && !url.includes("unpkg.com")
 }
 
 // On request
