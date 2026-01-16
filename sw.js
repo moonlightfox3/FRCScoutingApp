@@ -9,7 +9,7 @@ const precacheResources = [ // No need to precache some resources, but might as 
     "/year/Reefscape.html", "/year/Reefscape.js", "/year/Rebuilt.html", "/year/Rebuilt.js",
     "/year-pit/Rebuilt.html", "/year-pit/Rebuilt.js",
     "/year-libs/keys.js", "/year-libs/years.js", "/year-libs/style.css",
-    "/tool/storageViewer.html", "/tool/storageViewer-style.css",
+    "/tool/storageViewer.html", "/tool/storageViewer-style.css", "/tool/contentManager.html", "/tool/contentManager-style.css", "/tool/server.html", "/tool/server-style.css",
     "/icons/icon.svg", "/icons/apple-touch-icon-1024x1024.png",
     "/year-img/Reefscape.png", "/year-img/Rebuilt.png",
 ]

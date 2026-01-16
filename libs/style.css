@@ -119,6 +119,14 @@ button#installButton {
     cursor: pointer;
 }
 
+/* Back button */
+button#backBtn {
+    background-color: lightgray;
+    cursor: pointer;
+    color: black;
+    border-radius: 5px;
+}
+
 
 /* Light mode (adds override rules to a dark mode stylesheet) */
 
