@@ -18,7 +18,7 @@ async function runPrecache () {
     await cache.addAll(precacheResources.map(val => `/FRCScoutingApp${val}`))
 }
 const excludeCacheResourceParts = [
-    "fonts.googleapis.com", "github.com",
+    "fonts.googleapis.com", "fonts.gstatic.com", "github.com",
     "unpkg.com", "supabase",
 ]
 function shouldCheckCache (url) {
