@@ -12,7 +12,7 @@ function createProfileMenus () {
     // Profile bar open/close button
     let profileExpand = document.createElement("div")
     profileExpand.id = "profileExpand"
-    profileExpand.innerHTML = `<b>i</b>`
+    profileExpand.innerHTML = "<b>i</b>"
 
     // Add profile bar to document, profile bar open/close button functionality
     document.body.append(profile, profileExpand)
