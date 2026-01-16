@@ -1,10 +1,7 @@
 Needs
     Server - Supabase
-        Managed manually, not with the API
-        Database
-            Table for list of all events, including which one is the current event (also a testing event)
-            Table for each event
         Add button to submit LocalStorage - form type=submit button? (also clears LocalStorage on success, tells user the result)
+        Add button to directly submit match data without using LocalStorage
 
 Wants
 
