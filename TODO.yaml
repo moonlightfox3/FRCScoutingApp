@@ -1,7 +1,12 @@
 Needs
     Server - Supabase
-        Add button to submit LocalStorage - form type=submit button? (also clears LocalStorage on success, tells user the result)
-        Add button to directly submit match data without using LocalStorage
+        Client UI
+            View data
+            Submit data
+                Submit LocalStorage (also clears LocalStorage files on success)
+                Directly submit match data without using LocalStorage
+            Change data
+            Remove data
 
 Wants
 
