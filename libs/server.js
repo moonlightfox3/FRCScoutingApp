@@ -13,18 +13,44 @@ addEventListener("load", () => setupClientSupabase())
 
 // Authentication
 async function signInToSupabase (email, password) {
-    await supabaseClient.auth.signInWithPassword({email, password})
+    try {
+        await supabaseClient.auth.signInWithPassword({email, password})
+        return true
+    } catch (er) {
+        return false
+    }
 }
 async function signOutOfSupabase () {
-    await supabaseClient.auth.signOut()
+    try {
+        await supabaseClient.auth.signOut()
+        return true
+    } catch (er) {
+        return false
+    }
+}
+async function isSignedInToSupabase () {
+    try {
+        let {data: {user}} = await supabaseClient.auth.getUser()
+        return user != null
+    } catch (er) {
+        return false
+    }
 }
 
 // Access
 async function getEventListSupabase () {
-    let {data} = await supabaseClient.from("events").select("name,is_current,is_testing")
-    return data
+    try {
+        let {data} = await supabaseClient.from("events").select("name,is_current,is_testing")
+        return data
+    } catch (er) {
+        return null
+    }
 }
-async function getEventDataSupabase (name) {
-    let {data} = await supabaseClient.from(name).select("file")
-    return data
+async function getEventDataSupabase (name = "") {
+    try {
+        let {data} = await supabaseClient.from(name).select("file")
+        return data
+    } catch (er) {
+        return null
+    }
 }
