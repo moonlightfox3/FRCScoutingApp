@@ -17,6 +17,9 @@ async function runPrecache () {
     console.debug("[SW] Precaching resources")
     await cache.addAll(precacheResources.map(val => `/FRCScoutingApp${val}`))
 }
+function shouldCheckCache (url) {
+    return !url.includes("github.com") && !url.includes("unpkg.com") && !url.includes("fonts.googleapis.com")
+}
 
 // Set up the cache
 let cacheName = null
@@ -70,11 +73,6 @@ async function getCacheData () {
     cache = await caches.open(cacheName)
 
     console.debug("[SW] Got cache")
-}
-
-// Should cache
-function shouldCheckCache (url) {
-    return !url.includes("github.com") && !url.includes("unpkg.com")
 }
 
 // On request
