@@ -11,8 +11,8 @@
 <a href="../index.html"><button id="backBtn">Back</button></a> | Server
 <hr>
 <span id="loadingEl">Connecting to server...</span><br>
-<input id="emailInp" placeholder="Email"><br>
-<input type="password" id="passwordInp" placeholder="Password"><br>
+<input id="emailInp" placeholder="Email" disabled><br>
+<input type="password" id="passwordInp" placeholder="Password" disabled><br>
 <button id="signInBtn" disabled>Sign in</button><br>
 <br>
 <button id="signOutBtn" disabled>Sign out</button>
@@ -22,24 +22,29 @@
 <script>
     async function checkSignIn () {
         let signedIn = await isSignedInToSupabase()
-        if (signedIn) signOutBtn.disabled = false
-        else signInBtn.disabled = false
-        return signedIn
-    }
-    onSupabaseLoaded = async function () {
-        let signedIn = await checkSignIn()
-        loadingEl.innerText = `Signed ${signedIn ? "in" : "out"}`
-    }
-
-    signInBtn.onclick = async function () {
-        signInBtn.disabled = true
-        await signInToSupabase(emailInp.value, passwordInp.value)
-        let signedIn = await checkSignIn()
-
         if (signedIn) {
             emailInp.value = ""
             passwordInp.value = ""
+            signOutBtn.disabled = false
+        } else {
+            emailInp.disabled = false
+            passwordInp.disabled = false
+            signInBtn.disabled = false
         }
+
+        loadingEl.innerText = `Signed ${signedIn ? "in" : "out"}`
+        return signedIn
+    }
+    onSupabaseLoaded = async function () {
+        await checkSignIn()
+    }
+
+    signInBtn.onclick = async function () {
+        emailInp.disabled = true
+        passwordInp.disabled = true
+        signInBtn.disabled = true
+        await signInToSupabase(emailInp.value, passwordInp.value)
+        await checkSignIn()
     }
     signOutBtn.onclick = async function () {
         signOutBtn.disabled = true
