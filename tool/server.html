@@ -5,11 +5,45 @@
 <link rel="manifest" href="../manifest.json">
 <link rel="stylesheet" href="../libs/style.css">
 <link rel="stylesheet" href="./server-style.css">
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="./libs/server.js"></script>
 
 <a href="../index.html"><button id="backBtn">Back</button></a> | Server
 <hr>
+<span id="loadingEl">Connecting to server...</span><br>
+<input id="emailInp" placeholder="Email"><br>
+<input type="password" id="passwordInp" placeholder="Password">
+<button id="signInBtn" disabled>Sign in</button><br>
+<br>
+<button id="signOutBtn" disabled>Sign out</button>
 
 <script src="../libs/swrun.js"></script>
 <script src="../libs/install.js"></script>
 <script>
+    async function checkSignIn () {
+        let signedIn = await isSignedInToSupabase()
+        if (signedIn) signOutBtn.disabled = false
+        else signInBtn.disabled = false
+        return signedIn
+    }
+    onSupabaseLoaded = async function () {
+        loadingEl.innerText = "Connected to server."
+        await checkSignIn()
+    }
+
+    signInBtn.onclick = async function () {
+        signInBtn.disabled = true
+        await signInToSupabase(emailInp.value, passwordInp.value)
+        let signedIn = await checkSignIn()
+
+        if (signedIn) {
+            emailInp.value = ""
+            passwordInp.value = ""
+        }
+    }
+    signOutBtn.onclick = async function () {
+        signOutBtn.disabled = true
+        await signOutOfSupabase()
+        await checkSignIn()
+    }
 </script>

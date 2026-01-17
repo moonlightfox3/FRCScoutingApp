@@ -4,10 +4,14 @@
 const supabaseServerUrl = "https://gzykzdsyjbxommolnzvx.supabase.co"
 const supabasePublishableApiKey = "sb_publishable_CyMyZ3IKILdgjj96CC-Ozg_PhoPRES6" // You need to sign in to do anything, this is fine
 
+// Externally set config
+let onSupabaseLoaded = () => {}
+
 // Client
 let supabaseClient = null
 async function setupClientSupabase () {
     supabaseClient = supabase.createClient(supabaseServerUrl, supabasePublishableApiKey)
+    onSupabaseLoaded()
 }
 addEventListener("load", () => setupClientSupabase())
 

@@ -1,1 +1,9 @@
-
+/* Inputs, buttons */
+input#emailInp, input#passwordInp, button#signInBtn, button#signOutBtn {
+    background-color: lightgray;
+    color: black;
+    border-radius: 5px;
+}
+button#signInBtn, button#signOutBtn {
+    cursor: pointer;
+}
