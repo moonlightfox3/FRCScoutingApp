@@ -60,11 +60,10 @@ async function getEventDataSupabase (name) {
         return null
     }
 }
-async function addEventDataSupabase (name, file, fileName) {
+async function addEventDatasSupabase (name, files) { // `files` is an array of objects with name and data keys
+    let filesUpload = files.map(val => ({file: val.data, file_name: val.name}))
     try {
-        await supabaseClient.from(name).insert([
-            {file, file_name: fileName},
-        ]).select()
+        await supabaseClient.from(name).insert(filesUpload).select()
         return true
     } catch (er) {
         return false
