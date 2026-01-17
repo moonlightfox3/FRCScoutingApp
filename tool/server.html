@@ -12,7 +12,7 @@
 <hr>
 <span id="loadingEl">Connecting to server...</span><br>
 <input id="emailInp" placeholder="Email"><br>
-<input type="password" id="passwordInp" placeholder="Password">
+<input type="password" id="passwordInp" placeholder="Password"><br>
 <button id="signInBtn" disabled>Sign in</button><br>
 <br>
 <button id="signOutBtn" disabled>Sign out</button>
@@ -27,8 +27,8 @@
         return signedIn
     }
     onSupabaseLoaded = async function () {
-        loadingEl.innerText = "Connected to server."
-        await checkSignIn()
+        let signedIn = await checkSignIn()
+        loadingEl.innerText = `Signed ${signedIn ? "in" : "out"}`
     }
 
     signInBtn.onclick = async function () {

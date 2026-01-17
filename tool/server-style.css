@@ -4,6 +4,6 @@ input#emailInp, input#passwordInp, button#signInBtn, button#signOutBtn {
     color: black;
     border-radius: 5px;
 }
-button#signInBtn, button#signOutBtn {
+button#signInBtn:not([disabled]), button#signOutBtn:not([disabled]) {
     cursor: pointer;
 }
