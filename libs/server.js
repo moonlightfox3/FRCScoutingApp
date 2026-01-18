@@ -18,24 +18,24 @@ addEventListener("load", () => setupClientSupabase())
 // Authentication
 async function signInToSupabase (email, password) {
     try {
-        await supabaseClient.auth.signInWithPassword({email, password})
-        return true
+        let {error} = await supabaseClient.auth.signInWithPassword({email, password})
+        return error == null
     } catch (er) {
         return false
     }
 }
 async function signOutOfSupabase () {
     try {
-        await supabaseClient.auth.signOut()
-        return true
+        let {error} = await supabaseClient.auth.signOut()
+        return error == null
     } catch (er) {
         return false
     }
 }
 async function isSignedInToSupabase () {
     try {
-        let {data: {user}} = await supabaseClient.auth.getUser()
-        return user != null
+        let {data: {user}, error} = await supabaseClient.auth.getUser()
+        return user != null && error == null
     } catch (er) {
         return false
     }
@@ -44,7 +44,8 @@ async function isSignedInToSupabase () {
 // Access event list
 async function getEventListSupabase () {
     try {
-        let {data} = await supabaseClient.from("events").select("name,is_current,is_testing")
+        let {data, error} = await supabaseClient.from("events").select("name,is_current,is_testing")
+        if (error != null) return null
         return data
     } catch (er) {
         return null
@@ -54,7 +55,8 @@ async function getEventListSupabase () {
 // Access event data
 async function getEventDataSupabase (name) {
     try {
-        let {data} = await supabaseClient.from(name).select("file,file_name")
+        let {data, error} = await supabaseClient.from(name).select("file,file_name")
+        if (error != null) return null
         return data
     } catch (er) {
         return null
@@ -63,8 +65,8 @@ async function getEventDataSupabase (name) {
 async function addEventDatasSupabase (name, files) { // `files` is an array of objects with name and data keys
     let filesUpload = files.map(val => ({file: val.data, file_name: val.name}))
     try {
-        await supabaseClient.from(name).insert(filesUpload).select()
-        return true
+        let {error} = await supabaseClient.from(name).insert(filesUpload).select()
+        return error == null
     } catch (er) {
         return false
     }
@@ -77,14 +79,17 @@ async function editEventDataSupabase (name, fileName, newFileData = null, newFil
     if (newFileName != null) opts.file_name = newFileName
 
     try {
-        await supabaseClient.from(name).update(opts)
-            .eq("file_name", fileName).select()
-        return true
+        let {error} = await supabaseClient.from(name).update(opts).eq("file_name", fileName).select()
+        return error == null
     } catch (er) {
         return false
     }
 }
 async function deleteEventDataSupabase (name, fileName) {
-    await supabaseClient.from(name).delete()
-        .eq("file_name", fileName)
+    try {
+        let {error} = await supabaseClient.from(name).delete().eq("file_name", fileName)
+        return error == null
+    } catch (er) {
+        return false
+    }
 }
