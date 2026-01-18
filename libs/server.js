@@ -55,31 +55,32 @@ async function getEventListSupabase () {
 // Access event data
 async function getEventDataSupabase (name) {
     try {
-        let {data, error} = await supabaseClient.from(name).select("file,file_name")
+        let {data, error} = await supabaseClient.from(name).select("name,data,is_pit,year")
         if (error != null) return null
         return data
     } catch (er) {
         return null
     }
 }
-async function addEventDatasSupabase (name, files) { // `files` is an array of objects with name and data keys
-    let filesUpload = files.map(val => ({file: val.data, file_name: val.name}))
+async function addEventDatasSupabase (name, files) { // `files` is an array of objects with name, data, is_pit, and year keys
     try {
-        let {error} = await supabaseClient.from(name).insert(filesUpload).select()
+        let {error} = await supabaseClient.from(name).insert(files).select()
         return error == null
     } catch (er) {
         return false
     }
 }
-async function editEventDataSupabase (name, fileName, newFileData = null, newFileName = null) {
-    if (newFileData == null && newFileName == null) return false
+async function editEventDataSupabase (name, fileName, newFileName = null, newFileData = null, newFileIsPit = null, newFileYear = null) {
+    if (newFileName == null && newFileData == null && newFileIsPit == null && newFileYear == null) return true
 
     let opts = {}
-    if (newFileData != null) opts.file = newFileData
-    if (newFileName != null) opts.file_name = newFileName
+    if (newFileName != null) opts.name = newFileName
+    if (newFileData != null) opts.data = newFileData
+    if (newFileIsPit != null) opts.is_pit = newFileIsPit
+    if (newFileYear != null) opts.year = newFileYear
 
     try {
-        let {error} = await supabaseClient.from(name).update(opts).eq("file_name", fileName).select()
+        let {error} = await supabaseClient.from(name).update(opts).eq("name", fileName).select()
         return error == null
     } catch (er) {
         return false
@@ -87,7 +88,7 @@ async function editEventDataSupabase (name, fileName, newFileData = null, newFil
 }
 async function deleteEventDataSupabase (name, fileName) {
     try {
-        let {error} = await supabaseClient.from(name).delete().eq("file_name", fileName)
+        let {error} = await supabaseClient.from(name).delete().eq("name", fileName)
         return error == null
     } catch (er) {
         return false

@@ -158,7 +158,7 @@ function downloadData () {
     a.href = `data:text/plain;base64,${btoa(data)}`
     a.click()
 }
-// Save file in browser
+// Save file in browser LocalStorage as: FRCScoutingApp_files = {pits: {(year): [{name: (fileName), data: (fileData)}, ...], ...}, matches: {(year): [{name: (fileName), data: (fileData)}, ...], ...}}
 function saveDataBrowser () {
     // Check that the elements to export were gotten
     if (dataYear == null) return null

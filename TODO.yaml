@@ -1,10 +1,9 @@
 Needs
     Server - Supabase
         Client UI
-            View data
             Submit data
                 Submit LocalStorage (also clears LocalStorage files on success)
-                Directly submit match data without using LocalStorage
+            View data
             Change data
             Remove data
 
@@ -13,6 +12,3 @@ Wants
 Luxuries
 
 Testing
-    Does device sleep if using only keyboard or controller?
-        Keyboard on phone
-        Controller on phone
