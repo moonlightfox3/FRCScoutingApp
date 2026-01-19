@@ -76,6 +76,8 @@
     function getStorage () {
         let files = []
         let storage = localStorage.getItem("FRCScoutingApp_files")
+        if (storage == null) return []
+        storage = JSON.parse(storage)
 
         files.push(...getStoragePart(storage, "matches", false))
         files.push(...getStoragePart(storage, "pits", true))
