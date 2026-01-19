@@ -174,7 +174,7 @@ function getDataFileName () {
     let month = (date.getMonth() + 1).toString().padStart(2, "0"), day = date.getDate().toString().padStart(2, "0"), hour = date.getHours().toString().padStart(2, "0")
     let minute = date.getMinutes().toString().padStart(2, "0"), second = date.getSeconds().toString().padStart(2, "0"), millisecond = date.getMilliseconds().toString().padStart(3, "0")
     let time = month + day + hour + minute + second + millisecond
-    return `${dataElems[0].value.replaceAll(" ", "")}${dataIsPit ? "" : "-" + dataElems[1].value.replaceAll(" ", "")}_${time}.${dataIsPit ? "pit_" : ""}smscdt${dataYear}`
+    return `${dataElems[0].value.replaceAll(" ", "")}${dataIsPit ? "" : "-" + dataElems[1].value.replaceAll(" ", "")}_${time}.scdt`
 }
 // Download file
 function downloadData () {
