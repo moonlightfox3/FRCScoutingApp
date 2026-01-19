@@ -6,7 +6,6 @@ async function registerServiceWorker () {
     try {
         swRegistration = await navigator.serviceWorker.register("/FRCScoutingApp/sw.js", {scope: "/FRCScoutingApp/"})
         await swRegistration.update()
-        getSw().postMessage("reload")
     } catch (er) {
         console.debug("Error while registering service worker")
         return

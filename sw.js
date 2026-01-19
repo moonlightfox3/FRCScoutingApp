@@ -12,6 +12,10 @@ const precacheResources = [ // No need to precache some resources, but might as 
     "/tool/storageViewer.html", "/tool/storageViewer-style.css", "/tool/contentManager.html", "/tool/contentManager-style.css", "/tool/server.html", "/tool/server-style.css",
     "/icons/icon.svg", "/icons/apple-touch-icon-1024x1024.png",
     "/year-img/Reefscape.png", "/year-img/Rebuilt.png",
+
+    // Don't precache:
+    // "/year/Placeholder.html", "/year/Placeholder.js",
+    // "/README.md", "/TODO.yaml",
 ]
 async function runPrecache () {
     console.debug("[SW] Precaching resources")
@@ -153,35 +157,9 @@ self.addEventListener("activate", function (ev) {
     console.debug("[SW] Activating")
 
     ev.waitUntil((async function () {
-        await getGithubData(false)
-        console.debug(`[SW] GitHub commit ID: ${commitId}`)
-        console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
-
-        await getCacheData()
-        if (cache == null) await setupCache()
         console.debug("[SW] Activated")
         
         // Setup
         await self.clients.claim()
     })())
-})
-self.addEventListener("message", function (ev) {
-    if (ev.data == "reload") {
-        console.debug("[SW] Reloading")
-
-        ev.waitUntil((async function () {
-            await getGithubData(false)
-            console.debug(`[SW] GitHub commit ID: ${commitId}`)
-            console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
-
-            await getCacheData()
-            if (cache == null) await setupCache()
-            console.debug("[SW] Reloaded")
-        
-            // Setup (may not be activated if registered very recently)
-            try {
-                await self.clients.claim()
-            } catch (er) {}
-        })())
-    } else console.debug("[SW] Got unknown message")
 })

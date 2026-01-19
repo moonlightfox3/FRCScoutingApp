@@ -4,6 +4,10 @@ Needs
             View data
             Change data
             Remove data
+    Fix updater
+        When GitHub rate-limits, doesn't update
+        Maybe tell user about updating differently
+        Cache saves with null commit id
 
 Wants
 
