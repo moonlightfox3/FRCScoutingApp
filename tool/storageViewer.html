@@ -89,8 +89,8 @@
 
         let files = []
         for (let year of Object.keys(storagePart)) {
-            let val = storagePart[year]
-            files.push({name: val.name, data: val.data, is_pit: partIsPit, year: +year})
+            let years = storagePart[year]
+            for (let yearData of years) files.push({name: yearData.name, data: yearData.data, is_pit: partIsPit, year: +year})
         }
         return files
     }
