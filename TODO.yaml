@@ -1,8 +1,6 @@
 Needs
     Server - Supabase
         Client UI
-            Submit data
-                Submit LocalStorage (also clears LocalStorage files on success)
             View data
             Change data
             Remove data
