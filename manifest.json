@@ -19,6 +19,12 @@
 			"accept": {
 				"application/octet-stream": [".smscdt2026"]
 			}
+		},
+		{
+			"action": "year-pit/Rebuilt.html",
+			"accept": {
+				"application/octet-stream": [".pit_smscdt2026"]
+			}
 		}
 	],
 	"icons": [
