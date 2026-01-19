@@ -103,6 +103,7 @@ function checkImportedFile () {
         localStorage.removeItem("FRCScoutingApp_temp_importFile")
 
         // Import file
+        let data = JSON.parse(`[${text}]`)
         let [fileYear, fileIsPit] = data.slice(0, 2)
         if (fileYear != dataYear || fileIsPit != dataIsPit) alert("Invalid file type imported.")
         else importData(fileData)
