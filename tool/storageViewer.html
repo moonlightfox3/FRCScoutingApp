@@ -108,7 +108,7 @@
         let eventsStr = events.map((val, idx) => `${idx}: ${val.name}${val.is_current ? " (current)" : ""}${val.is_testing ? " (testing/practice)" : ""}`).join("\n")
         let event = prompt(`Which event would you like to upload files to?\n${eventsStr}`)
         if (event == "" || event == null || isNaN(event) || +event < 0 || +event >= events.length) return alert("Invalid event choice.")
-        event = events[event]
+        event = events[event].name
 
         let success = await addEventDatasSupabase(event, files)
         if (success) {
