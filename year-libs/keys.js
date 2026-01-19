@@ -53,6 +53,9 @@ let allKeys = {
             switchStage_Teleop: " ",
             switchStage_Auto: "b",
             toggleRobotCame: "t",
+            toggleGetFuelFromFloor: "z",
+            toggleCanCrossBump: "x",
+            toggleCanGoThroughTrench: "c",
             focusOwnNotesField: "o",
             focusNotesField: "p",
             focusTeleopActiveBehavior: "j",
@@ -81,7 +84,7 @@ let allKeys = {
             downloadData: "enter",
             saveDataInBrowser: "\\",
             // Unused keys:
-            //  g, h, u, i, z, x, c, v
+            //  g, h, u, i, v
             //  `, 1, 2, 5, 6, 7, -, =, [, ]
             //  Backspace
         },

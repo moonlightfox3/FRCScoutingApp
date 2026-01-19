@@ -5,6 +5,9 @@ let scoreBy10Keyboard = false
 let scoreBy10Gamepad = false
 handleKey = function (key) {
     if (key == keys.toggleRobotCame) robotCame.checked = !robotCame.checked
+    else if (key == keys.toggleGetFuelFromFloor) pickFuelFloor.checked = !pickFuelFloor.checked
+    else if (key == keys.toggleCanCrossBump) throughBump.checked = !throughBump.checked
+    else if (key == keys.toggleCanGoThroughTrench) throughTrench.checked = !throughTrench.checked
     else if (key == keys.focusOwnNotesField) matchStageIsTeleopKeyboard ? null : autoNotes.focus()
     else if (key == keys.focusNotesField) invertKeysKeyboard ? teamNum.focus() : notes.focus()
     else if (key == keys.focusTeleopActiveBehavior) opActiveBehavior.focus()

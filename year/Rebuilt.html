@@ -46,6 +46,10 @@
         Fuel shot: <ui-input-number id="opInactiveShots" placeholder="Amount"></ui-input-number><br>
         <br>
         
+        Teleop:<br>
+        Climb height: <ui-input-number id="opClimb" placeholder="Height"></ui-input-number><br>
+        <br>
+
         Other:<br>
         Seconds broken down:<br>
         <input type="radio" id="breakSec10" name="breakSec" value="10"><label for="breakSec10">1-10</label><br>
@@ -56,8 +60,10 @@
         <input id="breakCause" placeholder="Cause (ex. fuel, bump)">
     </div>
     <div class="formPart" id="formPart3">
-        Teleop:<br>
-        Climb height: <ui-input-number id="opClimb" placeholder="Height"></ui-input-number><br>
+        General:<br>
+        <input type="checkbox" id="pickFuelFloor" checked><label for="pickFuelFloor"> Can get fuel from floor</label><br>
+        <input type="checkbox" id="throughBump" checked><label for="throughBump"> Can cross bump</label><br>
+        <input type="checkbox" id="throughTrench" checked><label for="throughTrench"> Can go through trench</label><br>
         <br>
 
         Misc notes:<br>
