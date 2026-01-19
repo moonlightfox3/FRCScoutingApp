@@ -98,20 +98,20 @@
         return files
     }
     uploadBtn.onclick = async function () {
-        if (!confirm("Upload files to server?")) return
+        if (!confirm("Upload these files to the server?")) return
 
         let files = getStorage()
         if (files.length == 0) return alert("There are no files to upload!")
         
         let isSignedIn = await isSignedInToSupabase()
-        if (!isSignedIn) return alert("Please sign into the server to upload files!")
+        if (!isSignedIn) return alert("Please sign in to the server to upload files!")
         
         let events = await getEventListSupabase()
         if (events.length == 0) return alert("There are currently no events available to upload files to.")
         events = events.toSorted((a, b) => b.is_current - a.is_current).toSorted((a, b) => a.is_testing - b.is_testing)
 
-        let eventsStr = events.map((val, idx) => `${idx}: ${val.name}${val.is_current ? " (current)" : ""}${val.is_testing ? " (testing/practice)" : ""}`).join("\n")
-        let event = prompt(`Which event would you like to upload files to?\n${eventsStr}`)
+        let eventsStr = events.map((val, idx) => `${idx}: ${val.nice_name}${val.is_current ? " (current)" : ""}${val.is_testing ? " (testing/practice)" : ""}`).join("\n")
+        let event = prompt(`Which event would you like to upload these files to?\n${eventsStr}`)
         if (event == "" || event == null || isNaN(event) || +event < 0 || +event >= events.length) return alert("Invalid event choice.")
         event = events[event].name
 
@@ -122,6 +122,6 @@
                 localStorage.removeItem("FRCScoutingApp_files")
                 displayStorage()
             }
-        } else alert("Failed to upload data to the server.")
+        } else alert("Failed to upload files to the server.")
     }
 </script>

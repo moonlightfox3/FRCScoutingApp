@@ -44,7 +44,7 @@ async function isSignedInToSupabase () {
 // Access event list
 async function getEventListSupabase () {
     try {
-        let {data, error} = await supabaseClient.from("events").select("name,is_current,is_testing")
+        let {data, error} = await supabaseClient.from("events").select("name,is_current,is_testing,nice_name")
         if (error != null) return null
         return data
     } catch (er) {
