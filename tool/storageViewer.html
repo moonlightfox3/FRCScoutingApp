@@ -95,6 +95,8 @@
         return files
     }
     uploadBtn.onclick = async function () {
+        if (!confirm("Upload files to server?")) return
+
         let files = getStorage()
         if (files.length == 0) return alert("There are no files to upload!")
         
