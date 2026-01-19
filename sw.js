@@ -129,6 +129,7 @@ self.addEventListener("fetch", function (ev) {
         if (shouldCheck && resp.ok) {
             console.debug("[SW] Caching good response")
             if (cache == null) await getCacheData()
+            if (cache == null) await setupCache()
             await cache.put(ev.request, resp.clone())
         }
         return resp
