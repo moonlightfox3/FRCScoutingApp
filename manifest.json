@@ -3,27 +3,9 @@
 	"display": "standalone",
 	"file_handlers": [
 		{
-			"action": "year/Placeholder.html",
+			"action": "index.html",
 			"accept": {
-				"application/octet-stream": [".smscdt0"]
-			}
-		},
-		{
-			"action": "year/Reefscape.html",
-			"accept": {
-				"application/octet-stream": [".smscdt2025"]
-			}
-		},
-		{
-			"action": "year/Rebuilt.html",
-			"accept": {
-				"application/octet-stream": [".smscdt2026"]
-			}
-		},
-		{
-			"action": "year-pit/Rebuilt.html",
-			"accept": {
-				"application/octet-stream": [".pit_smscdt2026"]
+				"application/octet-stream": [".scdt"]
 			}
 		}
 	],

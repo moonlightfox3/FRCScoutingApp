@@ -1,3 +1,12 @@
+// Pages to open based on file type
+const fileTypeLocations = {
+    2025: "year/Reefscape.html",
+    2026: "year/Rebuilt.html",
+}
+const fileTypeLocationsPit = {
+    2026: "year-pit/Rebuilt.html",
+}
+
 // Was this opened with an exported data file?
 let openedWithFile = false
 // Check for launching by opening an associated file type
@@ -12,7 +21,7 @@ if (isPWA && window.launchQueue != undefined) {
             // Ignore empty files
             if (text != "") {
                 console.debug(`Importing file '${file.name}'`)
-                importData(text)
+                getImportedFile(text)
             }
         }
     })
@@ -20,12 +29,11 @@ if (isPWA && window.launchQueue != undefined) {
 
 // Elements to not include for saving
 const dataFileExcludeElems = ["br", "label", "a", "button"]
-// Current data file version
-const dataFileCurrentVersion = 1
 
+// Data config
 let dataYear = null
 let dataIsPit = false
-let dataElems = null // index 0 is the match number, index 1 is the team number (both are type=text inputs)
+let dataElems = null // index 0 is the team number, index 1 can be the match number (both are type=text inputs)
 
 // Get the input elements that should be exported
 let dataElemsDefaultVals = null
@@ -37,80 +45,101 @@ function initDataFile (year, isPit) {
     dataElems = []
     dataElemsDefaultVals = []
 
-    // Check version
-    if (dataFileCurrentVersion == 1) {
-        // Forms are split into parts, to use more horizontal space
-        let divs = document.querySelector("form").querySelectorAll("div")
-        let lastRadioName = null
-        let lastRadioElems = []
-        for (let div of divs) {
-            for (let el of div.children) {
-                // Don't include some elements
-                if (dataFileExcludeElems.includes(el.tagName.toLowerCase())) continue
+    // Forms are split into parts, to use more horizontal space
+    let divs = document.querySelector("form").querySelectorAll("div")
+    let lastRadioName = null
+    let lastRadioElems = []
+    for (let div of divs) {
+        for (let el of div.children) {
+            // Don't include some elements
+            if (dataFileExcludeElems.includes(el.tagName.toLowerCase())) continue
 
-                // Radio inputs are complicated to handle
-                if (el.tagName == "INPUT" && el.type == "radio" && el.name == lastRadioName) {
-                    // Part of the same group
-                    lastRadioElems.push(el)
-                    continue
-                } else if (lastRadioName != null) {
-                    // Not a radio element that's part of the same group - after a group of radio elements
-                    dataElems.push(lastRadioElems)
-                    lastRadioName = null, lastRadioElems = []
-                }
-
-                // More logic for radio inputs
-                if (el.tagName == "INPUT" && el.type == "radio") {
-                    // Radio element, not part of the same group
-                    lastRadioName = el.name
-                    lastRadioElems.push(el)
-                } else dataElems.push(el) // Other element
-            }
-            // Make sure to use radio group
-            if (lastRadioName != null) {
+            // Radio inputs are complicated to handle
+            if (el.tagName == "INPUT" && el.type == "radio" && el.name == lastRadioName) {
+                // Part of the same group
+                lastRadioElems.push(el)
+                continue
+            } else if (lastRadioName != null) {
+                // Not a radio element that's part of the same group - after a group of radio elements
                 dataElems.push(lastRadioElems)
                 lastRadioName = null, lastRadioElems = []
             }
-        }
 
-        // Set defaults
-        setDataElemsDefaults()
-    } else return
+            // More logic for radio inputs
+            if (el.tagName == "INPUT" && el.type == "radio") {
+                // Radio element, not part of the same group
+                lastRadioName = el.name
+                lastRadioElems.push(el)
+            } else dataElems.push(el) // Other element
+        }
+        // Make sure to use radio group
+        if (lastRadioName != null) {
+            dataElems.push(lastRadioElems)
+            lastRadioName = null, lastRadioElems = []
+        }
+    }
+    
+    // Set defaults
+    setDataElemsDefaults()
+
+    // Import file
+    checkImportedFile()
 }
 function setDataElemsDefaults () {
     dataElemsDefaultVals = []
     
-    // Check version
-    if (dataFileCurrentVersion == 1) {
-        // Get element values
-        for (let el of dataElems) {
-            if (el.type == "text" || el.type == "textarea") dataElemsDefaultVals.push(el.value)
-            else if (el.type == "number") dataElemsDefaultVals.push(+el.value)
-            else if (el.type == "checkbox") dataElemsDefaultVals.push(el.checked)
-            else if (el instanceof Array) dataElemsDefaultVals.push(el.findIndex(val => val.checked))
-        }
-    } else return
+    // Get element values
+    for (let el of dataElems) {
+        if (el.type == "text" || el.type == "textarea") dataElemsDefaultVals.push(el.value)
+        else if (el.type == "number") dataElemsDefaultVals.push(+el.value)
+        else if (el.type == "checkbox") dataElemsDefaultVals.push(el.checked)
+        else if (el instanceof Array) dataElemsDefaultVals.push(el.findIndex(val => val.checked))
+    }
+}
+function checkImportedFile () {
+    // Get file data
+    let fileData = localStorage.getItem("FRCScoutingApp_temp_importFile")
+    if (fileData != null) {
+        localStorage.removeItem("FRCScoutingApp_temp_importFile")
+
+        // Import file
+        let [fileYear, fileIsPit] = data.slice(0, 2)
+        if (fileYear != dataYear || fileIsPit != dataIsPit) alert("Invalid file type imported.")
+        else importData(fileData)
+    }
 }
 
+// Get imported file
+function getImportedFile (text) {
+    // Get data
+    let data = JSON.parse(`[${text}]`)
+    let [year, isPit] = data.slice(0, 2)
+    let path = isPit ? fileTypeLocationsPit[year] : fileTypeLocations[year]
+
+    // Redirect
+    if (path == undefined) return alert("Unknown file type imported.")
+    else {
+        localStorage.setItem("FRCScoutingApp_temp_importFile", text)
+        let a = document.createElement("a")
+        a.href = `/FRCScoutingApp/${path}`
+        a.click()
+    }
+}
 // Import file
 function importData (text) {
     // Check that the elements to export were gotten
     if (dataYear == null) return
     let data = JSON.parse(`[${text}]`)
     
-    // Check version
-    let ver = data.splice(0, 1)[0]
-    if (ver == 1) {
-        // Get elements
-        for (let i = 0; i < dataElems.length; i++) {
-            let elem = dataElems[i], val = data[i]
-            // Do different things for different types of elements
-            if (elem.type == "text" || elem.type == "textarea") dataElems[i].value = val
-            else if (elem.type == "number") dataElems[i].value = `${val}`
-            else if (elem.type == "checkbox") dataElems[i].checked = val != 0
-            else if (elem instanceof Array) dataElems[i][val].checked = true
-        }
-    } else return
+    // Get elements
+    for (let i = 0; i < dataElems.length; i++) {
+        let elem = dataElems[i], val = data[i]
+        // Do different things for different types of elements
+        if (elem.type == "text" || elem.type == "textarea") dataElems[i].value = val
+        else if (elem.type == "number") dataElems[i].value = `${val}`
+        else if (elem.type == "checkbox") dataElems[i].checked = val != 0
+        else if (elem instanceof Array) dataElems[i][val].checked = true
+    }
 
     // Set defaults
     setDataElemsDefaults()
@@ -121,21 +150,18 @@ function exportData () {
     if (dataYear == null) return null
     let data = null
 
-    // Check version
-    if (dataFileCurrentVersion == 1) {
-        // Export elements
-        data = new Array(dataElems.length)
-        for (let i = 0; i < dataElems.length; i++) {
-            let elem = dataElems[i], val = elem.value
-            // Do different things for different types of elements
-            if (elem.type == "text" || elem.type == "textarea") data[i] = val
-            else if (elem.type == "number") data[i] = parseInt(val)
-            else if (elem.type == "checkbox") data[i] = +elem.checked
-            else if (elem instanceof Array) data[i] = elem.findIndex(val => val.checked)
-        }
-    } else return null
+    // Export elements
+    data = new Array(dataElems.length)
+    for (let i = 0; i < dataElems.length; i++) {
+        let elem = dataElems[i], val = elem.value
+        // Do different things for different types of elements
+        if (elem.type == "text" || elem.type == "textarea") data[i] = val
+        else if (elem.type == "number") data[i] = parseInt(val)
+        else if (elem.type == "checkbox") data[i] = +elem.checked
+        else if (elem instanceof Array) data[i] = elem.findIndex(val => val.checked)
+    }
 
-    let text = JSON.stringify([dataFileCurrentVersion, ...data]).slice(1, -1)
+    let text = JSON.stringify([dataYear, (dataIsPit ? 1 : 0), ...data]).slice(1, -1)
     return text
 }
 // File name
