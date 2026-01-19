@@ -131,6 +131,9 @@ function importData (text) {
     // Check that the elements to export were gotten
     if (dataYear == null) return
     let data = JSON.parse(`[${text}]`)
+
+    // Remove data config
+    data.splice(0, 2)
     
     // Get elements
     for (let i = 0; i < dataElems.length; i++) {
