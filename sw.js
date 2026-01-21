@@ -17,49 +17,24 @@ const precacheResources = [ // No need to precache some resources, but might as 
     // "/year/Placeholder.html", "/year/Placeholder.js",
     // "/README.md", "/TODO.yaml",
 ]
-async function runPrecache () {
-    console.debug("[SW] Precaching resources")
-    await cache.addAll(precacheResources.map(val => `/FRCScoutingApp${val}`))
-}
 const excludeCacheResourceParts = [
     "fonts.googleapis.com", "fonts.gstatic.com", "github.com",
     "unpkg.com", "supabase",
 ]
-function shouldCheckCache (url) {
+async function runPrecache () {
+    console.debug("[SW] Precaching resources")
+    await cache.addAll(precacheResources.map(val => `/FRCScoutingApp${val}`))
+}
+function shouldUseCache (url) {
     for (let excludePart of excludeCacheResourceParts) {
         if (url.includes(excludePart)) return false
     }
     return true
 }
 
-// Set up the cache
-let cacheName = null
-let cache = null
-async function setupCache () {
-    // Variables
-    cacheName = `${cachePrefix}${commitId}`
-    cache = null
-    cacheCommitId = commitId
-
-    // Remove old cache(s)
-    let names = await caches.keys()
-    let relevantNames = names.filter(val => val.startsWith(cachePrefix)).filter(val => val != cacheName)
-    if (relevantNames.length > 1) {
-        for (let relevantName of relevantNames) await caches.delete(relevantName)
-        console.debug("[SW] Removed old cache(s)")
-    }
-
-    // Find the cache, create one if there isn't one already
-    cache = await caches.open(cacheName)
-    console.debug("[SW] Created cache")
-    
-    // Precache
-    await runPrecache()
-}
-
 // Get the cache
 let cacheCommitId = null
-async function getCacheData () {
+async function getCache () {
     // Reset variables
     cacheName = null
     cache = null
@@ -86,53 +61,70 @@ async function getCacheData () {
     console.debug("[SW] Got cache")
 }
 
+// Create the cache
+let cacheName = null
+let cache = null
+async function createCache () {
+    // Variables
+    cacheName = `${cachePrefix}${commitId ?? `tmp${Date.now()}`}`
+    cache = null
+    cacheCommitId = commitId
+
+    // Remove old cache(s)
+    let names = await caches.keys()
+    let relevantNames = names.filter(val => val.startsWith(cachePrefix)).filter(val => val != cacheName)
+    if (relevantNames.length > 1) {
+        for (let relevantName of relevantNames) await caches.delete(relevantName)
+        console.debug("[SW] Removed old cache(s)")
+    }
+
+    // Find the cache, create one if there isn't one already
+    cache = await caches.open(cacheName)
+    console.debug("[SW] Created cache")
+    
+    // Precache
+    await runPrecache()
+}
+
+// Delete the cache
+async function deleteCache () {
+    // Find the cache name (there should only be one)
+    let names = await caches.keys()
+    let relevantNames = names.filter(val => val.startsWith(cachePrefix))
+    for (let relevantName of relevantNames) await caches.delete(relevantName)
+
+    console.debug("[SW] Removed cache(s)")
+}
+
 // On request
 self.addEventListener("fetch", function (ev) {
     console.debug(`[SW] Got request: ${ev.request.url}`)
 
     // Need to do async work
     ev.respondWith((async function () {
-        // Should check cache?
-        let shouldCheck = shouldCheckCache(ev.request.url)
-        if (!shouldCheck) console.debug("[SW] Passing request")
-
-        if (shouldCheck) {
-            // Make sure cache exists and is up to date
-            if (commitId == null) await getGithubData(false)
-            if (cacheCommitId == null) await getCacheData()
-            if (commitId != null && commitId != cacheCommitId && deployedToPages) {
-                console.debug("[SW] Upgrading cache")
-                await caches.delete(`${cachePrefix}${cacheCommitId}`) // Still works even if the cache doesn't exist
-                await setupCache()
-            }
-
-            // Check if the response is already cached, return it if it is
+        // Should check the cache?
+        let useCache = shouldUseCache(ev.request.url)
+            
+        if (useCache) {
+            // Check if the response is already cached, return it if it is (otherwise return an error - it should be cached)
             let cachedResp = await caches.match(ev.request)
             if (cachedResp != null) {
                 console.debug("[SW] Responding from cache")
                 return cachedResp
-            }
-        }
+            } else return Response.error()
+        } else {
+            // Make a request
+            console.debug("[SW] Fetching response")
 
-        // Make a request
-        console.debug("[SW] Fetching response")
-        let resp = null
-        try {
-            resp = await fetch(ev.request, {cache: "reload"})
-        } catch (er) {
-            // Network error
-            console.debug("[SW] Network error")
-            return Response.error()
+            let resp = null
+            try {
+                resp = await fetch(ev.request, {cache: "reload"})
+            } catch (er) {
+                console.debug("[SW] Network error")
+            }
+            
+            return resp
         }
-        
-        // Cache the response (if it's successful), and return it
-        if (shouldCheck && resp.ok) {
-            console.debug("[SW] Caching good response")
-            if (cache == null) await getCacheData()
-            if (cache == null) await setupCache()
-            await cache.put(ev.request, resp.clone())
-        }
-        return resp
     })())
 })
 
@@ -145,9 +137,9 @@ self.addEventListener("install", function (ev) {
         console.debug(`[SW] GitHub commit ID: ${commitId}`)
         console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
 
-        await getCacheData()
-        if (cache != null) await caches.delete(`${cachePrefix}${cacheCommitId}`)
-        await setupCache()
+        await getCache()
+        if (cache != null) await deleteCache()
+        await createCache()
         console.debug("[SW] Installed")
         
         // Setup
