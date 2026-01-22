@@ -165,7 +165,7 @@ self.addEventListener("message", function (ev) {
             id: "github",
             commitId,
             commitDate,
-            hasDeployedToPages,
+            deployedToPages,
         })
     }
 })
