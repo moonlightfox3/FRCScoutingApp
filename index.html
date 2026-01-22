@@ -20,25 +20,6 @@
 <script>
     checkImportedFile() // There should not be any files imported here
     createProfileMenus()
-
-    // Show the update status element
-    let commitId = null
-    let commitDate = null
-    let deployedToPages = null
-    function showCommitUpdate () {
-        if (commitId != null) updateDateEl.innerText = `Commit ${commitId} (${commitDate})${deployedToPages ? "" : " - Updated content available soon"}`
-        else updateDateEl.innerText = "Failed to check GitHub. App may be loaded from your browser's offline cache"
-    }
-    addEventListener("message", function (ev) {
-        let msg = ev.data
-        console.debug(`Got message: ${msg?.id ?? "null"}`)
-        if (msg?.id == "github") {
-            commitId = msg.commitId
-            commitDate = msg.commitDate
-            deployedToPages = msg.deployedToPages
-            showCommitUpdate()
-        } else console.debug("Unknown message")
-    })
     
     const years = {
         2025: "Reefscape",

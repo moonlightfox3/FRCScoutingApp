@@ -1,3 +1,24 @@
+// Show the update status element
+let commitId = null
+let commitDate = null
+let deployedToPages = null
+function showCommitUpdate () {
+    if (document.querySelector("div#updateDateEl") == null) return
+    
+    if (commitId != null) updateDateEl.innerText = `Commit ${commitId} (${commitDate})${deployedToPages ? "" : " - Updated content available soon"}`
+    else updateDateEl.innerText = "Failed to check GitHub. App may be loaded from your browser's offline cache"
+}
+onmessage = function (ev) {
+    let msg = ev.data
+    console.debug(`Got message: ${msg?.id ?? "null"}`)
+    if (msg?.id == "github") {
+        commitId = msg.commitId
+        commitDate = msg.commitDate
+        deployedToPages = msg.deployedToPages
+        showCommitUpdate()
+    } else console.debug("Unknown message")
+}
+
 // Register service worker
 let swRegistration = null
 async function registerSw () {
