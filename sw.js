@@ -162,6 +162,7 @@ self.addEventListener("message", function (ev) {
     let msg = ev.data, cl = ev.source
     console.debug(`[SW] Got message: ${msg?.id ?? "null"}`)
     if (msg?.id == "reload") {
+        console.debug("[SW] Client:", cl)
         cl.postMessage({
             id: "github",
             commitId,
