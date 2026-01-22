@@ -116,14 +116,13 @@ self.addEventListener("fetch", function (ev) {
             // Make a request
             console.debug("[SW] Fetching response")
 
-            let resp = null
             try {
-                resp = await fetch(ev.request, {cache: "reload"})
+                let resp = await fetch(ev.request, {cache: "reload"})
+                return resp
             } catch (er) {
                 console.debug("[SW] Network error")
+                return Response.error()
             }
-            
-            return resp
         }
     })())
 })
