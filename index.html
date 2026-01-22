@@ -10,6 +10,7 @@
 <div id="yearsEl"></div>
 <div id="updateDateEl">Loading...</div>
 
+<script src="./libs/github.js"></script>
 <script src="./libs/swrun.js"></script>
 <script src="./libs/profile.js"></script>
 <script src="./libs/gamepads.js"></script>
@@ -20,6 +21,16 @@
 <script>
     checkImportedFile() // There should not be any files imported here
     createProfileMenus()
+
+    // Show the update status element
+    function showCommitUpdate () {
+        if (commitId != null) updateDateEl.innerText = `Commit ${commitId} (${commitDate})${deployedToPages ? "" : " - Updated content available soon"}`
+        else updateDateEl.innerText = "Failed to check GitHub. App may be loaded from your browser's offline cache"
+    }
+    addEventListener("load", async function () {
+        await getGithubData()
+        showCommitUpdate()
+    })
     
     const years = {
         2025: "Reefscape",
