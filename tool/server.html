@@ -51,4 +51,17 @@
         await signOutOfSupabase()
         await checkSignIn()
     }
+
+    emailInp.onkeydown = function (ev) {
+        if (ev.key == "Enter") {
+            emailInp.blur()
+            passwordInp.focus()
+        }
+    }
+    passwordInp.onkeydown = function (ev) {
+        if (ev.key == "Enter") {
+            passwordInp.blur()
+            signInBtn.click()
+        }
+    }
 </script>
