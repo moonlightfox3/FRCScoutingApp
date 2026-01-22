@@ -160,6 +160,7 @@ self.addEventListener("activate", function (ev) {
 // Client communication
 self.addEventListener("message", function (ev) {
     let msg = ev.data, cl = ev.source
+    console.debug(`[SW] Got message: ${msg?.id ?? "null"}`)
     if (msg?.id == "reload") {
         cl.postMessage({
             id: "github",

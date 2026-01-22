@@ -38,6 +38,7 @@
     }
     onmessage = function (ev) {
         let msg = ev.data
+        console.debug(`Got message: ${msg?.id ?? "null"}`)
         if (msg?.id == "github") {
             commitId = msg.commitId
             commitDate = msg.commitDate
