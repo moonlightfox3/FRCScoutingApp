@@ -159,14 +159,12 @@ self.addEventListener("activate", function (ev) {
 
 // Client communication
 self.addEventListener("message", async function (ev) {
-    if (ev.clientId == null) return console.debug("[SW] Got message but cannot get client id")
-    let msg = ev.data, cl = await self.clients.get(ev.clientId)
-    if (cl == undefined) return console.debug("[SW] Got message but cannot get client")
-
-    console.debug(`[SW] Got message '${ev.data.id ?? "null"}' from client id '${ev.clientId}'`)
-    if (msg?.id == "reload") {
+    let msg = ev.data, cl = ev.source
+    console.debug(`[SW] Got message '${msg.action ?? "null"}'`)
+    
+    if (msg?.action == "reload") {
         cl.postMessage({
-            id: "github",
+            action: "github",
             commitId,
             commitDate,
             deployedToPages,

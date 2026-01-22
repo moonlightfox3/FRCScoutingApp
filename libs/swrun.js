@@ -10,8 +10,9 @@ function showCommitUpdate () {
 }
 addEventListener("message", function (ev) {
     let msg = ev.data
-    console.debug(`Got message: ${msg?.id ?? "null"}`)
-    if (msg?.id == "github") {
+    console.debug(`Got message: ${msg.action ?? "null"}`)
+    
+    if (msg?.action == "github") {
         commitId = msg.commitId
         commitDate = msg.commitDate
         deployedToPages = msg.deployedToPages
@@ -39,7 +40,7 @@ addEventListener("load", async function () {
     
     // Service worker setup
     await registerSw()
-    getSw().postMessage({id: "reload"})
+    getSw().postMessage({action: "reload"})
 })
 async function unregisterSw () {
     try {
