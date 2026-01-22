@@ -1,6 +1,3 @@
-// Externally set config
-let onSwReady = () => {}
-
 // Register service worker
 let swRegistration = null
 async function registerSw () {
@@ -21,7 +18,7 @@ addEventListener("load", async function () {
     
     // Service worker setup
     await registerSw()
-    onSwReady()
+    getSw().postMessage({id: "reload"})
 })
 async function unregisterSw () {
     try {

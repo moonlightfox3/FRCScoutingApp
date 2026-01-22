@@ -29,13 +29,6 @@
         if (commitId != null) updateDateEl.innerText = `Commit ${commitId} (${commitDate})${deployedToPages ? "" : " - Updated content available soon"}`
         else updateDateEl.innerText = "Failed to check GitHub. App may be loaded from your browser's offline cache"
     }
-    onSwReady = async function () {
-        console.debug("Getting GitHub data...")
-        
-        let sw = getSw()
-        if (sw == null) showCommitUpdate()
-        else sw.postMessage({id: "reload"})
-    }
     addEventListener("message", function (ev) {
         let msg = ev.data
         console.debug(`Got message: ${msg?.id ?? "null"}`)
