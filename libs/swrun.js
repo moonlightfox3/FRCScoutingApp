@@ -1,6 +1,9 @@
+// Externally set config
+let onSwReady = () => {}
+
 // Register service worker
 let swRegistration = null
-async function registerServiceWorker () {
+async function registerSw () {
     if (!("serviceWorker" in navigator)) return console.debug("Service worker not supported")
     
     try {
@@ -12,12 +15,18 @@ async function registerServiceWorker () {
     }
     console.debug("Registered service worker")
 }
-addEventListener("load", function () {
-    registerServiceWorker()
+addEventListener("load", async function () {
+    // Unrelated stuff :3
     if (!!parseInt(localStorage.getItem("FRCScoutingApp_lightMode"))) document.body.classList.add("light")
+    
+    // Service worker setup
+    await registerSw()
+    onSwReady()
 })
-async function unregisterServiceWorker () {
-    await swRegistration.unregister()
+async function unregisterSw () {
+    try {
+        await swRegistration.unregister()
+    } catch (er) {}
 }
 
 // Get service worker from registration

@@ -133,7 +133,7 @@ self.addEventListener("install", function (ev) {
     console.debug("[SW] Installing")
 
     ev.waitUntil((async function () {
-        await getGithubData(false)
+        await getGithubData()
         console.debug(`[SW] GitHub commit ID: ${commitId}`)
         console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
 
@@ -155,4 +155,17 @@ self.addEventListener("activate", function (ev) {
         // Setup
         await self.clients.claim()
     })())
+})
+
+// Client communication
+self.addEventListener("message", function (ev) {
+    let msg = ev.data, cl = ev.source
+    if (msg?.id == "reload") {
+        cl.postMessage({
+            id: "github",
+            commitId,
+            commitDate,
+            hasDeployedToPages,
+        })
+    }
 })

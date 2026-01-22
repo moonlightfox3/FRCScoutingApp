@@ -38,7 +38,7 @@
     removeSwBtn.onclick = async function () {
         if (!confirm("Are you sure you want to remove the service worker?\nThis will prevent you from using this page offline until you reload it again while online.")) return
 
-        await unregisterServiceWorker()
+        await unregisterSw()
         
         alert("Service worker removed.")
         if (confirm("Reload?")) location.reload()

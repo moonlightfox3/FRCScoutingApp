@@ -19,16 +19,12 @@ async function getCommit () {
 }
 let commit = null
 let deployedToPages = null
-async function getGithubData (show) {
+async function getGithubData () {
     commit = await getCommit()
-    let isOnline = commit != null
 
     commitId = getCommitId()
     commitDate = getCommitDate()
     deployedToPages = await hasDeployedToPages()
-
-    if (show) showCommitUpdate(isOnline)
-    return isOnline
 }
 
 // Get data from the commit
@@ -47,21 +43,6 @@ function getCommitDate () {
     let date = new Date(commit.commit.committer.date)
     let str = date.toLocaleDateString("en-US", {hour: "numeric", minute: "numeric"})
     return str
-}
-
-// Show the update status element
-function showCommitUpdate (isOnline) {
-    hideCommitUpdate()
-    
-    let updateDateEl = document.createElement("div")
-    updateDateEl.id = "updateDateEl"
-    if (isOnline) updateDateEl.innerText = `Commit ${commitId} (${commitDate})${!deployedToPages ? " - Updated content available soon" : ""}`
-    else updateDateEl.innerText = "Failed to check GitHub. App may be loaded from your browser's offline cache"
-    
-    document.body.append(updateDateEl)
-}
-function hideCommitUpdate () {
-    if (document.querySelector("div#updateDateEl") != null) updateDateEl.remove()
 }
 
 // Check GitHub Pages status
