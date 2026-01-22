@@ -159,15 +159,18 @@ self.addEventListener("activate", function (ev) {
 
 // Client communication
 self.addEventListener("message", async function (ev) {
-    let msg = ev.data, cl = ev.source
+    let msg = ev.data
     console.debug(`[SW] Got message '${msg.action ?? "null"}'`)
     
     if (msg?.action == "reload") {
-        cl.postMessage({
-            action: "github",
-            commitId,
-            commitDate,
-            deployedToPages,
-        })
+        let clients = await self.clients.matchAll()
+        for (let client of clients) {
+            client.postMessage({
+                action: "github",
+                commitId,
+                commitDate,
+                deployedToPages,
+            })
+        }
     } else console.debug("[SW] Unknown message")
 })
