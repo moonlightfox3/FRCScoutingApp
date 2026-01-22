@@ -26,17 +26,17 @@
     let commitDate = null
     let deployedToPages = null
     function showCommitUpdate () {
-        if (commitId == null) updateDateEl.innerText = `Commit ${commitId} (${commitDate})${deployedToPages ? "" : " - Updated content available soon"}`
+        if (commitId != null) updateDateEl.innerText = `Commit ${commitId} (${commitDate})${deployedToPages ? "" : " - Updated content available soon"}`
         else updateDateEl.innerText = "Failed to check GitHub. App may be loaded from your browser's offline cache"
     }
     onSwReady = async function () {
+        console.debug("Getting GitHub data...")
+        
         let sw = getSw()
-        if (sw == null) {
-            await getGithubData()
-            showCommitUpdate()
-        } else sw.postMessage({id: "reload"})
+        if (sw == null) showCommitUpdate()
+        else sw.postMessage({id: "reload"})
     }
-    onmessage = function (ev) {
+    addEventListener("message", function (ev) {
         let msg = ev.data
         console.debug(`Got message: ${msg?.id ?? "null"}`)
         if (msg?.id == "github") {
@@ -45,7 +45,7 @@
             deployedToPages = msg.deployedToPages
             showCommitUpdate()
         } else console.debug("Unknown message")
-    }
+    })
     
     const years = {
         2025: "Reefscape",
