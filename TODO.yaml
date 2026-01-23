@@ -1,6 +1,6 @@
 Needs
     Server - Supabase
-        Client UI
+        Client UI - Data summary page
             View data
             Change data
             Remove data
@@ -10,3 +10,12 @@ Wants
 Luxuries
 
 Testing
+
+unsorted
+    bigger buttons
+    pit placeholder html file
+    dropdowns instead of radio buttons
+    maybe human player data
+
+    custom url or maybe don't use github pages (github pages is blocked on school chromebooks)
+    google docs ideas page

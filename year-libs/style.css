@@ -1,5 +1,5 @@
 /* Input elements and buttons */
-input:not([type]), input[type=password], input[type=number], textarea, button#downloadDataBtn, button#saveDataBrowserBtn, button#resetData, button#returnToYearSelect {
+input:not([type]), input[type=password], input[type=number], textarea, button#downloadDataBtn, button#saveDataBrowserBtn, button#uploadDataBtn, button#resetData, button#returnToYearSelect {
     background-color: lightgray;
     color: black;
     border-radius: 5px;
@@ -14,7 +14,7 @@ textarea#autoNotes, textarea#opNotes {
     height: 150px;
     resize: none;
 }
-button#downloadDataBtn, button#saveDataBrowserBtn, button#resetData, button#returnToYearSelect {
+button#downloadDataBtn, button#uploadDataBtn, button#saveDataBrowserBtn, button#resetData, button#returnToYearSelect {
     cursor: pointer;
 }
 

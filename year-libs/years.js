@@ -114,6 +114,7 @@ gamepadPressListenerInit(onGamepadPress, onGamepadUnpress)
 // Form stuff
 downloadDataBtn.onclick = () => downloadData()
 saveDataBrowserBtn.onclick = () => { saveDataBrowser(); alert("Saved locally!\nPlease download this file or upload it to the server when possible.") }
+uploadDataBtn.onclick = async () => await userUploadCurrentFileToServer()
 dataForm.onreset = function () {
     let inputs = dataForm.querySelectorAll("ui-input-number")
     for (let input of inputs) input.reset()

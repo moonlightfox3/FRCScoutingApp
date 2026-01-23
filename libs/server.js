@@ -94,3 +94,71 @@ async function deleteEventDataSupabase (name, fileName) {
         return false
     }
 }
+
+// Usage
+function getStorage () {
+    let files = []
+    let storage = localStorage.getItem("FRCScoutingApp_files")
+    if (storage == null) return []
+    storage = JSON.parse(storage)
+
+    files.push(...getStoragePart(storage, "matches", false))
+    files.push(...getStoragePart(storage, "pits", true))
+    return files
+}
+function getStoragePart (storage, part, partIsPit) {
+    let storagePart = storage[part]
+    if (storagePart == undefined) return []
+
+    let files = []
+    for (let year of Object.keys(storagePart)) {
+        let years = storagePart[year]
+        for (let yearData of years) files.push({name: yearData.name, data: yearData.data, is_pit: partIsPit, year: +year})
+    }
+    return files
+}
+async function userUploadToServer (files) {
+    if (!confirm("Upload all saved files to the server?")) return
+    if (files.length == 0) return alert("There are no files to upload!")
+    
+    let isSignedIn = await isSignedInToSupabase()
+    if (!isSignedIn) return alert("Please sign in to the server to upload files!")
+    
+    let events = await getEventListSupabase()
+    if (events.length == 0) return alert("There are currently no events available to upload files to.")
+    events = events.toSorted((a, b) => b.is_current - a.is_current).toSorted((a, b) => a.is_testing - b.is_testing)
+
+    let eventsStr = events.map((val, idx) => `${idx}: ${val.nice_name}${val.is_current ? " (current)" : ""}${val.is_testing ? " (testing/practice)" : ""}`).join("\n")
+    let event = prompt(`Which event would you like to upload these files to?\n${eventsStr}`)
+    if (event == "" || event == null || isNaN(event) || +event < 0 || +event >= events.length) return alert("Invalid event choice.")
+    event = events[event].name
+
+    let success = await addEventDatasSupabase(event, files)
+    if (success) alert("Files uploaded to the server!")
+    else alert("Failed to upload files to the server.")
+    return success
+}
+async function userUploadStorageToServer () {
+    let files = getStorage()
+    let success = await userUploadToServer(files)
+    if (success) {
+        if (confirm("Delete locally saved files?")) clearFileStorage()
+    }
+    return success
+}
+async function userUploadCurrentFileToServer () {
+    let file = exportData()
+    let files = [{
+        name: getDataFileName(),
+        data: file,
+        is_pit: dataIsPit,
+        year: dataYear,
+    }]
+    let success = await userUploadToServer(files)
+    return success
+}
+
+// More storage things
+function clearFileStorage () {
+    localStorage.removeItem("FRCScoutingApp_files")
+}
