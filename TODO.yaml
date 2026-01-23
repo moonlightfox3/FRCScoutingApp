@@ -4,8 +4,6 @@ Needs
             View data
             Change data
             Remove data
-    Service worker
-        If cache deleted, recreate and precache
 
 Wants
 

@@ -93,6 +93,11 @@ async function deleteCache () {
     let relevantNames = names.filter(val => val.startsWith(cachePrefix))
     for (let relevantName of relevantNames) await caches.delete(relevantName)
 
+    // Variables
+    cacheName = null
+    cache = null
+    cacheCommitId = null
+
     console.debug("[SW] Removed cache(s)")
 }
 
