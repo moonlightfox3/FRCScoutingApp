@@ -106,6 +106,9 @@ self.addEventListener("fetch", function (ev) {
         let useCache = shouldUseCache(ev.request.url)
             
         if (useCache) {
+            // Check that the cache exists
+            if (cache == null) await createCache()
+
             // Check if the response is already cached, return it if it is (otherwise return an error - it should be cached)
             let cachedResp = await caches.match(ev.request)
             if (cachedResp != null) {
