@@ -15,6 +15,7 @@ const precacheResources = [ // No need to precache some resources, but might as 
 
     // Don't precache:
     // "/year/Placeholder.html", "/year/Placeholder.js",
+    // "/year-pit/Placeholder.html", "/year/Placeholder.js",
     // "/README.md", "/TODO.yaml",
 ]
 const excludeCacheResourceParts = [

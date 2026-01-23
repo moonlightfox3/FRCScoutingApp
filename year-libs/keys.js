@@ -147,6 +147,21 @@ let allKeys = {
             //  ', ,, ., /
             //  Backspace
         },
+        0: {
+            invertAction: ";",
+            switchStage_Teleop: " ",
+            switchStage_Auto: "b",
+            focusOwnNotesField: "o",
+            focusNotesField: "p",
+            downloadData: "enter",
+            saveDataInBrowser: "\\",
+            // Unused keys:
+            //  a, s, d, f, q, w, e, r, t, y
+            //  g, h, j, k, l, u, i, z, x, c, v, n, m
+            //  `, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, -, =, [, ]
+            //  ', ,, ., /
+            //  Backspace
+        },
     },
 }
 let allGamepadKeys = {
@@ -232,6 +247,21 @@ let allGamepadKeys = {
             saveDataInBrowser: "JR",
             // Unused gamepad keys:
             //  LL
+            //  JL
+            // Unused gamepad axes:
+            //  LX, LY, RX, RY
+        },
+        0: {
+            invertAction: "LBD",
+            switchStage_Teleop: "RBU",
+            switchStage_Auto: "LBU",
+            focusOwnNotesField: "LR",
+            focusNotesField: "LU",
+            downloadData: "MM",
+            saveDataInBrowser: "JR",
+            // Unused gamepad keys:
+            //  LL, LD, RU, RL, RD
+            //  RBD
             //  JL
             // Unused gamepad axes:
             //  LX, LY, RX, RY
