@@ -102,6 +102,21 @@ async function deleteCache () {
 }
 
 // On request
+async function consoleRespondFromCache (request) {
+    // Check if the response is already cached, return it if it is (otherwise return an error - it should be cached)
+    let cachedResp = await caches.match(request)
+    if (cachedResp != null) {
+        console.debug("[SW] Responding from cache")
+        return cachedResp
+    } else {
+        await getCache()
+        if (cache == null) {
+            await createCache()
+            if (cache == null) return Response.error()
+            else return await consoleRespondFromCache(request)
+        } else return Response.error()
+    }
+}
 self.addEventListener("fetch", function (ev) {
     console.debug(`[SW] Got request: ${ev.request.url}`)
 
@@ -110,17 +125,8 @@ self.addEventListener("fetch", function (ev) {
         // Should check the cache?
         let useCache = shouldUseCache(ev.request.url)
             
-        if (useCache) {
-            // Check that the cache exists
-            if (cache == null) await createCache()
-
-            // Check if the response is already cached, return it if it is (otherwise return an error - it should be cached)
-            let cachedResp = await caches.match(ev.request)
-            if (cachedResp != null) {
-                console.debug("[SW] Responding from cache")
-                return cachedResp
-            } else return Response.error()
-        } else {
+        if (useCache)  return await consoleRespondFromCache(ev.request)
+        else {
             // Make a request
             console.debug("[SW] Fetching response")
 
