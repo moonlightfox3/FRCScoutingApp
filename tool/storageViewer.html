@@ -8,7 +8,9 @@
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script src="../libs/server.js"></script>
 
-<a href="../index.html"><button id="backBtn">Back</button></a> | <button id="refreshBtn">Refresh</button> | <button id="clearBtn">Clear</button> | <button id="uploadBtn">Upload</button> | Browser Storage Viewer
+<a href="../index.html"><button id="backBtn">Back</button></a> | <button id="refreshBtn">Refresh</button><button id="clearBtn">Clear</button> | <button id="uploadBtn">Upload all</button> | Browser Storage Viewer
+<hr>
+<button id="openOneBtn" disabled>Open file</button><button id="downloadOneBtn" disabled>Download file</button><button id="deleteOneBtn" disabled>Delete file</button>
 <hr>
 <div id="displayEl">
     <ul id="matchesEl">
@@ -21,7 +23,10 @@
 <script src="../libs/install.js"></script>
 <script src="../libs/datafile.js"></script>
 <script>
+    let selectedLi = null
     function displayStorage () {
+        deselectLi()
+        liDataList = []
         matchesEl.innerHTML = ""
         pitsEl.innerHTML = ""
 
@@ -32,6 +37,7 @@
         displayStoragePart(storage, "matches", matchesEl)
         displayStoragePart(storage, "pits", pitsEl)
     }
+    let liDataList = []
     function displayStoragePart (storage, part, el) {
         let storagePart = storage[part]
         if (storagePart == undefined) return
@@ -41,26 +47,16 @@
                 let match = storagePart[year][i]
                 let li = document.createElement("li")
                 li.innerText = `${match.name} (${match.data.length} bytes)`
-                li.onclick = function () {
-                    let action = prompt("What do you want to do with this file?\n1. Open\n2. Download\n3. Delete")
-                    if (action == "1") { // Open
-                        getImportedFile(match.data) // Redirect and open
-                    } else if (action == "2") { // Download
-                        // Download file with an <a> element
-                        let a = document.createElement("a")
-                        a.download = match.name
-                        a.href = `data:text/plain;base64,${btoa(match.data)}`
-                        a.click()
-                    } else if (action == "3") { // Delete
-                        if (!confirm("Are you sure you want to delete this file?")) return
 
-                        storage[part][year].splice(i, 1)
-                        let storageStr = JSON.stringify(storage)
-                        localStorage.setItem("FRCScoutingApp_files", storageStr)
-                        
-                        displayStorage()
-                    } else if (action == "" || action == null) return
-                    else alert("Invalid input.")
+                li.dataset.index = liDataList.push({match, storage, part, year, i}) - 1
+                li.onclick = function () {
+                    if (selectedLi == null) {
+                        openOneBtn.disabled = false
+                        downloadOneBtn.disabled = false
+                        deleteOneBtn.disabled = false
+                    } else selectedLi.style.listStyleType = "circle"
+                    this.style.listStyleType = "disc"
+                    selectedLi = this
                 }
 
                 el.append(li)
@@ -75,9 +71,42 @@
         clearFileStorage()
         displayStorage()
     }
-
     uploadBtn.onclick = async function () {
         let success = await userUploadStorageToServer()
         if (success) displayStorage()
+    }
+
+    function deselectLi () {
+        if (selectedLi != null) {
+            selectedLi.style.listStyleType = "circle"
+            selectedLi = null
+            
+            openOneBtn.disabled = true
+            downloadOneBtn.disabled = true
+            deleteOneBtn.disabled = true
+        }
+    }
+    openOneBtn.onclick = function () {
+        let {match, storage, part, year, i} = liDataList[+selectedLi.dataset.index]
+
+        getImportedFile(match.data)
+    }
+    downloadOneBtn.onclick = function () {
+        let {match, storage, part, year, i} = liDataList[+selectedLi.dataset.index]
+
+        let a = document.createElement("a")
+        a.download = match.name
+        a.href = `data:text/plain;base64,${btoa(match.data)}`
+        a.click()
+    }
+    deleteOneBtn.onclick = function () {
+        if (!confirm("Are you sure you want to delete this file?")) return
+        let {match, storage, part, year, i} = liDataList[+selectedLi.dataset.index]
+
+        storage[part][year].splice(i, 1)
+        let storageStr = JSON.stringify(storage)
+        localStorage.setItem("FRCScoutingApp_files", storageStr)
+        
+        displayStorage()
     }
 </script>

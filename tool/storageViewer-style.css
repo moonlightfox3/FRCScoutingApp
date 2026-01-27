@@ -1,12 +1,15 @@
 /* Buttons */
-button#refreshBtn, button#downloadBtn, button#clearBtn, button#uploadBtn {
+button#refreshBtn, button#clearBtn, button#uploadBtn, button#openOneBtn, button#downloadOneBtn, button#deleteOneBtn {
     background-color: lightgray;
-    cursor: pointer;
     color: black;
     border-radius: 5px;
+}
+button#refreshBtn, button#clearBtn, button#uploadBtn, button#openOneBtn:not([disabled]), button#downloadOneBtn:not([disabled]), button#deleteOneBtn:not([disabled]) {
+    cursor: pointer;
 }
 
 /* Lists */
 li {
     cursor: pointer;
+    list-style-type: circle;
 }
