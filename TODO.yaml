@@ -14,6 +14,7 @@ Testing
 unsorted
     dropdowns instead of radio buttons
     bigger buttons, text inputs, custom number inputs, dropdowns, checkboxes, (maybe) text
+    change background color of disabled elements
     less alerts/confirms/prompts, more normal ui
 
     2026 - scout human player data (how good at throwing fuel)

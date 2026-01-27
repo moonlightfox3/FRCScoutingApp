@@ -8,13 +8,15 @@
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script src="../libs/server.js"></script>
 
-<a href="../index.html"><button id="backBtn">Back</button></a> | <button id="refreshBtn">Refresh</button><button id="clearBtn">Clear</button> | <button id="uploadBtn">Upload all</button> | Browser Storage Viewer
+<a href="../index.html"><button id="backBtn">Back</button></a> | <button id="refreshBtn">Refresh</button><button id="clearBtn">Clear</button><button id="uploadBtn">Upload all</button> | Browser Storage Viewer
 <hr>
 <button id="openOneBtn" disabled>Open file</button><button id="downloadOneBtn" disabled>Download file</button><button id="deleteOneBtn" disabled>Delete file</button>
 <hr>
 <div id="displayEl">
+    Match files:
     <ul id="matchesEl">
     </ul>
+    Pit files:
     <ul id="pitsEl">
     </ul>
 </div>
@@ -46,7 +48,7 @@
             for (let i = 0; i < storagePart[year].length; i++) {
                 let match = storagePart[year][i]
                 let li = document.createElement("li")
-                li.innerText = `${match.name} (${match.data.length} bytes)`
+                li.innerText = `${match.name} (${year} - ${match.data.length} bytes)`
 
                 li.dataset.index = liDataList.push({match, storage, part, year, i}) - 1
                 li.onclick = function () {
