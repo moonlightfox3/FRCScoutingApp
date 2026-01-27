@@ -8,7 +8,7 @@
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script src="../libs/server.js"></script>
 
-<a href="../index.html"><button id="backBtn">Back</button></a> | <button id="refreshBtn">Refresh</button><button id="clearBtn">Clear</button><button id="uploadBtn">Upload all</button> | Browser Storage Viewer
+<a href="../index.html"><button id="backBtn">Back</button></a> | <button id="refreshBtn">Refresh</button><button id="uploadBtn">Upload all</button><button id="clearBtn">Delete all</button> | Browser Storage Viewer
 <hr>
 <button id="openOneBtn" disabled>Open file</button><button id="downloadOneBtn" disabled>Download file</button><button id="deleteOneBtn" disabled>Delete file</button>
 <hr>
@@ -68,14 +68,14 @@
     displayStorage()
     refreshBtn.onclick = () => displayStorage()
 
-    clearBtn.onclick = function () {
-        if (!confirm("Are you sure you want to clear your browser's storage?\nThis will delete all saved files!")) return
-        clearFileStorage()
-        displayStorage()
-    }
     uploadBtn.onclick = async function () {
         let success = await userUploadStorageToServer()
         if (success) displayStorage()
+    }
+    clearBtn.onclick = function () {
+        if (!confirm("Are you sure you want to delete all of the saved files?")) return
+        clearFileStorage()
+        displayStorage()
     }
 
     function deselectLi () {

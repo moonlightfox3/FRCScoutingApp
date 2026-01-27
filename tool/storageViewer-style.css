@@ -1,10 +1,10 @@
 /* Buttons */
-button#refreshBtn, button#clearBtn, button#uploadBtn, button#openOneBtn, button#downloadOneBtn, button#deleteOneBtn {
+button#refreshBtn, button#uploadBtn, button#clearBtn, button#openOneBtn, button#downloadOneBtn, button#deleteOneBtn {
     background-color: lightgray;
     color: black;
     border-radius: 5px;
 }
-button#refreshBtn, button#clearBtn, button#uploadBtn, button#openOneBtn:not([disabled]), button#downloadOneBtn:not([disabled]), button#deleteOneBtn:not([disabled]) {
+button#refreshBtn, button#uploadBtn, button#clearBtn, button#openOneBtn:not([disabled]), button#downloadOneBtn:not([disabled]), button#deleteOneBtn:not([disabled]) {
     cursor: pointer;
 }
 
