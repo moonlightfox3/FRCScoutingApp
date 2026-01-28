@@ -27,21 +27,25 @@
         Avg. burst size: <ui-input-number id="opBurstSize" placeholder="Amount"></ui-input-number><br>
         Avg. misses per burst: <ui-input-number id="opBurstMisses" placeholder="Amount"></ui-input-number><br>
         Avg. cycle time (seconds):<br>
-        <input type="radio" id="opCycleTime3" name="opCycleTime" value="3"><label for="opCycleTime3">1-3</label><br>
-        <input type="radio" id="opCycleTime6" name="opCycleTime" value="6"><label for="opCycleTime6">4-6</label><br>
-        <input type="radio" id="opCycleTime10" name="opCycleTime" value="10"><label for="opCycleTime10">7-10</label><br>
-        <input type="radio" id="opCycleTimeMore" name="opCycleTime" value="more" checked><label for="opCycleTimeMore">11+</label><br>
+        <select id="opCycleTime">
+            <option id="opCycleTime3" value="3">1-3</option>
+            <option id="opCycleTime6" value="6">4-6</option>
+            <option id="opCycleTime10" value="10">7-10</option>
+            <option id="opCycleTimeMore" value="more" selected>11+</option>
+        </select>
         <input id="opActiveBehavior" placeholder="Behavior - Position, etc.">
     </div>
     <div class="formPart" id="formPart2">
         Teleop (inactive):<br>
         Playing defense strength:<br>
-        <input type="radio" id="playDefStrenVWeak" name="playDefStren" value="vWeak"><label for="playDefStrenVWeak">Very weak</label><br>
-        <input type="radio" id="playDefStrenWeak" name="playDefStren" value="weak"><label for="playDefStrenWeak">Weak</label><br>
-        <input type="radio" id="playDefStrenAvg" name="playDefStren" value="avg"><label for="playDefStrenAvg">Average</label><br>
-        <input type="radio" id="playDefStrenStrong" name="playDefStren" value="strong"><label for="playDefStrenStrong">Strong</label><br>
-        <input type="radio" id="playDefStrenVStrong" name="playDefStren" value="vStrong"><label for="playDefStrenVStrong">Very strong</label><br>
-        <input type="radio" id="playDefStrenNone" name="playDefStren" value="none" checked><label for="playDefStrenNone">None</label><br>
+        <select id="playDefStren">
+            <option id="playDefStrenVWeak" value="vWeak">Very weak</option>
+            <option id="playDefStrenWeak" value="weak">Weak</option>
+            <option id="playDefStrenAvg" value="avg">Average</option>
+            <option id="playDefStrenStrong" value="strong">Strong</option>
+            <option id="playDefStrenVStrong" value="vStrong">Very strong</option>
+            <option id="playDefStrenNone" value="none" selected>None</option>
+        </select>
         <input id="opInactiveBehavior" placeholder="Behavior - Position, etc."><br>
         Fuel shot: <ui-input-number id="opInactiveShots" placeholder="Amount"></ui-input-number><br>
         <br>
@@ -52,11 +56,13 @@
 
         Other:<br>
         Seconds broken down:<br>
-        <input type="radio" id="breakSec10" name="breakSec" value="10"><label for="breakSec10">1-10</label><br>
-        <input type="radio" id="breakSec30" name="breakSec" value="30"><label for="breakSec30">11-30</label><br>
-        <input type="radio" id="breakSec60" name="breakSec" value="60"><label for="breakSec60">31-60</label><br>
-        <input type="radio" id="breakSecMore" name="breakSec" value="more"><label for="breakSecMore">61+</label><br>
-        <input type="radio" id="breakSecNone" name="breakSec" value="none" checked><label for="breakSecNone">None</label><br>
+        <select id="breakSec">
+            <option id="breakSec10" value="10">1-10</option>
+            <option id="breakSec30" value="30">11-30</option>
+            <option id="breakSec60" value="60">31-60</option>
+            <option id="breakSecMore" value="more">61+</option>
+            <option id="breakSecNone" value="none" selected>None</option>
+        </select>
         <input id="breakCause" placeholder="Cause (ex. fuel, bump)">
     </div>
     <div class="formPart" id="formPart3">
@@ -67,9 +73,11 @@
         <br>
         
         Human player:<br>
-        <input type="radio" id="humanMost" name="human" value="most"><label for="humanMost">Made most or all shots</label><br>
-        <input type="radio" id="humanSome" name="human" value="some"><label for="humanSome">Made some shots</label><br>
-        <input type="radio" id="humanNone" name="human" value="none" checked><label for="humanNone">Made very few shots</label><br>
+        <select id="human">
+            <option id="humanMost" value="most">Made most or all shots</option>
+            <option id="humanSome" value="some">Made some shots</option>
+            <option id="humanNone" value="none" selected>Made very few shots</option>
+        </select>
         <br>
 
         Misc notes:<br>

@@ -18,24 +18,24 @@ handleKey = function (key) {
     else if (key == keys.climbHeight) modifyInputValueKeyboard(opClimb, autoClimb)
     else if (key == keys.fuelShot) modifyInputValueKeyboard(opBurstSize, autoShots, scoreBy10Keyboard ? 10 : 1)
     else if (key == keys.fuelMissed) modifyInputValueKeyboard(opBurstMisses, autoMisses, scoreBy10Keyboard ? 10 : 1)
-    else if (key == keys.teleopCycleTime_1To3) opCycleTime3.checked = true
-    else if (key == keys.teleopCycleTime_4To6) opCycleTime6.checked = true
-    else if (key == keys.teleopCycleTime_7To10) opCycleTime10.checked = true
-    else if (key == keys.teleopCycleTime_Over10) opCycleTimeMore.checked = true
-    else if (key == keys.playingDefenseStrength_VeryWeak) playDefStrenVWeak.checked = true
-    else if (key == keys.playingDefenseStrength_Weak) playDefStrenWeak.checked = true
-    else if (key == keys.playingDefenseStrength_Average) playDefStrenAvg.checked = true
-    else if (key == keys.playingDefenseStrength_Strong) playDefStrenStrong.checked = true
-    else if (key == keys.playingDefenseStrength_VeryStrong) playDefStrenVStrong.checked = true
-    else if (key == keys.playingDefenseStrength_None) playDefStrenNone.checked = true
-    else if (key == keys.secondsBroken_1To10) breakSec10.checked = true
-    else if (key == keys.secondsBroken_11To30) breakSec30.checked = true
-    else if (key == keys.secondsBroken_31To60) breakSec60.checked = true
-    else if (key == keys.secondsBroken_Over60) breakSecMore.checked = true
-    else if (key == keys.secondsBroken_None) breakSecNone.checked = true
-    else if (key == keys.humanPlayerShotsMade_Most) humanMost.checked = true
-    else if (key == keys.humanPlayerShotsMade_Some) humanSome.checked = true
-    else if (key == keys.humanPlayerShotsMade_Few) humanNone.checked = true
+    else if (key == keys.teleopCycleTime_1To3) opCycleTime3.selected = true
+    else if (key == keys.teleopCycleTime_4To6) opCycleTime6.selected = true
+    else if (key == keys.teleopCycleTime_7To10) opCycleTime10.selected = true
+    else if (key == keys.teleopCycleTime_Over10) opCycleTimeMore.selected = true
+    else if (key == keys.playingDefenseStrength_VeryWeak) playDefStrenVWeak.selected = true
+    else if (key == keys.playingDefenseStrength_Weak) playDefStrenWeak.selected = true
+    else if (key == keys.playingDefenseStrength_Average) playDefStrenAvg.selected = true
+    else if (key == keys.playingDefenseStrength_Strong) playDefStrenStrong.selected = true
+    else if (key == keys.playingDefenseStrength_VeryStrong) playDefStrenVStrong.selected = true
+    else if (key == keys.playingDefenseStrength_None) playDefStrenNone.selected = true
+    else if (key == keys.secondsBroken_1To10) breakSec10.selected = true
+    else if (key == keys.secondsBroken_11To30) breakSec30.selected = true
+    else if (key == keys.secondsBroken_31To60) breakSec60.selected = true
+    else if (key == keys.secondsBroken_Over60) breakSecMore.selected = true
+    else if (key == keys.secondsBroken_None) breakSecNone.selected = true
+    else if (key == keys.humanPlayerShotsMade_Most) humanMost.selected = true
+    else if (key == keys.humanPlayerShotsMade_Some) humanSome.selected = true
+    else if (key == keys.humanPlayerShotsMade_Few) humanNone.selected = true
 
     else return false
     return true

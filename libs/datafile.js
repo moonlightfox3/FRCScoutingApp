@@ -28,7 +28,7 @@ if (isPWA && window.launchQueue != undefined) {
 }
 
 // Elements to not include for saving
-const dataFileExcludeElems = ["br", "label", "a", "button"]
+const dataFileExcludeElems = ["br", "label", "a", "button", "option"]
 
 // Data config
 let dataYear = null
@@ -47,35 +47,14 @@ function initDataFile (year, isPit) {
 
     // Forms are split into parts, to use more horizontal space
     let divs = document.querySelector("form").querySelectorAll("div")
-    let lastRadioName = null
-    let lastRadioElems = []
     for (let div of divs) {
         for (let el of div.children) {
             // Don't include some elements
             if (dataFileExcludeElems.includes(el.tagName.toLowerCase())) continue
 
-            // Radio inputs are complicated to handle
-            if (el.tagName == "INPUT" && el.type == "radio" && el.name == lastRadioName) {
-                // Part of the same group
-                lastRadioElems.push(el)
-                continue
-            } else if (lastRadioName != null) {
-                // Not a radio element that's part of the same group - after a group of radio elements
-                dataElems.push(lastRadioElems)
-                lastRadioName = null, lastRadioElems = []
-            }
-
-            // More logic for radio inputs
-            if (el.tagName == "INPUT" && el.type == "radio") {
-                // Radio element, not part of the same group
-                lastRadioName = el.name
-                lastRadioElems.push(el)
-            } else dataElems.push(el) // Other element
-        }
-        // Make sure to use radio group
-        if (lastRadioName != null) {
-            dataElems.push(lastRadioElems)
-            lastRadioName = null, lastRadioElems = []
+            // Handle dropdowns differently
+            if (el.tagName == "SELECT") dataElems.push([...el.children])
+            else dataElems.push(el) // Other element
         }
     }
     
@@ -93,7 +72,7 @@ function setDataElemsDefaults () {
         if (el.type == "text" || el.type == "textarea") dataElemsDefaultVals.push(el.value)
         else if (el.type == "number") dataElemsDefaultVals.push(+el.value)
         else if (el.type == "checkbox") dataElemsDefaultVals.push(el.checked)
-        else if (el instanceof Array) dataElemsDefaultVals.push(el.findIndex(val => val.checked))
+        else if (el instanceof Array) dataElemsDefaultVals.push(el.findIndex(val => val.selected))
     }
 }
 function checkImportedFile () {
@@ -142,7 +121,7 @@ function importData (text) {
         if (elem.type == "text" || elem.type == "textarea") dataElems[i].value = val
         else if (elem.type == "number") dataElems[i].value = `${val}`
         else if (elem.type == "checkbox") dataElems[i].checked = val != 0
-        else if (elem instanceof Array) dataElems[i][val].checked = true
+        else if (elem instanceof Array) dataElems[i][val].selected = true
     }
 
     // Set defaults
@@ -162,7 +141,7 @@ function exportData () {
         if (elem.type == "text" || elem.type == "textarea") data[i] = val
         else if (elem.type == "number") data[i] = parseInt(val)
         else if (elem.type == "checkbox") data[i] = +elem.checked
-        else if (elem instanceof Array) data[i] = elem.findIndex(val => val.checked)
+        else if (elem instanceof Array) data[i] = elem.findIndex(val => val.selected)
     }
 
     let text = JSON.stringify([dataYear, (dataIsPit ? 1 : 0), ...data]).slice(1, -1)
@@ -219,7 +198,7 @@ function getFormChanged () {
         if (el.type == "text" || el.type == "textarea") changed = el.value != defaultVal
         else if (el.type == "number") changed = +el.value != defaultVal
         else if (el.type == "checkbox") changed = el.checked != defaultVal
-        else if (el instanceof Array) changed = el.findIndex(val => val.checked) != defaultVal
+        else if (el instanceof Array) changed = el.findIndex(val => val.selected) != defaultVal
 
         // Was the element changed?
         if (changed) return true
