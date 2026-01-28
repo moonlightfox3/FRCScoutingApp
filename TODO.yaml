@@ -4,6 +4,10 @@ Needs
             View data
             Change data
             Remove data
+    UI
+        Dropdowns instead of radio buttons (also more approximation probably)
+        Bigger buttons, text inputs, custom number inputs, dropdowns, checkboxes, text
+        Less alerts/confirms/prompts, more normal ui
 
 Wants
 
@@ -12,8 +16,4 @@ Luxuries
 Testing
 
 unsorted
-    dropdowns instead of radio buttons (also more approximation probably)
-    bigger buttons, text inputs, custom number inputs, dropdowns, checkboxes, text
-    less alerts/confirms/prompts, more normal ui
-
     custom url or maybe don't use github pages (github pages is blocked on school chromebooks)
