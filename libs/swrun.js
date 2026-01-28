@@ -1,7 +1,26 @@
 // Service worker messaging
-addEventListener("message", function (ev) {
-    console.debug(`Got message: '${ev.data.id}'`)
-})
+const broadcast = new BroadcastChannel("cl_sw-comms")
+broadcast.onmessage = function (ev) {
+    console.debug(`Got message: '${ev.data.type}'`)
+
+    if (ev.data.type == "github") {
+        commitId = ev.data.msg.commitId
+        commitDate = ev.data.msg.commitDate
+        deployedToPages = ev.data.msg.deployedToPages
+        showCommitUpdate()
+    }
+}
+
+// Page-specific things related to messaging
+let commitId = null
+let commitDate = null
+let deployedToPages = null
+function showCommitUpdate () {
+    // Show the update status element
+    if (document.querySelector("div#updateDateEl") == null) return
+    if (commitId != null) updateDateEl.innerText = `Commit ${commitId} (${commitDate})${deployedToPages ? "" : " - Updated content available soon"}`
+    else updateDateEl.innerText = "Failed to check GitHub. App may be loaded from your browser's offline cache"
+}
 
 // Register service worker
 let swRegistration = null
@@ -23,7 +42,7 @@ addEventListener("load", async function () {
     
     // Service worker setup
     await registerSw()
-    getSw().postMessage({id: "reload"})
+    broadcast.postMessage({id: "reload"})
 })
 async function unregisterSw () {
     try {

@@ -180,7 +180,9 @@ self.addEventListener("activate", function (ev) {
 })
 
 // Client messaging
-self.addEventListener("message", function (ev) {
-    console.debug(`[SW] Got message: '${ev.data.id}'`)
-    ev.source.postMessage({id: "test"})
-})
+const broadcast = new BroadcastChannel("cl_sw-comms")
+broadcast.onmessage = function (ev) {
+    console.debug(`[SW] Got message: '${ev.data.type}'`)
+    
+    if (ev.data.type == "reload") broadcast.postMessage({type: "github", msg: {commitId, commitDate, deployedToPages}})
+}

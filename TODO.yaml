@@ -19,5 +19,4 @@ unsorted
 
     2026 - scout human player data (how good at throwing fuel)
 
-    reduce github api requests - send messages between page and service worker?
     custom url or maybe don't use github pages (github pages is blocked on school chromebooks)
