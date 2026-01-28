@@ -157,6 +157,7 @@ self.addEventListener("install", function (ev) {
     ev.waitUntil((async function () {
         await getGithubData()
         console.debug(`[SW] GitHub commit ID: ${commitId}`)
+        console.debug(`[SW] GitHub commit date: ${commitDate}`)
         console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
 
         await getCache()
@@ -187,6 +188,10 @@ broadcast.onmessage = async function (ev) {
     
     if (ev.data.type == "reload") {
         await getGithubData()
+        console.debug(`[SW] GitHub commit ID: ${commitId}`)
+        console.debug(`[SW] GitHub commit date: ${commitDate}`)
+        console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
+        
         broadcast.postMessage({sender: "sw", type: "github", msg: {commitId, commitDate, deployedToPages}})
     }
 }
