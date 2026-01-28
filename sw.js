@@ -182,10 +182,11 @@ self.addEventListener("activate", function (ev) {
 // Client messaging
 const broadcast = new BroadcastChannel("cl_sw-comms")
 broadcast.onmessage = async function (ev) {
+    if (ev.data.sender = "sw") return
     console.debug(`[SW] Got message: '${ev.data.type}'`)
     
     if (ev.data.type == "reload") {
         await getGithubData()
-        broadcast.postMessage({type: "github", msg: {commitId, commitDate, deployedToPages}})
+        broadcast.postMessage({sender: "sw", type: "github", msg: {commitId, commitDate, deployedToPages}})
     }
 }

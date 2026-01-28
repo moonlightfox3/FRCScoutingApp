@@ -1,6 +1,7 @@
 // Service worker messaging
 const broadcast = new BroadcastChannel("cl_sw-comms")
 broadcast.onmessage = function (ev) {
+    if (ev.data.sender = "cl") return
     console.debug(`Got message: '${ev.data.type}'`)
 
     if (ev.data.type == "github") {
@@ -42,7 +43,7 @@ addEventListener("load", async function () {
     
     // Service worker setup
     await registerSw()
-    broadcast.postMessage({type: "reload"})
+    broadcast.postMessage({sender: "cl", type: "reload", msg: {}})
 })
 async function unregisterSw () {
     try {
