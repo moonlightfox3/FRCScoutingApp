@@ -1,10 +1,11 @@
 /* Buttons */
 button#refreshBtn, button#uploadBtn, button#clearBtn, button#openOneBtn, button#downloadOneBtn, button#deleteOneBtn {
-    background-color: lightgray;
+    background-color: darkgray;
     color: black;
     border-radius: 5px;
 }
 button#refreshBtn, button#uploadBtn, button#clearBtn, button#openOneBtn:not([disabled]), button#downloadOneBtn:not([disabled]), button#deleteOneBtn:not([disabled]) {
+    background-color: lightgray !important;
     cursor: pointer;
 }
 

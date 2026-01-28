@@ -1,9 +1,13 @@
 /* Inputs, buttons */
 input#emailInp, input#passwordInp, button#signInBtn, button#signOutBtn {
-    background-color: lightgray;
+    background-color: darkgray;
     color: black;
     border-radius: 5px;
 }
 button#signInBtn:not([disabled]), button#signOutBtn:not([disabled]) {
+    background-color: lightgray !important;
     cursor: pointer;
+}
+input#emailInp:not([disabled]), input#passwordInp:not([disabled]) {
+    background-color: lightgray;
 }
