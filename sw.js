@@ -106,6 +106,8 @@ async function deleteCache () {
 async function respondFromCache (request) {
     // Make sure the cache is updated
     if (cacheCommitId != commitId) {
+        console.debug("[SW] Cache is too old")
+
         await deleteCache()
         await createCache()
     }
@@ -175,4 +177,10 @@ self.addEventListener("activate", function (ev) {
         // Setup
         await self.clients.claim()
     })())
+})
+
+// Client messaging
+self.addEventListener("message", function (ev) {
+    console.debug(`[SW] Got message: '${ev.data.id}'`)
+    ev.source.postMessage({id: "test"})
 })

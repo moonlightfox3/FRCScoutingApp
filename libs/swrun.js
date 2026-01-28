@@ -1,3 +1,8 @@
+// Service worker messaging
+addEventListener("message", function (ev) {
+    console.debug(`Got message: '${ev.data.id}'`)
+})
+
 // Register service worker
 let swRegistration = null
 async function registerSw () {
@@ -18,6 +23,7 @@ addEventListener("load", async function () {
     
     // Service worker setup
     await registerSw()
+    getSw().postMessage({id: "reload"})
 })
 async function unregisterSw () {
     try {
