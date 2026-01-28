@@ -105,7 +105,7 @@ async function deleteCache () {
 // On request
 async function respondFromCache (request) {
     // Make sure the cache is updated
-    if (cacheCommitId != commitId) {
+    if (cacheCommitId != commitId && hasDeployedToPages) {
         console.debug("[SW] Cache is too old")
 
         await deleteCache()
