@@ -33,6 +33,9 @@ handleKey = function (key) {
     else if (key == keys.secondsBroken_31To60) breakSec60.checked = true
     else if (key == keys.secondsBroken_Over60) breakSecMore.checked = true
     else if (key == keys.secondsBroken_None) breakSecNone.checked = true
+    else if (key == keys.humanPlayerShotsMade_Most) humanMost.checked = true
+    else if (key == keys.humanPlayerShotsMade_Some) humanSome.checked = true
+    else if (key == keys.humanPlayerShotsMade_Few) humanNone.checked = true
 
     else return false
     return true

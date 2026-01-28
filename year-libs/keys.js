@@ -81,10 +81,13 @@ let allKeys = {
             secondsBroken_31To60: "8",
             secondsBroken_Over60: "9",
             secondsBroken_None: "0",
+            humanPlayerShotsMade_Most: "g",
+            humanPlayerShotsMade_Some: "h",
+            humanPlayerShotsMade_Few: "u",
             downloadData: "enter",
             saveDataInBrowser: "\\",
             // Unused keys:
-            //  g, h, u, i, v
+            //  i, v
             //  `, 1, 2, 5, 6, 7, -, =, [, ]
             //  Backspace
         },
