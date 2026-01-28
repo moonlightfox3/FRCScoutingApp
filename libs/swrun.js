@@ -1,7 +1,7 @@
 // Service worker messaging
 const broadcast = new BroadcastChannel("cl_sw-comms")
 broadcast.onmessage = function (ev) {
-    if (ev.data.sender = "cl") return
+    if (ev.data.sender == "cl") return
     console.debug(`Got message: '${ev.data.type}'`)
 
     if (ev.data.type == "github") {
