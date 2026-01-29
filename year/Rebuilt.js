@@ -18,15 +18,13 @@ handleKey = function (key) {
     else if (key == keys.climbHeight) modifyInputValueKeyboard(opClimb, autoClimb)
     else if (key == keys.fuelShot) modifyInputValueKeyboard(opBurstSize, autoShots, scoreBy10Keyboard ? 10 : 1)
     else if (key == keys.fuelMissed) modifyInputValueKeyboard(opBurstMisses, autoMisses, scoreBy10Keyboard ? 10 : 1)
-    else if (key == keys.teleopCycleTime_1To3) opCycleTime3.selected = true
-    else if (key == keys.teleopCycleTime_4To6) opCycleTime6.selected = true
-    else if (key == keys.teleopCycleTime_7To10) opCycleTime10.selected = true
-    else if (key == keys.teleopCycleTime_Over10) opCycleTimeMore.selected = true
-    else if (key == keys.playingDefenseStrength_VeryWeak) playDefStrenVWeak.selected = true
+    else if (key == keys.teleopCycleTime_1To10) opCycleTime10.selected = true
+    else if (key == keys.teleopCycleTime_11To20) opCycleTime20.selected = true
+    else if (key == keys.teleopCycleTime_21To30) opCycleTime30.selected = true
+    else if (key == keys.teleopCycleTime_Over30) opCycleTimeMore.selected = true
     else if (key == keys.playingDefenseStrength_Weak) playDefStrenWeak.selected = true
     else if (key == keys.playingDefenseStrength_Average) playDefStrenAvg.selected = true
     else if (key == keys.playingDefenseStrength_Strong) playDefStrenStrong.selected = true
-    else if (key == keys.playingDefenseStrength_VeryStrong) playDefStrenVStrong.selected = true
     else if (key == keys.playingDefenseStrength_None) playDefStrenNone.selected = true
     else if (key == keys.secondsBroken_1To10) breakSec10.selected = true
     else if (key == keys.secondsBroken_11To30) breakSec30.selected = true

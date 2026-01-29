@@ -66,16 +66,14 @@ let allKeys = {
             climbHeight: "s",
             fuelShot: "d",
             fuelMissed: "f",
-            teleopCycleTime_1To3: "q",
-            teleopCycleTime_4To6: "w",
-            teleopCycleTime_7To10: "e",
-            teleopCycleTime_Over10: "r",
-            playingDefenseStrength_VeryWeak: "n",
+            teleopCycleTime_1To10: "q",
+            teleopCycleTime_11To20: "w",
+            teleopCycleTime_21To30: "e",
+            teleopCycleTime_Over30: "r",
             playingDefenseStrength_Weak: "m",
             playingDefenseStrength_Average: ",",
             playingDefenseStrength_Strong: ".",
-            playingDefenseStrength_VeryStrong: "/",
-            playingDefenseStrength_None: "'",
+            playingDefenseStrength_None: "/",
             secondsBroken_1To10: "3",
             secondsBroken_11To30: "4",
             secondsBroken_31To60: "8",
@@ -87,7 +85,7 @@ let allKeys = {
             downloadData: "enter",
             saveDataInBrowser: "\\",
             // Unused keys:
-            //  i, v
+            //  i, v, n, '
             //  `, 1, 2, 5, 6, 7, -, =, [, ]
             //  Backspace
         },
