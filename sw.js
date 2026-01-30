@@ -134,7 +134,7 @@ self.addEventListener("fetch", function (ev) {
         // Should check the cache?
         let useCache = shouldUseCache(ev.request.url)
             
-        if (useCache)  return await respondFromCache(ev.request)
+        if (useCache) return await respondFromCache(ev.request)
         else {
             // Make a request
             console.debug("[SW] Fetching response")
