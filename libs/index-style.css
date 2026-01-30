@@ -32,6 +32,13 @@ button.year.unreleased {
 button.year[disabled] {
     cursor: default;
 }
+button:not(.year) {
+    font-size: 14.5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
 
 /* Year images */
 img.year-img {

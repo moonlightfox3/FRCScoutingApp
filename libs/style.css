@@ -20,7 +20,7 @@ html {
 body {
     width: calc(100% - 16px);
     height: calc(100% - 16px);
-    font-size: 17px;
+    font-size: 18px;
     
     position: absolute;
     left: 0;
@@ -31,17 +31,10 @@ body {
 }
 
 /* Generic elements */
-button {
-    font-size: 14.5px;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-}
-input:not([type]), input[type=password], input[type=number], button, textarea {
+input:not([type]), input[type=password], input[type=number], select, button, textarea {
     border: 1px solid gray;
 }
-input:not([type]), input[type=password], input[type=number] {
+input:not([type]), input[type=password], input[type=number], select {
     width: 160px;
 }
 select {

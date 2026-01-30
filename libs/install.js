@@ -29,7 +29,7 @@ else setThemeColor("darkviolet")
 
 // Install button
 let displayInstallButton = () => {}
-if (isPWA) resizeTo(1105, 590) // Window setup
+if (isPWA) resizeTo(1105, 605) // Window setup
 else {
     function showInstallButton (clickCallback = () => {}) {
         hideInstallButton()
