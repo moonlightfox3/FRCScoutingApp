@@ -1,3 +1,8 @@
+/* Main page setup */
+body {
+    font-size: 18px;
+}
+
 /* Year list */
 div#yearsEl {
     display: flex;
