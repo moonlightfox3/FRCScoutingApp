@@ -24,7 +24,14 @@ const excludeCacheResourceParts = [
 ]
 async function runPrecache () {
     console.debug("[SW] Precaching resources")
-    await cache.addAll(precacheResources.map(val => `/FRCScoutingApp${val}`))
+    await Promise.all(precacheResources.map(resource => (async () => await precacheResource(resource))))
+}
+async function precacheResource (resource) {
+    let url = `/FRCScoutingApp${resource}`
+    let resp = await fetch(url, {cache: "reload"})
+
+    if (!resp.ok) throw new TypeError("Failed to fetch")
+    await cache.put(url, resp)
 }
 function shouldUseCache (url) {
     for (let excludePart of excludeCacheResourceParts) {
