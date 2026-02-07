@@ -118,7 +118,7 @@ function getStoragePart (storage, part, partIsPit) {
     return files
 }
 async function userUploadToServer (files) {
-    if (!confirm("Upload all saved files to the server?")) return
+    if (!confirm(`Upload file${files.length > 1 ? "s" : ""} to the server?`)) return
     if (files.length == 0) return alert("There are no files to upload!")
     
     let isSignedIn = await isSignedInToSupabase()
@@ -147,10 +147,9 @@ async function userUploadStorageToServer () {
     return success
 }
 async function userUploadCurrentFileToServer () {
-    let file = exportData()
     let files = [{
         name: getDataFileName(),
-        data: file,
+        data: exportData(),
         is_pit: dataIsPit,
         year: dataYear,
     }]

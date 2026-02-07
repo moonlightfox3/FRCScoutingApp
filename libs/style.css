@@ -36,6 +36,9 @@ input:not([type]), input[type=password], input[type=number], select, button, tex
 input:not([type]), input[type=password], input[type=number], select {
     width: 160px;
 }
+input[type=checkbox], label[for] {
+    cursor: pointer;
+}
 select {
     background-color: lightgray;
     border-radius: 5px;
