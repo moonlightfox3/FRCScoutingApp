@@ -193,7 +193,7 @@ self.addEventListener("activate", function (ev) {
 const broadcast = new BroadcastChannel("cl_sw-comms")
 broadcast.onmessage = async function (ev) {
     if (ev.data.sender == "sw") return
-    console.debug(`[SW] Got message: '${ev.data.type}'`)
+    console.debug(`[SW] Got message: '${ev.data.type}'`, ev.data.msg)
     
     if (ev.data.type == "reload") {
         if (!didUpdate) {

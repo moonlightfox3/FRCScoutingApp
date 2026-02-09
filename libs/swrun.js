@@ -3,7 +3,7 @@ let didUpdate = null
 const broadcast = new BroadcastChannel("cl_sw-comms")
 broadcast.onmessage = function (ev) {
     if (ev.data.sender == "cl") return
-    console.debug(`Got message: '${ev.data.type}'`)
+    console.debug(`Got message: '${ev.data.type}'`, ev.data.msg)
 
     if (ev.data.type == "github") {
         commitId = ev.data.msg.commitId
