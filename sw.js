@@ -43,6 +43,8 @@ function shouldUseCache (url) {
 // Get the cache
 let cacheCommitId = null
 async function getCache () {
+    console.debug("[SW] Getting cache")
+
     // Reset variables
     cacheName = null
     cache = null
@@ -73,6 +75,8 @@ async function getCache () {
 let cacheName = null
 let cache = null
 async function createCache () {
+    console.debug("[SW] Creating cache")
+
     // Variables
     cacheName = `${cachePrefix}${commitId ?? `tmp${Date.now()}`}`
     cache = null
@@ -96,6 +100,8 @@ async function createCache () {
 
 // Delete the cache
 async function deleteCache () {
+    console.debug("[SW] Deleting cache")
+
     // Find the cache name (there should only be one)
     let names = await caches.keys()
     let relevantNames = names.filter(val => val.startsWith(cachePrefix))
@@ -111,6 +117,8 @@ async function deleteCache () {
 
 // On request
 async function checkCache () {
+    console.debug("[SW] Checking cache")
+
     // Make sure the cache is updated
     if (cacheCommitId != commitId && hasDeployedToPages) {
         console.debug("[SW] Cache is too old")
