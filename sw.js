@@ -26,6 +26,7 @@ const excludeCacheResourceParts = [
 async function runPrecache () {
     console.debug("[SW] Precaching resources")
     await Promise.all(precacheResources.map(resource => precacheResource(resource)))
+    console.debug("[SW] Precached resources")
 }
 async function precacheResource (resource) {
     let url = `/FRCScoutingApp${resource}`
@@ -100,7 +101,7 @@ async function createCache () {
 
 // Delete the cache
 async function deleteCache () {
-    console.debug("[SW] Deleting cache")
+    console.debug("[SW] Removing cache(s)")
 
     // Find the cache name (there should only be one)
     let names = await caches.keys()
@@ -125,7 +126,7 @@ async function checkCache () {
 
         await deleteCache()
         await createCache()
-    }
+    } else console.debug("[SW] Cache is good")
 }
 async function respondFromCache (request) {
     // Check if the response is already cached, return it if it is (otherwise return an error - it should be cached)
