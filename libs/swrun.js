@@ -1,4 +1,5 @@
 // Service worker messaging
+let didUpdate = null
 const broadcast = new BroadcastChannel("cl_sw-comms")
 broadcast.onmessage = function (ev) {
     if (ev.data.sender == "cl") return
@@ -8,6 +9,7 @@ broadcast.onmessage = function (ev) {
         commitId = ev.data.msg.commitId
         commitDate = ev.data.msg.commitDate
         deployedToPages = ev.data.msg.deployedToPages
+        didUpdate = ev.data.msg.didUpdate
         showCommitUpdate()
     }
 }
@@ -19,8 +21,8 @@ let deployedToPages = null
 function showCommitUpdate () {
     // Show the update status element
     if (document.querySelector("div#updateDateEl") == null) return
-    if (commitId != null) updateDateEl.innerText = `Commit ${commitId} (${commitDate})${deployedToPages ? "" : " - Updated content available soon"}`
-    else updateDateEl.innerText = "Failed to check GitHub. App may be loaded from your browser's offline cache"
+    if (commitId != null) updateDateEl.innerText = `Commit ${commitId} (${commitDate})${deployedToPages ? (didUpdate ? " - Reload app to update" : "") : " - App update available soon"}`
+    else updateDateEl.innerText = `Failed to check GitHub. App may be loaded from your browser's offline cache${didUpdate ? ". Reload app to update" : ""}`
 }
 
 // Register service worker
@@ -40,6 +42,7 @@ async function registerSw () {
 addEventListener("load", async function () {
     // Unrelated stuff :3
     if (!!parseInt(localStorage.getItem("FRCScoutingApp_lightMode"))) document.body.classList.add("light")
+    console.debug("App loaded")
     
     // Service worker setup
     await registerSw()

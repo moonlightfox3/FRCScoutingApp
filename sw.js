@@ -159,18 +159,13 @@ self.addEventListener("fetch", function (ev) {
 })
 
 // On install - Set up cache
+let didUpdate = false
 self.addEventListener("install", function (ev) {
     console.debug("[SW] Installing")
 
     ev.waitUntil((async function () {
-        await getGithubData()
-        console.debug(`[SW] GitHub commit ID: ${commitId}`)
-        console.debug(`[SW] GitHub commit date: ${commitDate}`)
-        console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
-
-        await getCache()
-        if (cache != null) await deleteCache()
-        await createCache()
+        await deleteCache()
+        didUpdate = true
         console.debug("[SW] Installed")
         
         // Setup
@@ -200,7 +195,8 @@ broadcast.onmessage = async function (ev) {
         console.debug(`[SW] GitHub commit date: ${commitDate}`)
         console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
         
-        broadcast.postMessage({sender: "sw", type: "github", msg: {commitId, commitDate, deployedToPages}})
+        broadcast.postMessage({sender: "sw", type: "github", msg: {commitId, commitDate, deployedToPages, didUpdate}})
+        didUpdate = false
         await checkCache()
     }
 }
