@@ -26,6 +26,9 @@ const excludeCacheResourceParts = [
     // Can cache:
     // "fonts.googleapis.com", "fonts.gstatic.com",
 ]
+const canFallbackFetchResourceParts = [
+    "fonts.googleapis.com", "fonts.gstatic.com",
+]
 async function runPrecache () {
     console.debug("[SW] Precaching resources")
     await Promise.all(precacheResources.map(resource => precacheResource(resource)))
@@ -42,6 +45,12 @@ function shouldUseCache (url) {
         if (url.includes(excludePart)) return false
     }
     return true
+}
+function canFallbackFetch (url) {
+    for (let fallbackPart of canFallbackFetchResourceParts) {
+        if (url.includes(fallbackPart)) return true
+    }
+    return false
 }
 
 // Get the cache
@@ -142,9 +151,9 @@ async function respondFromCache (request) {
         await getCache()
         if (cache == null) {
             await createCache()
-            if (cache == null) return Response.error()
+            if (cache == null) return null
             else return await respondFromCache(request)
-        } else return Response.error()
+        } else return null
     }
 }
 self.addEventListener("fetch", function (ev) {
@@ -154,19 +163,23 @@ self.addEventListener("fetch", function (ev) {
     ev.respondWith((async function () {
         // Should check the cache?
         let useCache = shouldUseCache(ev.request.url)
+        let canFallback = canFallbackFetch(ev.request.url)
             
-        if (useCache) return await respondFromCache(ev.request)
-        else {
-            // Make a request
-            console.debug("[SW] Fetching response")
+        if (useCache) {
+            let resp = await respondFromCache(ev.request)
+            if (!canFallback || resp != null) return resp
+            else console.debug("[SW] Response not in cache, fetching")
+        }
 
-            try {
-                let resp = await fetch(ev.request, {cache: "reload"})
-                return resp
-            } catch (er) {
-                console.debug("[SW] Network error")
-                return Response.error()
-            }
+        // Make a request
+        console.debug("[SW] Fetching response")
+
+        try {
+            let resp = await fetch(ev.request, {cache: "reload"})
+            return resp
+        } catch (er) {
+            console.debug("[SW] Network error")
+            return Response.error()
         }
     })())
 })
