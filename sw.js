@@ -109,7 +109,7 @@ async function deleteCache () {
 }
 
 // On request
-async function respondFromCache (request) {
+async function checkCache () {
     // Make sure the cache is updated
     if (cacheCommitId != commitId && hasDeployedToPages) {
         console.debug("[SW] Cache is too old")
@@ -117,8 +117,10 @@ async function respondFromCache (request) {
         await deleteCache()
         await createCache()
     }
-
+}
+async function respondFromCache (request) {
     // Check if the response is already cached, return it if it is (otherwise return an error - it should be cached)
+    await checkCache()
     let cachedResp = await caches.match(request)
     if (cachedResp != null) {
         console.debug("[SW] Responding from cache")
@@ -199,5 +201,6 @@ broadcast.onmessage = async function (ev) {
         console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
         
         broadcast.postMessage({sender: "sw", type: "github", msg: {commitId, commitDate, deployedToPages}})
+        await checkCache()
     }
 }
