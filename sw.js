@@ -1,4 +1,5 @@
 // Imports
+console.debug("[SW] Script loaded")
 importScripts("/FRCScoutingApp/libs/github.js")
 
 // Caching
@@ -196,6 +197,7 @@ broadcast.onmessage = async function (ev) {
     console.debug(`[SW] Got message: '${ev.data.type}'`, ev.data.msg)
     
     if (ev.data.type == "reload") {
+        await getCache()
         if (!didUpdate) {
             await getGithubData()
             console.debug(`[SW] GitHub commit ID: ${commitId}`)
@@ -205,7 +207,6 @@ broadcast.onmessage = async function (ev) {
         
         broadcast.postMessage({sender: "sw", type: "github", msg: {commitId, commitDate, deployedToPages, didUpdate}})
         if (deployedToPages) didUpdate = false
-        await getCache()
         await checkCache()
     }
 }
