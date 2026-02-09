@@ -176,10 +176,10 @@ function onFetchHandler (ev) {
 
         try {
             let resp = await fetch(ev.request, {cache: "reload"})
-            if (useCache && resp.ok) {
+            if (useCache) {
                 console.debug("[SW] Caching response")
                 await cache.put(ev.request.url, resp.clone())
-            } else console.debug("[SW] Could not cache response", resp)
+            }
             return resp
         } catch (er) {
             console.debug("[SW] Network error")
