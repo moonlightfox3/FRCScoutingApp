@@ -176,7 +176,10 @@ self.addEventListener("fetch", function (ev) {
 
         try {
             let resp = await fetch(ev.request, {cache: "reload"})
-            if (useCache && resp.ok) await cache.put(ev.request.url, resp.clone())
+            if (useCache && resp.ok) {
+                console.debug("[SW] Caching response")
+                await cache.put(ev.request.url, resp.clone())
+            }
             return resp
         } catch (er) {
             console.debug("[SW] Network error")
