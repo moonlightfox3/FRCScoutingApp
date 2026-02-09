@@ -1,9 +1,8 @@
 Needs
-    Server - Supabase
-        Client UI - Data summary page
-            View data
-            Change data
-            Remove data
+    Client UI - Data summary page
+        View data
+        Change data
+        Remove data
 
 Wants
 
