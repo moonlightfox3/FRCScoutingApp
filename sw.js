@@ -55,8 +55,8 @@ async function getCache () {
     let names = await caches.keys()
     let relevantNames = names.filter(val => val.startsWith(cachePrefix))
     if (relevantNames.length > 1) {
-        for (let relevantName of relevantNames) await caches.delete(relevantName)
         console.debug("[SW] Too many caches")
+        for (let relevantName of relevantNames) await caches.delete(relevantName)
         return
     }
 
@@ -87,8 +87,8 @@ async function createCache () {
     let names = await caches.keys()
     let relevantNames = names.filter(val => val.startsWith(cachePrefix)).filter(val => val != cacheName)
     if (relevantNames.length > 1) {
+        console.debug("[SW] Removing old cache(s)")
         for (let relevantName of relevantNames) await caches.delete(relevantName)
-        console.debug("[SW] Removed old cache(s)")
     }
 
     // Find the cache, create one if there isn't one already
@@ -121,7 +121,7 @@ async function checkCache () {
     console.debug("[SW] Checking cache")
 
     // Make sure the cache is updated
-    if (cacheCommitId != commitId && hasDeployedToPages) {
+    if (cacheCommitId != commitId && deployedToPages) {
         console.debug("[SW] Cache is too old")
 
         await deleteCache()
