@@ -168,7 +168,7 @@ self.addEventListener("fetch", function (ev) {
         if (useCache) {
             let resp = await respondFromCache(ev.request)
             if (!canFallback || resp != null) return resp
-            else console.debug("[SW] Response not in cache, fetching")
+            else console.debug("[SW] Response not in cache, fetching and caching")
         }
 
         // Make a request
@@ -176,6 +176,7 @@ self.addEventListener("fetch", function (ev) {
 
         try {
             let resp = await fetch(ev.request, {cache: "reload"})
+            if (useCache && resp.ok) await cache.put(ev.request.url, resp)
             return resp
         } catch (er) {
             console.debug("[SW] Network error")
