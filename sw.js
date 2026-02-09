@@ -204,7 +204,7 @@ broadcast.onmessage = async function (ev) {
         }
         
         broadcast.postMessage({sender: "sw", type: "github", msg: {commitId, commitDate, deployedToPages, didUpdate}})
-        didUpdate = false
+        if (deployedToPages) didUpdate = false
         await checkCache()
     }
 }
