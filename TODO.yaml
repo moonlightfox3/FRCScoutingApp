@@ -6,9 +6,6 @@ Needs
             Remove data
 
 Wants
-    Service worker
-        Makes several duplicate requests on update
-            Fetch handler doesn't wait for respondWith, so the cache is detected as old multiple times and recreated multiple times
 
 Luxuries
 
