@@ -20,8 +20,11 @@ const precacheResources = [ // No need to precache some resources, but might as 
     // "/README.md", "/TODO.yaml",
 ]
 const excludeCacheResourceParts = [
-    "fonts.googleapis.com", "fonts.gstatic.com", "github.com",
+    "github.com",
     "unpkg.com", "supabase",
+    
+    // Can cache:
+    // "fonts.googleapis.com", "fonts.gstatic.com",
 ]
 async function runPrecache () {
     console.debug("[SW] Precaching resources")
