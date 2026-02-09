@@ -156,7 +156,7 @@ async function respondFromCache (request) {
         } else return null
     }
 }
-self.addEventListener("fetch", function (ev) {
+function onFetchHandler (ev) {
     console.debug(`[SW] Got request: ${ev.request.url}`)
 
     // Need to do async work
@@ -186,11 +186,12 @@ self.addEventListener("fetch", function (ev) {
             return Response.error()
         }
     })())
-})
+}
+self.addEventListener("fetch", onFetchHandler)
 
 // On install - Set up cache
 let didUpdate = false
-self.addEventListener("install", function (ev) {
+function onInstallHandler (ev) {
     console.debug("[SW] Installing")
 
     ev.waitUntil((async function () {
@@ -207,8 +208,9 @@ self.addEventListener("install", function (ev) {
         // Setup
         await self.skipWaiting()
     })())
-})
-self.addEventListener("activate", function (ev) {
+}
+self.addEventListener("install", onInstallHandler)
+function onActivateHandler (ev) {
     console.debug("[SW] Activating")
 
     ev.waitUntil((async function () {
@@ -217,7 +219,8 @@ self.addEventListener("activate", function (ev) {
         // Setup
         await self.clients.claim()
     })())
-})
+}
+self.addEventListener("activate", onActivateHandler)
 
 // Client messaging
 const broadcast = new BroadcastChannel("cl_sw-comms")
