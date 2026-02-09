@@ -164,7 +164,13 @@ self.addEventListener("install", function (ev) {
     console.debug("[SW] Installing")
 
     ev.waitUntil((async function () {
+        await getGithubData()
+        console.debug(`[SW] GitHub commit ID: ${commitId}`)
+        console.debug(`[SW] GitHub commit date: ${commitDate}`)
+        console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
+
         await deleteCache()
+        await createCache()
         didUpdate = true
         console.debug("[SW] Installed")
         
@@ -190,10 +196,12 @@ broadcast.onmessage = async function (ev) {
     console.debug(`[SW] Got message: '${ev.data.type}'`)
     
     if (ev.data.type == "reload") {
-        await getGithubData()
-        console.debug(`[SW] GitHub commit ID: ${commitId}`)
-        console.debug(`[SW] GitHub commit date: ${commitDate}`)
-        console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
+        if (!didUpdate) {
+            await getGithubData()
+            console.debug(`[SW] GitHub commit ID: ${commitId}`)
+            console.debug(`[SW] GitHub commit date: ${commitDate}`)
+            console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
+        }
         
         broadcast.postMessage({sender: "sw", type: "github", msg: {commitId, commitDate, deployedToPages, didUpdate}})
         didUpdate = false
