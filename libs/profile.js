@@ -14,8 +14,13 @@ function createProfileMenus () {
     profileExpand.id = "profileExpand"
     profileExpand.innerHTML = "<b>i</b>"
 
+    // Reload button
+    let profileReload = document.createElement("div")
+    profileReload.id = "profileReload"
+    profileReload.innerHTML = "<b>↻</b>"
+
     // Add profile bar to document, profile bar open/close button functionality
-    document.body.append(profile, profileExpand)
+    document.body.append(profile, profileExpand, profileReload)
     profileExpand.onclick = function () {
         profileExpanded = !profileExpanded
         if (profileExpanded) {
@@ -25,6 +30,9 @@ function createProfileMenus () {
             updateDateEl.style.display = "block"
             profile.style.display = "none"
         }
+    }
+    profileReload.onclick = function () {
+        location.reload()
     }
 
     // Settings menu
