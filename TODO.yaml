@@ -1,13 +1,9 @@
 Needs
     Client UI - Data summary page
-        View data
-        Change data
-        Remove data
+        View/change/remove data
+            Can focus on specific teams too
 
 Wants
-    Service worker
-        Makes several duplicate requests on update
-            Fetch handler doesn't wait for respondWith, so the cache is detected as old multiple times and recreated multiple times
 
 Luxuries
 
