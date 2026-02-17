@@ -93,6 +93,8 @@ ${keysToHtmlStr(2026, true)}
             localStorage.setItem("FRCScoutingApp_lightMode", "1")
         }
     }
+    // Debug mode functionality
+    debugModeToggle.onchange = () => debugMode(debugModeToggle.checked)
 }
 
 // Get a list of keys as a string
