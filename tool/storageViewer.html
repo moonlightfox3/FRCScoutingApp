@@ -10,7 +10,7 @@
 
 <a href="../index.html"><button id="backBtn">Back</button></a> | <button id="refreshBtn">Refresh</button><button id="uploadBtn">Upload all</button><button id="clearBtn">Delete all</button> | Browser Storage Viewer
 <hr>
-<button id="openOneBtn" disabled>Open file</button><button id="downloadOneBtn" disabled>Download file</button><button id="deleteOneBtn" disabled>Delete file</button>
+<button id="openOneBtn" disabled>Open file</button><button id="downloadOneBtn" disabled>Download file</button><button id="uploadOneBtn" disabled>Upload file</button><button id="deleteOneBtn" disabled>Delete file</button>
 <hr>
 <div id="displayEl">
     Match files:
@@ -55,6 +55,7 @@
                     if (selectedLi == null) {
                         openOneBtn.disabled = false
                         downloadOneBtn.disabled = false
+                        uploadOneBtn.disabled = false
                         deleteOneBtn.disabled = false
                     } else selectedLi.style.listStyleType = "circle"
                     this.style.listStyleType = "disc"
@@ -69,8 +70,7 @@
     refreshBtn.onclick = () => displayStorage()
 
     uploadBtn.onclick = async function () {
-        let success = await userUploadStorageToServer()
-        if (success) displayStorage()
+        await userUploadStorageToServer()
     }
     clearBtn.onclick = function () {
         if (!confirm("Are you sure you want to delete all of the saved files?")) return
@@ -85,6 +85,7 @@
             
             openOneBtn.disabled = true
             downloadOneBtn.disabled = true
+            uploadOneBtn.disabled = true
             deleteOneBtn.disabled = true
         }
     }
@@ -100,6 +101,18 @@
         a.download = match.name
         a.href = `data:text/plain;base64,${btoa(match.data)}`
         a.click()
+    }
+    uploadOneBtn.onclick = async function () {
+        let {match, storage, part, year, i} = liDataList[+selectedLi.dataset.index]
+
+        let datas = match.data.split(",")
+        await userUploadFileToServer({
+            name: match.name,
+            data: match.data,
+            is_pit: +datas[1] == 1,
+            year: +datas[0],
+            team: +(datas[2].slice(1, -1)),
+        })
     }
     deleteOneBtn.onclick = function () {
         if (!confirm("Are you sure you want to delete this file?")) return

@@ -142,9 +142,6 @@ async function userUploadToServer (files) {
 async function userUploadStorageToServer () {
     let files = getStorage()
     let success = await userUploadToServer(files)
-    if (success) {
-        if (confirm(`Delete locally saved file${files.length > 1 ? "s" : ""}?`)) clearFileStorage()
-    }
     return success
 }
 async function userUploadCurrentFileToServer () {
@@ -156,6 +153,10 @@ async function userUploadCurrentFileToServer () {
         team: dataChangingTeam ?? 0,
     }]
     let success = await userUploadToServer(files)
+    return success
+}
+async function userUploadFileToServer (file) {
+    let success = await userUploadToServer([file])
     return success
 }
 
