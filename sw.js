@@ -4,7 +4,7 @@ importScripts("/FRCScoutingApp/libs/github.js")
 
 // Caching
 const cachePrefix = "FRCScoutingApp_"
-const precacheResources = [ // No need to precache some resources, but might as well precache almost everything
+const precacheResources = [
     "/sw.js", "/manifest.json", "/index.html",
     "/libs/datafile.js", "/libs/elements.js", "/libs/gamepadControl.js", "/libs/gamepads.js", "/libs/github.js", "/libs/install.js", "/libs/profile.js", "/libs/server.js", "/libs/swrun.js", "/libs/style.css", "/libs/index-style.css",
     "/year/Placeholder.html", "/year/Placeholder.js", "/year/Reefscape.html", "/year/Reefscape.js", "/year/Rebuilt.html", "/year/Rebuilt.js",
