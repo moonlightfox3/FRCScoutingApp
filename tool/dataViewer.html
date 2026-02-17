@@ -1,0 +1,31 @@
+<!doctype html>
+<title>Data Viewer</title>
+<link rel="icon" href="../icons/icon.svg">
+<link rel="apple-touch-icon" sizes="1024x1024" href="../icons/apple-touch-icon-1024x1024.png">
+<link rel="manifest" href="../manifest.json">
+<link rel="stylesheet" href="../libs/style.css">
+<link rel="stylesheet" href="./dataViewer-style.css">
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="../libs/server.js"></script>
+
+<a href="../index.html"><button id="backBtn">Back</button></a> | Data Viewer
+<hr>
+<span id="loadingEl">Connecting to server...</span>
+<hr>
+<div id="mainContent">
+    PLACEHOLDER
+</div>
+
+<script src="../libs/swrun.js"></script>
+<script src="../libs/install.js"></script>
+<script>
+    async function checkSignIn () {
+        let signedIn = await isSignedInToSupabase()
+        loadingEl.innerText = `Signed ${signedIn ? "in" : "out"}`
+
+        if (signedIn) mainContent.style.display = "block"
+    }
+    onSupabaseLoaded = async function () {
+        await checkSignIn()
+    }
+</script>
