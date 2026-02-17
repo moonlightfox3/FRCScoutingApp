@@ -4,6 +4,7 @@ Needs
             Can focus on specific teams too
 
 Wants
+    Service worker refetches data a lot - probably requests come in in parallel and updates multiple times?
 
 Luxuries
 

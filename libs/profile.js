@@ -48,7 +48,7 @@ profileSettings.innerHTML = `\
 
 <center>
     <b>General settings</b><br>
-    <input type="checkbox" id="darkModeToggle"${!!parseInt(localStorage.getItem("FRCScoutingApp_lightMode")) ? "" : " checked"}><label for="darkModeToggle"> Dark mode</label>
+    <input type="checkbox" id="darkModeToggle"${!!parseInt(localStorage.getItem("FRCScoutingApp_lightMode")) ? "" : " checked"}><label for="darkModeToggle"> Dark mode</label><br>
     <input type="checkbox" id="debugModeToggle"${!!parseInt(localStorage.getItem("FRCScoutingApp_debugMode")) ? " checked" : ""}><label for="debugModeToggle"> Debug mode</label>
 </center>
 <hr>
