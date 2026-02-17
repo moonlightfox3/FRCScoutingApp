@@ -1,6 +1,6 @@
 // Imports
-log("[SW] Script loaded")
 importScripts("/FRCScoutingApp/libs/debug.js", "/FRCScoutingApp/libs/github.js")
+log("[SW] Script loaded")
 
 // Caching
 const cachePrefix = "FRCScoutingApp_"
