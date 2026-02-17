@@ -6,7 +6,7 @@ importScripts("/FRCScoutingApp/libs/github.js")
 const cachePrefix = "FRCScoutingApp_"
 const precacheResources = [
     "/sw.js", "/manifest.json", "/index.html",
-    "/libs/datafile.js", "/libs/elements.js", "/libs/gamepadControl.js", "/libs/gamepads.js", "/libs/github.js", "/libs/install.js", "/libs/profile.js", "/libs/server.js", "/libs/swrun.js", "/libs/style.css", "/libs/index-style.css",
+    "/libs/datafile.js", "/libs/debug.js", "/libs/elements.js", "/libs/gamepadControl.js", "/libs/gamepads.js", "/libs/github.js", "/libs/install.js", "/libs/profile.js", "/libs/server.js", "/libs/swrun.js", "/libs/style.css", "/libs/index-style.css",
     "/year/Placeholder.html", "/year/Placeholder.js", "/year/Reefscape.html", "/year/Reefscape.js", "/year/Rebuilt.html", "/year/Rebuilt.js",
     "/year-pit/Placeholder.html", "/year-pit/Placeholder.js", "/year-pit/Rebuilt.html", "/year-pit/Rebuilt.js",
     "/year-libs/keys.js", "/year-libs/years.js", "/year-libs/style.css",
