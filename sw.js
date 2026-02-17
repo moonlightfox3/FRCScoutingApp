@@ -14,14 +14,12 @@ const precacheResources = [
     "/icons/icon.svg", "/icons/apple-touch-icon-1024x1024.png",
     "/year-img/Reefscape.png", "/year-img/Rebuilt.png",
 
-    // Don't precache:
     // "/README.md", "/TODO.yaml",
 ]
 const excludeCacheResourceParts = [
     "github.com",
     "unpkg.com", "supabase",
     
-    // Can cache:
     // "fonts.googleapis.com", "fonts.gstatic.com",
 ]
 const canFallbackFetchResourceParts = [
