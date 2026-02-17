@@ -197,6 +197,8 @@ function onInstallHandler (ev) {
     console.debug("[SW] Installing")
 
     ev.waitUntil((async function () {
+        didUpdate = true
+
         await getGithubData()
         console.debug(`[SW] GitHub commit ID: ${commitId}`)
         console.debug(`[SW] GitHub commit date: ${commitDate}`)
@@ -204,7 +206,7 @@ function onInstallHandler (ev) {
 
         await deleteCache()
         await createCache()
-        didUpdate = true
+        console.debug(`[SW] Cache commit ID: ${cacheCommitId}`)
         console.debug("[SW] Installed")
         
         // Setup
@@ -237,6 +239,7 @@ broadcast.onmessage = async function (ev) {
             console.debug(`[SW] GitHub commit ID: ${commitId}`)
             console.debug(`[SW] GitHub commit date: ${commitDate}`)
             console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
+            console.debug(`[SW] Cache commit ID: ${cacheCommitId}`)
         }
         
         broadcast.postMessage({sender: "sw", type: "github", msg: {commitId, commitDate, deployedToPages, didUpdate: didUpdate || !(await checkCache())}})
