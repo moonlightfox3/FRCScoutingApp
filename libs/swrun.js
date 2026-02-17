@@ -21,8 +21,8 @@ let deployedToPages = null
 function showCommitUpdate () {
     // Show the update status element
     if (document.querySelector("div#updateDateEl") == null) return
-    if (commitId != null) updateDateEl.innerText = `Commit ${commitId} (${commitDate})${deployedToPages ? (didUpdate ? " - Reload app to update" : "") : " - App update available soon"}`
-    else updateDateEl.innerText = `Failed to check GitHub. App may be loaded from your browser's offline cache${didUpdate ? ". Reload app to update" : ""}`
+    if (commitId != null) updateDateEl.innerText = `Commit ${commitId} (${commitDate})${deployedToPages ? (didUpdate ? " - Reload app to finish update" : "") : " - App update available soon"}`
+    else updateDateEl.innerText = `Failed to check GitHub. App may be loaded from your browser's offline cache${didUpdate ? ". Reload app to finish update" : ""}`
 }
 
 // Register service worker
