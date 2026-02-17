@@ -229,6 +229,8 @@ broadcast.onmessage = async function (ev) {
     log(`[SW] Got message: '${ev.data.type}'`, ev.data.msg)
     
     if (ev.data.type == "reload") {
+        debugMode(ev.data.msg.isDebugMode, false, false)
+
         await getCache()
         if (!didUpdate) {
             await getGithubData()

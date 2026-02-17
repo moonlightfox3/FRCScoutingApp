@@ -47,7 +47,7 @@ addEventListener("load", async function () {
     
     // Service worker setup
     await registerSw()
-    broadcast.postMessage({sender: "cl", type: "reload", msg: {}})
+    broadcast.postMessage({sender: "cl", type: "reload", msg: {isDebugMode}})
 })
 async function unregisterSw () {
     try {

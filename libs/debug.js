@@ -1,6 +1,6 @@
 // Debug mode
 let isDebugMode = false
-function debugMode (isDebug, store = true) {
+function debugMode (isDebug, store = true, apply = true) {
     if (isDebugMode == isDebug) return
     isDebugMode = isDebug
     
@@ -9,15 +9,25 @@ function debugMode (isDebug, store = true) {
         if (isDebugMode) localStorage.setItem("FRCScoutingApp_debugMode", "1")
         else localStorage.removeItem("FRCScoutingApp_debugMode")
     }
-    onApplyDebugMode()
+    onApplyDebugMode(apply)
 }
-function onApplyDebugMode () {
-    if (isDebugMode) document.body.classList.add("debug")
-    else document.body.classList.remove("debug")
+function onApplyDebugMode (apply = true) {
+    if (apply) {
+        // Apply to document
+        if (isDebugMode) document.body.classList.add("debug")
+        else document.body.classList.remove("debug")
+    }
+
+    if (isDebugMode) {
+        for (let log of storedDebugLogs) console.debug(...log)
+        storedDebugLogs = []
+    }
     log(`Debug mode: ${isDebugMode}`)
 }
 
 // Debug logging
+let storedDebugLogs = []
 function log (...args) {
     if (isDebugMode) console.debug(...args)
+    else storedDebugLogs.push(args)
 }
