@@ -31,6 +31,6 @@ function onApplyDebugMode (apply = true) {
 // Debug logging
 let storedDebugLogs = []
 function log (...args) {
-    if (isDebugMode) console.debug(...args)
+    if (isDebugMode) console.debug(`(${Date.now()})`, ...args)
     else storedDebugLogs.push(args)
 }
