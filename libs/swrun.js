@@ -3,7 +3,7 @@ let didUpdate = null
 const broadcast = new BroadcastChannel("cl_sw-comms")
 broadcast.onmessage = function (ev) {
     if (ev.data.sender == "cl") return
-    console.debug(`Got message: '${ev.data.type}'`, ev.data.msg)
+    log(`Got message: '${ev.data.type}'`, ev.data.msg)
 
     if (ev.data.type == "github") {
         commitId = ev.data.msg.commitId
@@ -28,22 +28,22 @@ function showCommitUpdate () {
 // Register service worker
 let swRegistration = null
 async function registerSw () {
-    if (!("serviceWorker" in navigator)) return console.debug("Service worker not supported")
+    if (!("serviceWorker" in navigator)) return log("Service worker not supported")
     
     try {
         swRegistration = await navigator.serviceWorker.register("/FRCScoutingApp/sw.js", {scope: "/FRCScoutingApp/"})
         await swRegistration.update()
     } catch (er) {
-        console.debug("Error while registering service worker")
+        log("Error while registering service worker")
         return
     }
-    console.debug("Registered service worker")
+    log("Registered service worker")
 }
 addEventListener("load", async function () {
     // Unrelated stuff :3
     if (!!parseInt(localStorage.getItem("FRCScoutingApp_lightMode"))) document.body.classList.add("light")
     debugMode(!!parseInt(localStorage.getItem("FRCScoutingApp_debugMode")), false)
-    console.debug("App loaded")
+    log("App loaded")
     
     // Service worker setup
     await registerSw()

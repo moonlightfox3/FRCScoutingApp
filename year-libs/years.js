@@ -1,4 +1,4 @@
-console.debug("Loading default year code")
+log("Loading default year code")
 
 // Externally set config
 let keys = null // 'invertAction', 'switchStage_Teleop', 'switchStage_Auto', 'downloadData', and 'saveDataInBrowser' are required here

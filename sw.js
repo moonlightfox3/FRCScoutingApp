@@ -1,5 +1,5 @@
 // Imports
-console.debug("[SW] Script loaded")
+log("[SW] Script loaded")
 importScripts("/FRCScoutingApp/libs/github.js")
 
 // Caching
@@ -24,9 +24,9 @@ const canFallbackFetchResourceParts = [
     "fonts.googleapis.com", "fonts.gstatic.com",
 ]
 async function runPrecache () {
-    console.debug("[SW] Precaching resources")
+    log("[SW] Precaching resources")
     await Promise.all(precacheResources.map(resource => precacheResource(resource)))
-    console.debug("[SW] Precached resources")
+    log("[SW] Precached resources")
 }
 async function precacheResource (resource) {
     let url = `/FRCScoutingApp${resource}`
@@ -50,7 +50,7 @@ function canFallbackFetch (url) {
 // Get the cache
 let cacheCommitId = null
 async function getCache () {
-    console.debug("[SW] Getting cache")
+    log("[SW] Getting cache")
 
     // Reset variables
     cacheName = null
@@ -61,28 +61,28 @@ async function getCache () {
     let names = await caches.keys()
     let relevantNames = names.filter(val => val.startsWith(cachePrefix))
     if (relevantNames.length > 1) {
-        console.debug("[SW] Too many caches")
+        log("[SW] Too many caches")
         for (let relevantName of relevantNames) await caches.delete(relevantName)
         return
     }
 
     // Make sure a cache exists
     let name = relevantNames[0]
-    if (name == null) return console.debug("[SW] No valid cache")
+    if (name == null) return log("[SW] No valid cache")
 
     // Set variables
     cacheCommitId = name.substring(name.indexOf("_") + 1)
     cacheName = `${cachePrefix}${cacheCommitId}`
     cache = await caches.open(cacheName)
 
-    console.debug("[SW] Got cache")
+    log("[SW] Got cache")
 }
 
 // Create the cache
 let cacheName = null
 let cache = null
 async function createCache () {
-    console.debug("[SW] Creating cache")
+    log("[SW] Creating cache")
 
     // Variables
     cacheName = `${cachePrefix}${commitId ?? `tmp${Date.now()}`}`
@@ -93,13 +93,13 @@ async function createCache () {
     let names = await caches.keys()
     let relevantNames = names.filter(val => val.startsWith(cachePrefix)).filter(val => val != cacheName)
     if (relevantNames.length > 1) {
-        console.debug("[SW] Removing old cache(s)")
+        log("[SW] Removing old cache(s)")
         for (let relevantName of relevantNames) await caches.delete(relevantName)
     }
 
     // Find the cache, create one if there isn't one already
     cache = await caches.open(cacheName)
-    console.debug("[SW] Created cache")
+    log("[SW] Created cache")
     
     // Precache
     await runPrecache()
@@ -107,7 +107,7 @@ async function createCache () {
 
 // Delete the cache
 async function deleteCache () {
-    console.debug("[SW] Removing cache(s)")
+    log("[SW] Removing cache(s)")
 
     // Find the cache name (there should only be one)
     let names = await caches.keys()
@@ -119,22 +119,22 @@ async function deleteCache () {
     cache = null
     cacheCommitId = null
 
-    console.debug("[SW] Removed cache(s)")
+    log("[SW] Removed cache(s)")
 }
 
 // On request
 async function checkCache () {
-    console.debug("[SW] Checking cache")
+    log("[SW] Checking cache")
 
     // Make sure the cache is updated
     if (cacheCommitId != commitId && deployedToPages) {
-        console.debug("[SW] Cache is too old")
+        log("[SW] Cache is too old")
 
         await deleteCache()
         await createCache()
         return false
     } else {
-        console.debug("[SW] Cache is good")
+        log("[SW] Cache is good")
         return true
     }
 }
@@ -143,7 +143,7 @@ async function respondFromCache (request) {
     await checkCache()
     let cachedResp = await caches.match(request)
     if (cachedResp != null) {
-        console.debug("[SW] Responding from cache")
+        log("[SW] Responding from cache")
         return cachedResp
     } else {
         await getCache()
@@ -155,7 +155,7 @@ async function respondFromCache (request) {
     }
 }
 function onFetchHandler (ev) {
-    console.debug(`[SW] Got request: ${ev.request.url}`)
+    log(`[SW] Got request: ${ev.request.url}`)
 
     // Need to do async work
     ev.respondWith((async function () {
@@ -166,21 +166,21 @@ function onFetchHandler (ev) {
         if (useCache) {
             let resp = await respondFromCache(ev.request)
             if (!canFallback || resp != null) return resp
-            else console.debug("[SW] Response not in cache, fetching and caching")
+            else log("[SW] Response not in cache, fetching and caching")
         }
 
         // Make a request
-        console.debug("[SW] Fetching response")
+        log("[SW] Fetching response")
 
         try {
             let resp = await fetch(ev.request, {cache: "reload"})
             if (useCache) {
-                console.debug("[SW] Caching response")
+                log("[SW] Caching response")
                 await cache.put(ev.request.url, resp.clone())
             }
             return resp
         } catch (er) {
-            console.debug("[SW] Network error")
+            log("[SW] Network error")
             return Response.error()
         }
     })())
@@ -190,20 +190,20 @@ self.addEventListener("fetch", onFetchHandler)
 // On install - Set up cache
 let didUpdate = false
 function onInstallHandler (ev) {
-    console.debug("[SW] Installing")
+    log("[SW] Installing")
 
     ev.waitUntil((async function () {
         didUpdate = true
 
         await getGithubData()
-        console.debug(`[SW] GitHub commit ID: ${commitId}`)
-        console.debug(`[SW] GitHub commit date: ${commitDate}`)
-        console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
+        log(`[SW] GitHub commit ID: ${commitId}`)
+        log(`[SW] GitHub commit date: ${commitDate}`)
+        log(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
 
         await deleteCache()
         await createCache()
-        console.debug(`[SW] Cache commit ID: ${cacheCommitId}`)
-        console.debug("[SW] Installed")
+        log(`[SW] Cache commit ID: ${cacheCommitId}`)
+        log("[SW] Installed")
         
         // Setup
         await self.skipWaiting()
@@ -211,10 +211,10 @@ function onInstallHandler (ev) {
 }
 self.addEventListener("install", onInstallHandler)
 function onActivateHandler (ev) {
-    console.debug("[SW] Activating")
+    log("[SW] Activating")
 
     ev.waitUntil((async function () {
-        console.debug("[SW] Activated")
+        log("[SW] Activated")
         
         // Setup
         await self.clients.claim()
@@ -226,16 +226,16 @@ self.addEventListener("activate", onActivateHandler)
 const broadcast = new BroadcastChannel("cl_sw-comms")
 broadcast.onmessage = async function (ev) {
     if (ev.data.sender == "sw") return
-    console.debug(`[SW] Got message: '${ev.data.type}'`, ev.data.msg)
+    log(`[SW] Got message: '${ev.data.type}'`, ev.data.msg)
     
     if (ev.data.type == "reload") {
         await getCache()
         if (!didUpdate) {
             await getGithubData()
-            console.debug(`[SW] GitHub commit ID: ${commitId}`)
-            console.debug(`[SW] GitHub commit date: ${commitDate}`)
-            console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
-            console.debug(`[SW] Cache commit ID: ${cacheCommitId}`)
+            log(`[SW] GitHub commit ID: ${commitId}`)
+            log(`[SW] GitHub commit date: ${commitDate}`)
+            log(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
+            log(`[SW] Cache commit ID: ${cacheCommitId}`)
         }
         
         broadcast.postMessage({sender: "sw", type: "github", msg: {commitId, commitDate, deployedToPages, didUpdate: didUpdate || !(await checkCache())}})

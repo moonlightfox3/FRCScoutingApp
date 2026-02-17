@@ -13,7 +13,10 @@ function debugMode (isDebug, store = true) {
 function onApplyDebugMode () {
     if (isDebugMode) document.body.classList.add("debug")
     else document.body.classList.remove("debug")
-    console.debug(`Debug mode: ${isDebugMode}`)
+    log(`Debug mode: ${isDebugMode}`)
+}
+function log (...args) {
+    if (isDebugMode) console.debug(...args)
 }
 
 // Platform
@@ -21,7 +24,7 @@ const currentYear = new Date().getFullYear()
 const isPWA = matchMedia("(display-mode: standalone)").matches
 const isIphone = navigator.platform == "iPhone"
 const isAndroid = navigator.userAgent.includes("Android")
-console.debug(`Year: ${currentYear}, is PWA: ${isPWA}, is iPhone: ${isIphone}, is Android: ${isAndroid}`)
+log(`Year: ${currentYear}, is PWA: ${isPWA}, is iPhone: ${isIphone}, is Android: ${isAndroid}`)
 
 // Theme color (titlebar color on computers and Android, second background color on iPhones)
 function setThemeColor (color) {

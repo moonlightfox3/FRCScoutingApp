@@ -3,13 +3,13 @@ const gitUserName = "moonlightfox3", gitRepoName = "FRCScoutingApp"
 
 // Use GitHub's API
 async function getCommit () {
-    console.debug(`Getting latest commit data for GitHub repo '${gitUserName}/${gitRepoName}'`)
+    log(`Getting latest commit data for GitHub repo '${gitUserName}/${gitRepoName}'`)
     let resp = null
     try {
         resp = await fetch(`https://api.github.com/repos/${gitUserName}/${gitRepoName}/commits?per_page=1`)
     } catch (er) {
         // Network error
-        console.debug("Could not get latest commit data")
+        log("Could not get latest commit data")
         return null
     }
 
@@ -50,13 +50,13 @@ async function hasDeployedToPages () {
     // Was the commit fetched?
     if (commit == null) return null
 
-    console.debug(`Getting GitHub Pages status for GitHub repo '${gitUserName}/${gitRepoName}'`)
+    log(`Getting GitHub Pages status for GitHub repo '${gitUserName}/${gitRepoName}'`)
     let resp = null
     try {
         resp = await fetch(`https://api.github.com/repos/${gitUserName}/${gitRepoName}/deployments?per_page=1`)
     } catch (er) {
         // Network error
-        console.debug("Could not get GitHub Pages status")
+        log("Could not get GitHub Pages status")
         return null
     }
 
@@ -69,7 +69,7 @@ async function hasDeployedToPages () {
         resp = await fetch(`${json[0].statuses_url}?per_page=1`)
     } catch (er) {
         // Network error
-        console.debug("Could not get GitHub Pages status")
+        log("Could not get GitHub Pages status")
         return null
     }
     

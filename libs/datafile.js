@@ -20,7 +20,7 @@ if (isPWA && window.launchQueue != undefined) {
 
             // Ignore empty files
             if (text != "") {
-                console.debug(`Importing file '${file.name}'`)
+                log(`Importing file '${file.name}'`)
                 getImportedFile(text)
             }
         }
@@ -40,7 +40,7 @@ let dataElems = null // index 0 is the team number, index 1 can be the match num
 let dataElemsDefaultVals = null
 function initDataFile (year, isPit) {
     // Setup
-    console.debug(`Initializing data file for year '${year}'`)
+    log(`Initializing data file for year '${year}'`)
     dataYear = year
     dataIsPit = isPit
     dataElems = []

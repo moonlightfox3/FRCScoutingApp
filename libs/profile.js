@@ -82,7 +82,7 @@ ${keysToHtmlStr(2026, true)}
 
     // Dark mode functionality
     darkModeToggle.onchange = function () {
-        console.debug(`Changing style to ${darkModeToggle.checked ? "dark" : "light"} mode`)
+        log(`Changing style to ${darkModeToggle.checked ? "dark" : "light"} mode`)
 
         // Toggle, save
         if (darkModeToggle.checked) {
