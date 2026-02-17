@@ -7,7 +7,7 @@ function createProfileMenus () {
     // Profile bar
     let profile = document.createElement("div")
     profile.id = "profile"
-    profile.innerHTML = `Made by <i>Joe M. (moonlightfox3)</i> - <a class="profileLink" target="_blank" href="https://github.com/moonlightfox3/FRCScoutingApp"><b>GitHub repo here</b></a> | <button id="profileSettingsOpen">Show app info and settings</button>`
+    profile.innerHTML = `Made by <i>Joe M. (moonlightfox3)</i> - <a class="profileLink" target="_blank" href="https://github.com/moonlightfox3/FRCScoutingApp"><b>GitHub repo here</b></a> | <button id="profileSettingsOpen">Show info and settings</button>`
     
     // Profile bar open/close button
     let profileExpand = document.createElement("div")
