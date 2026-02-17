@@ -136,7 +136,11 @@ async function checkCache () {
 
         await deleteCache()
         await createCache()
-    } else console.debug("[SW] Cache is good")
+        return false
+    } else {
+        console.debug("[SW] Cache is good")
+        return true
+    }
 }
 async function respondFromCache (request) {
     // Check if the response is already cached, return it if it is (otherwise return an error - it should be cached)
@@ -235,8 +239,7 @@ broadcast.onmessage = async function (ev) {
             console.debug(`[SW] Has deployed to GitHub Pages: ${deployedToPages}`)
         }
         
-        broadcast.postMessage({sender: "sw", type: "github", msg: {commitId, commitDate, deployedToPages, didUpdate}})
+        broadcast.postMessage({sender: "sw", type: "github", msg: {commitId, commitDate, deployedToPages, didUpdate: didUpdate || !(await checkCache())}})
         if (deployedToPages) didUpdate = false
-        await checkCache()
     }
 }
