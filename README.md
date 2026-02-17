@@ -1,1 +1,2 @@
-A scouting app for FRC (FIRST Robotics Competition). Designed to either be used on a computer with a keyboard, or a phone/tablet with a game controller, but the UI can be used directly too.
+A scouting app for FRC (FIRST Robotics Competition), made by team 9450 (Velocity Raptors).\
+Designed to either be used on a computer with a keyboard, or a phone/tablet with a game controller, but can also be used with a mouse or touchscreen.

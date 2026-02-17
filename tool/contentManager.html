@@ -29,7 +29,7 @@ This tool is intended for testing and app development.<br>
         if (confirm("Reload?")) location.reload()
     }
     clearCacheBtn.onclick = async function () {
-        if (!confirm("Are you sure you want to clear the cache(s)?\nThis will prevent you from using this page offline until you reload it again while online.")) return
+        if (!confirm("Are you sure you want to clear the cache(s)?\nThis will prevent you from using this app offline until you reload it again while online.")) return
 
         let names = await caches.keys()
         let relevantNames = names.filter(val => val.startsWith("FRCScoutingApp_"))
@@ -39,7 +39,7 @@ This tool is intended for testing and app development.<br>
         if (confirm("Reload?")) location.reload()
     }
     removeSwBtn.onclick = async function () {
-        if (!confirm("Are you sure you want to remove the service worker?\nThis will prevent you from using this page offline until you reload it again while online.")) return
+        if (!confirm("Are you sure you want to remove the service worker?\nThis will prevent you from using this app offline until you reload it again while online.")) return
 
         await unregisterSw()
         

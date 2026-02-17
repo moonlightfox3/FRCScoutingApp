@@ -7,7 +7,7 @@ function createProfileMenus () {
     // Profile bar
     let profile = document.createElement("div")
     profile.id = "profile"
-    profile.innerHTML = `Made by <i>Joe M. (moonlightfox3)</i> - <a class="profileLink" target="_blank" href="https://github.com/moonlightfox3/FRCScoutingApp"><b>GitHub repo here</b></a> | <button id="profileSettingsOpen">Show page info and settings</button>`
+    profile.innerHTML = `Made by <i>Joe M. (moonlightfox3)</i> - <a class="profileLink" target="_blank" href="https://github.com/moonlightfox3/FRCScoutingApp"><b>GitHub repo here</b></a> | <button id="profileSettingsOpen">Show app info and settings</button>`
     
     // Profile bar open/close button
     let profileExpand = document.createElement("div")
@@ -40,8 +40,8 @@ function createProfileMenus () {
     profileSettings.id = "profileSettings"
 profileSettings.innerHTML = `\
 <center>
-    <b>About this page</b><br>
-    This is an open-source scouting app for FRC.<br>
+    <b>About this app</b><br>
+    This is an open-source scouting app for FRC, made by team 9450 (Velocity Raptors).<br>
     It's designed to be used on a computer with a keyboard, or a phone/tablet with a game controller, but can also be used with a mouse or touchscreen.
 </center>
 <hr>
