@@ -114,7 +114,7 @@ function getStoragePart (storage, part, partIsPit) {
     let files = []
     for (let year of Object.keys(storagePart)) {
         let years = storagePart[year]
-        for (let yearData of years) files.push({name: yearData.name, data: yearData.data, is_pit: partIsPit, year: +year, team: yearData.data.split(",")[2]})
+        for (let yearData of years) files.push({name: yearData.name, data: yearData.data, is_pit: partIsPit, year: +year, team: +(yearData.data.split(",")[2].slice(1, -1))})
     }
     return files
 }
