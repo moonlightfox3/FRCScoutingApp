@@ -55,14 +55,14 @@ async function getEventListSupabase () {
 // Access event data
 async function getEventDataSupabase (name) {
     try {
-        let {data, error} = await supabaseClient.from(name).select("name,data,is_pit,year")
+        let {data, error} = await supabaseClient.from(name).select("name,data,is_pit,year,team")
         if (error != null) return null
         return data
     } catch (er) {
         return null
     }
 }
-async function addEventDatasSupabase (name, files) { // `files` is an array of objects with name, data, is_pit, and year keys
+async function addEventDatasSupabase (name, files) { // `files` is an array of objects with name, data, is_pit, year, and team keys
     try {
         let {error} = await supabaseClient.from(name).insert(files).select()
         return error == null
@@ -70,14 +70,15 @@ async function addEventDatasSupabase (name, files) { // `files` is an array of o
         return false
     }
 }
-async function editEventDataSupabase (name, fileName, newFileName = null, newFileData = null, newFileIsPit = null, newFileYear = null) {
-    if (newFileName == null && newFileData == null && newFileIsPit == null && newFileYear == null) return true
+async function editEventDataSupabase (name, fileName, newFileName = null, newFileData = null, newFileIsPit = null, newFileYear = null, newFileTeam = null) {
+    if (newFileName == null && newFileData == null && newFileIsPit == null && newFileYear == null && newFileTeam == null) return true
 
     let opts = {}
     if (newFileName != null) opts.name = newFileName
     if (newFileData != null) opts.data = newFileData
     if (newFileIsPit != null) opts.is_pit = newFileIsPit
     if (newFileYear != null) opts.year = newFileYear
+    if (newFileTeam != null) opts.team = newFileTeam
 
     try {
         let {error} = await supabaseClient.from(name).update(opts).eq("name", fileName).select()
@@ -113,7 +114,7 @@ function getStoragePart (storage, part, partIsPit) {
     let files = []
     for (let year of Object.keys(storagePart)) {
         let years = storagePart[year]
-        for (let yearData of years) files.push({name: yearData.name, data: yearData.data, is_pit: partIsPit, year: +year})
+        for (let yearData of years) files.push({name: yearData.name, data: yearData.data, is_pit: partIsPit, year: +year, team: yearData.data.split(",")[2]})
     }
     return files
 }
@@ -152,6 +153,7 @@ async function userUploadCurrentFileToServer () {
         data: exportData(),
         is_pit: dataIsPit,
         year: dataYear,
+        team: dataChangingTeam ?? 0,
     }]
     let success = await userUploadToServer(files)
     return success

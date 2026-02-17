@@ -33,6 +33,7 @@ const dataFileExcludeElems = ["br", "label", "a", "button", "option"]
 // Data config
 let dataYear = null
 let dataIsPit = false
+let dataChangingTeam = null
 let dataElems = null // index 0 is the team number, index 1 can be the match number (both are type=text inputs)
 
 // Get the input elements that should be exported

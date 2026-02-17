@@ -124,3 +124,9 @@ dataForm.onreset = function () {
 onbeforeunload = function (ev) {
     if (getFormChanged()) ev.preventDefault()
 }
+
+// Update changing data
+teamNum.onchange = function () {
+    if (teamNum.value == "") dataChangingTeam = null
+    else dataChangingTeam = isNaN(+teamNum.value) ? null : +teamNum.value
+}
