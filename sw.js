@@ -228,7 +228,7 @@ broadcast.onmessage = async function (ev) {
     if (ev.data.sender == "sw") return
     log(`[SW] Got message: '${ev.data.type}'`, ev.data.msg)
     
-    if (ev.data.type == "reload") {
+    if (ev.data.type == "reload") { // On page load
         debugMode(ev.data.msg.isDebugMode, false, false)
 
         await getCache()
@@ -242,5 +242,5 @@ broadcast.onmessage = async function (ev) {
         
         broadcast.postMessage({sender: "sw", type: "github", msg: {commitId, commitDate, deployedToPages, didUpdate: didUpdate || !(await checkCache())}})
         didUpdate = false
-    } else if (ev.data.type == "debug") debugMode(ev.data.msg.isDebugMode, false, false)
+    } else if (ev.data.type == "debug") debugMode(ev.data.msg.isDebugMode, false, false) // Set debug mode
 }
