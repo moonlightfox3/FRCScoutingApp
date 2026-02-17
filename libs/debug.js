@@ -16,6 +16,9 @@ function onApplyDebugMode (apply = true) {
         // Apply to document
         if (isDebugMode) document.body.classList.add("debug")
         else document.body.classList.remove("debug")
+
+        // Save to worker
+        broadcast.postMessage({sender: "cl", type: "reload", msg: {isDebugMode}})
     }
 
     if (isDebugMode) {

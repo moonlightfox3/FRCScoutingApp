@@ -242,5 +242,5 @@ broadcast.onmessage = async function (ev) {
         
         broadcast.postMessage({sender: "sw", type: "github", msg: {commitId, commitDate, deployedToPages, didUpdate: didUpdate || !(await checkCache())}})
         didUpdate = false
-    }
+    } else if (ev.data.type == "debug") debugMode(ev.data.msg.isDebugMode, false, false)
 }
