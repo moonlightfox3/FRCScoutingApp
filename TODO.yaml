@@ -1,7 +1,4 @@
 Needs
-    Service worker refetches data a lot on own update - probably requests come in in parallel and updates multiple times?
-        Fetch data as little as possible
-
     Client UI - Data summary page
         View/change/remove data
             Shows raw data and stats from data?
@@ -12,3 +9,5 @@ Wants
 Luxuries
 
 Testing
+    Service worker refetches data a lot on own update - probably requests come in in parallel and updates multiple times?
+        Fetch data as little as possible
