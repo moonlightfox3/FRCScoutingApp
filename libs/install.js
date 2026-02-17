@@ -1,3 +1,19 @@
+// Vars
+let isDebugMode = false
+function debugMode (isDebug, store = true) {
+    if (isDebugMode == isDebug) return
+    isDebugMode = isDebug
+    
+    if (store) {
+        if (isDebugMode) localStorage.setItem("FRCScoutingApp_debugMode", "1")
+        else localStorage.removeItem("FRCScoutingApp_debugMode")
+    }
+    onApplyDebugMode()
+}
+function onApplyDebugMode () {
+    console.debug(`Debug mode: ${isDebugMode}`)
+}
+
 // Platform
 const currentYear = new Date().getFullYear()
 const isPWA = matchMedia("(display-mode: standalone)").matches

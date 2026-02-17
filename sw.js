@@ -7,16 +7,14 @@ const cachePrefix = "FRCScoutingApp_"
 const precacheResources = [ // No need to precache some resources, but might as well precache almost everything
     "/sw.js", "/manifest.json", "/index.html",
     "/libs/datafile.js", "/libs/elements.js", "/libs/gamepadControl.js", "/libs/gamepads.js", "/libs/github.js", "/libs/install.js", "/libs/profile.js", "/libs/server.js", "/libs/swrun.js", "/libs/style.css", "/libs/index-style.css",
-    "/year/Reefscape.html", "/year/Reefscape.js", "/year/Rebuilt.html", "/year/Rebuilt.js",
-    "/year-pit/Rebuilt.html", "/year-pit/Rebuilt.js",
+    "/year/Placeholder.html", "/year/Placeholder.js", "/year/Reefscape.html", "/year/Reefscape.js", "/year/Rebuilt.html", "/year/Rebuilt.js",
+    "/year-pit/Placeholder.html", "/year-pit/Placeholder.js", "/year-pit/Rebuilt.html", "/year-pit/Rebuilt.js",
     "/year-libs/keys.js", "/year-libs/years.js", "/year-libs/style.css",
     "/tool/storageViewer.html", "/tool/storageViewer-style.css", "/tool/contentManager.html", "/tool/contentManager-style.css", "/tool/server.html", "/tool/server-style.css",
     "/icons/icon.svg", "/icons/apple-touch-icon-1024x1024.png",
     "/year-img/Reefscape.png", "/year-img/Rebuilt.png",
 
     // Don't precache:
-    // "/year/Placeholder.html", "/year/Placeholder.js",
-    // "/year-pit/Placeholder.html", "/year/Placeholder.js",
     // "/README.md", "/TODO.yaml",
 ]
 const excludeCacheResourceParts = [

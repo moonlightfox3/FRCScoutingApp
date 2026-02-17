@@ -22,21 +22,26 @@
     createProfileMenus()
     
     const years = {
+        0: "Placeholder",
         2025: "Reefscape",
         2026: "Rebuilt",
     }
     const pitYears = {
+        0: "Placeholder",
         2026: "Rebuilt",
     }
+    const unreleasedYears = []
+    const unavailableYears = []
+    const noImgYears = []
+    const debugYears = [0]
+
     const tools = {
         "server": "Server Authentication",
         "storageViewer": "Storage Viewer",
         "contentManager": "Content Manager",
     }
-    const unreleasedYears = []
-    const unavailableYears = []
-    const noImgYears = []
     const unavailableTools = []
+    const debugTools = ["contentManager"]
 
     // Create button elements automatically
     function displayBreak (isLarge) {
@@ -62,6 +67,7 @@
             button.innerText = `${name} (${year})`
             if (currentYear == +year) button.classList.add("current")
             if (unreleasedYears.includes(+year)) button.classList.add("unreleased")
+            if (debugYears.includes(+year)) button.classList.add("debug")
             button.disabled = unavailableYears.includes(+year)
 
             if (!noImgYears.includes(+year)) {
@@ -90,6 +96,7 @@
             let button = document.createElement("button")
             button.className = "tool"
             button.innerText = name
+            if (debugTools.includes(tool)) button.classList.add("debug")
             button.disabled = unavailableTools.includes(tool)
 
             a.append(button)

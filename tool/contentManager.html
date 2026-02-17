@@ -21,6 +21,7 @@ This tool is intended for testing and app development.<br>
         if (!confirm("Are you sure you want to clear LocalStorage?\nThis will remove your locally saved files and reset your settings.")) return
 
         localStorage.removeItem("FRCScoutingApp_lightMode")
+        localStorage.removeItem("FRCScoutingApp_debugMode")
         localStorage.removeItem("FRCScoutingApp_files")
         localStorage.removeItem("FRCScoutingApp_temp_importFile")
 

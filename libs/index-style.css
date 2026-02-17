@@ -35,6 +35,9 @@ button.year.unreleased {
     background-color: gray;
     cursor: default;
 }
+body:not(.debug) button.year.debug {
+    display: none;
+}
 button.year[disabled] {
     cursor: default;
 }
@@ -63,6 +66,9 @@ button.tool {
     cursor: pointer;
     color: black;
     border-radius: 5px;
+}
+body:not(.debug) button.tool.debug {
+    display: none;
 }
 
 

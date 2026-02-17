@@ -42,6 +42,7 @@ async function registerSw () {
 addEventListener("load", async function () {
     // Unrelated stuff :3
     if (!!parseInt(localStorage.getItem("FRCScoutingApp_lightMode"))) document.body.classList.add("light")
+    debugMode(!!parseInt(localStorage.getItem("FRCScoutingApp_debugMode")), false)
     console.debug("App loaded")
     
     // Service worker setup
