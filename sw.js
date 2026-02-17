@@ -13,13 +13,11 @@ const precacheResources = [
     "/tool/contentManager.html", "/tool/contentManager-style.css", "/tool/server.html", "/tool/server-style.css", "/tool/storageViewer.html", "/tool/storageViewer-style.css", "/tool/dataViewer.html", "/tool/dataViewer-style.css",
     "/icons/icon.svg", "/icons/apple-touch-icon-1024x1024.png",
     "/year-img/Reefscape.png", "/year-img/Rebuilt.png",
-
     // "/README.md", "/TODO.yaml",
 ]
 const excludeCacheResourceParts = [
     "github.com",
     "unpkg.com", "supabase",
-    
     // "fonts.googleapis.com", "fonts.gstatic.com",
 ]
 const canFallbackFetchResourceParts = [
