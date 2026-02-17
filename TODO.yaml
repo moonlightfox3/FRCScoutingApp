@@ -5,6 +5,7 @@ Needs
 
 Wants
     Service worker refetches data a lot on own update - probably requests come in in parallel and updates multiple times?
+    Prompt for page reload to update after any update, not just service worker update
 
 Luxuries
 
