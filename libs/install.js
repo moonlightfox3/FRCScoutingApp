@@ -11,6 +11,8 @@ function debugMode (isDebug, store = true) {
     onApplyDebugMode()
 }
 function onApplyDebugMode () {
+    if (isDebugMode) document.body.classList.add("debug")
+    else document.body.classList.remove("debug")
     console.debug(`Debug mode: ${isDebugMode}`)
 }
 
