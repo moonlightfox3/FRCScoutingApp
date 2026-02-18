@@ -1,3 +1,6 @@
+// Vars
+let isSW = false
+
 // Debug mode
 let isDebugMode = false
 function debugMode (isDebug, store = true, apply = true) {
@@ -25,7 +28,7 @@ function onApplyDebugMode (apply = true) {
         for (let log of storedDebugLogs) console.debug(...log)
         storedDebugLogs = []
     }
-    log(`Debug mode: ${isDebugMode}`)
+    log(`${isSW ? "[SW] " : ""}Debug mode: ${isDebugMode}`)
 }
 
 // Debug logging
