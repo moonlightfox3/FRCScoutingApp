@@ -121,8 +121,18 @@ dataForm.onreset = function () {
 }
 
 // Prompt before leaving the page, if any form element was changed
+let leavingWithButton = false
+returnToYearSelect.onclick = function () {
+    if (getFormChanged() && !confirm("Are you sure you want to leave this page?\nYour data might not be saved!")) return
+    leavingWithButton = true
+
+    let a = document.createElement("a")
+    a.href = "../index.html"
+    a.click()
+}
 onbeforeunload = function (ev) {
-    if (getFormChanged()) ev.preventDefault()
+    if (!leavingWithButton && getFormChanged()) ev.preventDefault()
+    leavingWithButton = false
 }
 
 // Update changing data
